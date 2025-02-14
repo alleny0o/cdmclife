@@ -77,7 +77,7 @@ function SectionTwo() {
                   href={article.link}
                   className="inline-flex items-center border-2 border-deepBlack text-deepBlack px-6 py-2 rounded-md font-medium hover:bg-deepBlack hover:text-softWhite transition-colors mt-6 md:mt-8 text-sm md:text-base"
                 >
-                  View project <RxChevronRight className="ml-2" />
+                  Learn More <RxChevronRight className="ml-2" />
                 </Link>
               </div>
               <div>

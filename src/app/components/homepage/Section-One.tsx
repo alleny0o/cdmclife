@@ -27,15 +27,16 @@ function SectionOne() {
           className="max-w-[90%] sm:max-w-4xl flex flex-col items-center text-center"
         >
           {/* Animated Heading */}
-          <motion.h1
-            variants={{
-              hidden: { opacity: 0, y: 20, scale: 0.95 },
-              visible: { opacity: 1, y: 0, scale: 1 },
-            }}
-            className="mb-4 md:mb-10 text-4xl sm:text-5xl md:text-7xl font-bold text-softWhite drop-shadow-md leading-tight"
-          >
-            Faith as Small as a Mustard Seed
-          </motion.h1>
+          {/* <motion.h1
+  variants={{
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+  }}
+  className="mb-4 md:mb-10 text-4xl sm:text-5xl md:text-7xl font-bold text-softWhite drop-shadow-md leading-tight landscape:hidden"
+>
+  Faith as Small as a Mustard Seed
+</motion.h1> */}
+
 
           {/* Animated Paragraph */}
           <motion.p
@@ -43,7 +44,7 @@ function SectionOne() {
               hidden: { opacity: 0, y: 10 },
               visible: { opacity: 1, y: 0 },
             }}
-            className="mb-8 max-w-xl text-sm sm:text-base md:text-xl text-softWhite leading-relaxed"
+            className="landscape:mb-0 max-w-2xl sm:max-w-3xl text-lg sm:text-xl md:text-2xl text-softWhite leading-relaxed"
           >
             &quot;Blessed are the merciful, for they shall receive mercy.&quot;
             <br />- Matthew 5:7

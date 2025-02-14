@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 function SectionOne() {
   return (
     <section
-      className="relative h-screen bg-fixed bg-center bg-cover bg-no-repeat -z-10"
+      className="relative h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-scroll-mobile"
       style={{ backgroundImage: "url('/snow-church.png')" }}
     >
       {/* Dark overlay using a custom deepBlack with adjusted opacity */}

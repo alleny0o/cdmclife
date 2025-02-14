@@ -26,3 +26,11 @@
 body {
   font-family: var(--font-open-sans);
 }
+
+@layer utilities {
+  @media (max-width: 1024px) {
+    .bg-scroll-mobile {
+      background-attachment: scroll !important;
+    }
+  }
+}

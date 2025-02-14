@@ -8,7 +8,6 @@ import Image from "next/image";
 import { links } from "../../constants/nav-links";
 import { BiChevronDown } from "react-icons/bi";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import Button from "./side-menu/Button";
 import SideMenu from "./side-menu/SideMenu";
 
 function Header() {

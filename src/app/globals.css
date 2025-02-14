@@ -3,19 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-open-sans: "Open Sans", sans-serif;
+
+  /* Base Colors */
+  --vintage-navy: #2B3C5A;    /* Deep, rich navy blue */
+  --black: #2C2C2C;           /* Soft black for text */
+  --deep-gray: rgb(86, 86, 86);   /* Deep gray for backgrounds */
+  --white: #FAF9F6;           /* Slightly off-white for warmth */
+  --blue: #435B7B;            /* Medium blue */
+  --light-blue: #8A9DB5;      /* Lighter muted blue */
+  --dusty-blue: #6B7F9E;      /* Soft, muted blue */
+  --button-blue: #2F4979;     /* Button blue */
+  --hover-button-blue: #3A5B94;   /* Hover button blue */
+  --warm-gray: #74767A;       /* Warm gray for text */
+  --sage-green: #8B9D83;      /* Subtle green accent */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.font-handlee {
+  font-family: "Handlee", cursive;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-open-sans);
 }

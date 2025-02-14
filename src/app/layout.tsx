@@ -37,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${handlee.variable} ${openSans.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${handlee.variable} ${openSans.variable} antialiased overflow-x-hidden`}>
         <Header />
         <main className="relative h-full w-full">{children}</main>
         <Footer />

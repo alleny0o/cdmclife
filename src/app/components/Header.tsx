@@ -12,8 +12,6 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 function Header() {
   const { scrollY } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState("up");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -23,8 +21,6 @@ function Header() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
     const newDirection = latest > previous ? "down" : "up";
-    setScrollDirection(newDirection);
-    setHasScrolled(latest > 0);
 
     // Only show the fixed navbar if scrolled more than 150px
     if (latest <= 150) {

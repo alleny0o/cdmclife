@@ -20,6 +20,20 @@ function Header() {
     document.body.style.overflow = isSideMenuActive || isFixedSideMenuActive ? "hidden" : "auto";
   }, [isSideMenuActive, isFixedSideMenuActive]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) { // 768px is Tailwind's md breakpoint
+        setIsSideMenuActive(false);
+        setIsFixedSideMenuActive(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
     const newDirection = latest > previous ? "down" : "up";
@@ -91,7 +105,7 @@ function Header() {
               {links.map((link, index) => (
                 <div key={index} className="relative group">
                   <Link
-                    href={link.href}
+                    href={link.href ?? "/"}
                     onClick={(e) => link.subLinks && e.preventDefault()}
                     className="flex items-center text-softWhite font-medium lg:text-base text-sm lg:px-3 md:px-2 py-2 transition-colors hover:text-dustyBlue"
                   >
@@ -145,7 +159,7 @@ function Header() {
               {links.map((link, index) => (
                 <div key={index} className="relative group">
                   <Link
-                    href={link.href}
+                    href={link.href ?? "/"}
                     onClick={(e) => link.subLinks && e.preventDefault()}
                     className="flex items-center text-softWhite font-medium lg:text-base text-sm lg:px-3 md:px-2 py-2 transition-colors hover:text-dustyBlue"
                   >

@@ -6,23 +6,25 @@
   --font-open-sans: "Open Sans", sans-serif;
 
   /* Base Colors */
-  --vintage-navy: #2B3C5A;    /* Deep, rich navy blue */
-  --black: #2C2C2C;           /* Soft black for text */
-  --deep-gray: rgb(86, 86, 86);   /* Deep gray for backgrounds */
-  --white: #FAF9F6;           /* Slightly off-white for warmth */
-  --blue: #435B7B;            /* Medium blue */
-  --light-blue: #8A9DB5;      /* Lighter muted blue */
-  --dusty-blue: #6B7F9E;      /* Soft, muted blue */
-  --button-blue: #2F4979;     /* Button blue */
-  --hover-button-blue: #3A5B94;   /* Hover button blue */
-  --warm-gray: #74767A;       /* Warm gray for text */
-  --sage-green: #8B9D83;      /* Subtle green accent */
+  --darker-navy: #1A2A4D;
+  --vintage-navy: #2B3C5A;
+  --darker-black: #1A1A1A;
+  --black: #2C2C2C;
+  --deep-gray: rgb(86, 86, 86);
+  --white: #FAF9F6;
+  --blue: #435B7B;
+  --light-blue: #8A9DB5;
+  --dusty-blue: #6B7F9E;
+  --button-blue: #2F4979;
+  --hover-button-blue: #3A5B94;
+  --warm-gray: #74767A;
+  --sage-green: #8B9D83;
 
-  --golden-amber: #d4c38a;      /* Golden amber for bg */
-}
-
-.font-handlee {
-  font-family: "Handlee", cursive;
+  /* New vintage colors for the dropdown component */
+  --vintage-cream: #fdf6ec;       /* Warm off-white cream */
+  --vintage-burgundy: #5d2a2a;    /* Deep vintage burgundy */
+  --vintage-gold: #d4af7f;        /* Muted antique gold */
+  --vintage-grey: #8d8d8d;        /* Soft vintage grey */
 }
 
 body {

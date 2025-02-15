@@ -9,18 +9,35 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Existing colors
         'background-secondary': '#F3F4F6',
-        vintageNavy: "var(--vintage-navy)",      // A deeper, richer blue for main elements
-        deepBlack: "var(--black)",               // Your existing black
-        deepGray: "var(--deep-gray)",             // Your existing dark gray
-        softWhite: "var(--white)",               // Your existing white
-        mutedBlue: "var(--blue)",                // Your existing blue
-        fadedBlue: "var(--light-blue)",          // Your existing light blue
-        dustyBlue: "var(--dusty-blue)",          // New softer blue for subtle elements
-        buttonBlue: "var(--button-blue)",          // New blue for buttons
-        hoverButtonBlue: "var(--hover-button-blue)",      // New blue for button hover
-        warmGray: "var(--warm-gray)",            // New warm gray for text
-        sageGreen: "var(--sage-green)",          // New accent color option
+        darkerNavy: "var(--darker-navy)",
+        vintageNavy: "var(--vintage-navy)",
+        darkerBlack: "var(--darker-black)",
+        deepBlack: "var(--black)",
+        deepGray: "var(--deep-gray)",
+        softWhite: "var(--white)",
+        mutedBlue: "var(--blue)",
+        fadedBlue: "var(--light-blue)",
+        dustyBlue: "var(--dusty-blue)",
+        buttonBlue: "var(--button-blue)",
+        hoverButtonBlue: "var(--hover-button-blue)",
+        warmGray: "var(--warm-gray)",
+        sageGreen: "var(--sage-green)",
+
+        'menu-overlay': 'rgba(142, 179, 237, 1)', // vintageNavy with opacity
+        'menu-border': 'rgba(255, 255, 255, 0.1)',
+        'menu-divider': 'rgba(255, 255, 255, 0.2)',
+        'menu-text-primary': 'rgba(250, 249, 246, 0.9)', // softWhite with opacity
+        'menu-text-secondary': 'rgba(250, 249, 246, 0.6)',
+
+        // New vintage colors for the dropdown component
+        vintageCream: "var(--vintage-cream)",       // warm off-white cream
+        vintageBurgundy: "var(--vintage-burgundy)",    // deep vintage burgundy
+        vintageGold: "var(--vintage-gold)",          // muted antique gold
+        vintageGrey: "var(--vintage-grey)",          // soft vintage grey
+
+        'vintage-menu-overlay': 'rgba(164, 191, 237, 1)', // vintage-style overlay
       },
       fontFamily: {
         handlee: ["var(--font-handlee)", "cursive"],

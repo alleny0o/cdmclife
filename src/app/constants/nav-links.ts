@@ -15,7 +15,7 @@ export type SubLink = {
   
   export type Links = {
     label: string;
-    href: string;
+    href?: string;
     navImage?: string;
     caption?: string;
     subLinks?: SubLink[];
@@ -40,20 +40,19 @@ export type SubLink = {
     },
     {
       label: "More",
-      href: "/more",
       subLinks: [
         {
           header: "Church Life",
           subMenu: [
             { label: "Leaders", href: "/leaders", caption: "Meet our leaders." },
-            { label: "Fellowship", href: "/fellowship", caption: "Fellowship makes us special." },
-            { label: "Calendar", href: "/calendar", caption: "See what's happening." },
+            { label: "Announcements", href: "/announcements", caption: "Stay updated with the latest events." },
+            { label: "Schedule", href: "/schedule", caption: "See what's happening." },
           ],
         },
         {
           header: "Spiritual Growth",
           subMenu: [
-            { label: "Devotionals", href: "/devotionals", caption: "Grow in your faith." },
+            { label: "Fellowship", href: "/fellowship", caption: "Fellowship makes us special." },
             { label: "Prayer Requests", href: "/prayer-requests", caption: "Share your prayer requests." },
             { label: "Contact Us", href: "/contact-us", caption: "Get in touch with us." },
           ],

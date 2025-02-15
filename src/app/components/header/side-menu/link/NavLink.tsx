@@ -1,3 +1,5 @@
+"use client";
+
 import { Links } from "@/app/constants/nav-links";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -24,12 +26,13 @@ function NavLink(input: Links) {
   return (
     <motion.div variants={variants}>
       <Link
-        href={input.href}
+        href={input.href ?? "/"}
         onClick={(e) => input.subLinks && e.preventDefault()}
-        className="flex items-center text-softWhite font-medium lg:text-4xl text-3xl lg:px-3 md:px-2 py-2 transition-colors hover:text-dustyBlue"
+        className="flex items-center text-softWhite font-medium lg:text-3xl text-2xl lg:px-3 md:px-2 py-2 transition-colors hover:text-dustyBlue"
       >
         {input.label.toUpperCase()}
       </Link>
+      <div className="h-[1px] bg-white w-full"></div>
     </motion.div>
   );
 }

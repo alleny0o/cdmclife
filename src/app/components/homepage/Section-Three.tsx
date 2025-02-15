@@ -60,7 +60,7 @@ function SectionThree() {
           {sermons.map((sermon) => (
             <div
               key={sermon.id}
-              className="bg-softWhite rounded-lg border border-dustyBlue/20 p-6 flex flex-col md:flex-row items-center gap-6 shadow-sm hover:border-dustyBlue/30 transition-colors"
+              className="bg-softWhite rounded-lg border border-dustyBlue/20 p-6 flex flex-col md:flex-row items-start gap-6 shadow-sm hover:border-dustyBlue/30 transition-colors"
             >
               {/* Video Thumbnail Container */}
               <div className="w-full md:w-64 h-48 relative rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
@@ -96,7 +96,7 @@ function SectionThree() {
         {/* View All Button */}
         <div className="mt-10 text-center">
           <button className="bg-transparent border-2 border-deepBlack text-deepBlack px-8 py-3 rounded-md font-medium text-sm md:text-base hover:bg-deepBlack hover:text-softWhite transition-colors">
-            ALL SERMONS
+            MORE INFO
           </button>
         </div>
       </div>

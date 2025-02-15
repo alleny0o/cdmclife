@@ -76,7 +76,7 @@ function Menu({ isActive, setIsActive }: MenuProps) {
               initial="initial"
               animate="open"
               exit="initial"
-              className="pt-24 pb-16 min-h-screen flex flex-col items-center"
+              className="py-24 min-h-screen flex flex-col items-center"
             >
               <div className="w-[80%] max-w-lg space-y-2">
                 {links.map((link, index) => (

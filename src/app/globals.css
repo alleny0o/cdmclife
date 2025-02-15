@@ -22,7 +22,8 @@
 
   /* New vintage colors for the dropdown component */
   --vintage-cream: #fdf6ec;       /* Warm off-white cream */
-  --vintage-burgundy: #5d2a2a;    /* Deep vintage burgundy */
+  --vintage-burgundy: #4f2121;    /* Deep vintage burgundy */
+  --light-gray: #cecece; /* Light vintage burgundy */
   --vintage-gold: #d4af7f;        /* Muted antique gold */
   --vintage-grey: #8d8d8d;        /* Soft vintage grey */
 }

@@ -5,12 +5,12 @@ import NavLink from "./link/NavLink";
 import DropdownLink from "./link/DropdownLink";
 import { links } from "@/app/constants/nav-links";
 
-type MenuProps = {
+type MobileMenuProps = {
   isActive: boolean;
   setIsActive: (isActive: boolean) => void;
 };
 
-function Menu({ isActive, setIsActive }: MenuProps) {
+function MobileMenu({ isActive, setIsActive }: MobileMenuProps) {
   const menuVariants = {
     initial: {
       scaleY: 0,
@@ -93,4 +93,4 @@ function Menu({ isActive, setIsActive }: MenuProps) {
   );
 }
 
-export default Menu;
+export default MobileMenu;

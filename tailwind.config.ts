@@ -34,6 +34,7 @@ export default {
         // New vintage colors for the dropdown component
         vintageCream: "var(--vintage-cream)",       // warm off-white cream
         vintageBurgundy: "var(--vintage-burgundy)",    // deep vintage burgundy
+        lightGray: "var(--light-gray)", // light vintage burgundy
         vintageGold: "var(--vintage-gold)",          // muted antique gold
         vintageGrey: "var(--vintage-grey)",          // soft vintage grey
 

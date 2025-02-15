@@ -8,7 +8,7 @@ import Image from "next/image";
 import { links } from "../../constants/nav-links";
 import { BiChevronDown } from "react-icons/bi";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import SideMenu from "./side-menu/SideMenu";
+import Menu from "./side-menu/MobileMenu";
 
 function Header() {
   const { scrollY } = useScroll();
@@ -30,12 +30,12 @@ function Header() {
       setIsFixedSideMenuActive(false);
     } else {
       // Delay to let the animation feel smoother
-        // Check the current scroll position before setting visibility.
-        if (scrollY.get() > 150 && newDirection === "up") {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
+      // Check the current scroll position before setting visibility.
+      if (scrollY.get() > 150 && newDirection === "up") {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
     }
 
     // Close side menu when scrolling down
@@ -53,9 +53,7 @@ function Header() {
           <div className="grid w-full grid-cols-12 px-2 max-w-7xl mx-auto">
             <div className="flex items-center gap-x-1 col-span-9">
               <MdLocationPin className="text-lg text-softWhite" />
-              <span className="sm:text-sm text-[12px] text-softWhite">
-                12811 Glen Rd, Gaithersburg, MD 20878
-              </span>
+              <span className="sm:text-sm text-[12px] text-softWhite">12811 Glen Rd, Gaithersburg, MD 20878</span>
             </div>
             <div className="flex justify-end items-center col-span-3">
               <div className="inline-block">
@@ -82,27 +80,20 @@ function Header() {
         <div className="block w-full h-full">
           <div className="grid grid-cols-12 max-w-7xl mx-auto px-8 py-4 items-center">
             {/* Logo */}
-            <div className="relative flex col-span-6 lg:col-span-2">
+            <div className="relative flex col-span-6 md:col-span-2">
               <Link href="/">
-                <Image
-                  src="/logo.jpg"
-                  alt="CDMC"
-                  width={50}
-                  height={50}
-                  className="h-16 w-16 object-cover rounded-lg"
-                  priority
-                />
+                <Image src="/logo.jpg" alt="CDMC" width={50} height={50} className="h-16 w-16 object-cover rounded-lg" priority />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex justify-center items-center col-span-8 gap-6">
+            <nav className="hidden md:flex justify-center items-center col-span-8 lg:gap-9 md:gap-5 gap-1">
               {links.map((link, index) => (
                 <div key={index} className="relative group">
                   <Link
                     href={link.href}
                     onClick={(e) => link.subLinks && e.preventDefault()}
-                    className="flex items-center text-softWhite font-medium px-3 py-2 transition-colors hover:text-dustyBlue"
+                    className="flex items-center text-softWhite font-medium lg:text-base text-sm lg:px-3 md:px-2 py-2 transition-colors hover:text-dustyBlue"
                   >
                     {link.label.toUpperCase()}
                     {link.subLinks && <BiChevronDown className="ml-1 w-4 h-4" />}
@@ -112,15 +103,15 @@ function Header() {
             </nav>
 
             {/* Mobile Navigation & Button */}
-            <div className="relative flex items-center justify-end lg:col-span-2 col-span-6">
+            <div className="relative flex items-center justify-end md:col-span-2 col-span-6">
               <button
-                className="hidden lg:block py-2 px-5 uppercase bg-buttonBlue text-softWhite font-semibold rounded-sm shadow transition duration-300 hover:bg-hoverButtonBlue hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sageGreen"
+                className="hidden md:block py-2 px-5 lg:text-base md:text-sm uppercase bg-buttonBlue text-softWhite font-semibold rounded-lg shadow transition duration-300 hover:bg-hoverButtonBlue hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sageGreen"
                 aria-label="Visit Us"
               >
                 VISIT US
               </button>
-              <div className="lg:hidden relative w-full h-full">
-                <SideMenu isActive={isSideMenuActive} setIsActive={setIsSideMenuActive} />
+              <div className="md:hidden relative w-full h-full flex items-center justify-end">
+                <Menu isActive={isSideMenuActive} setIsActive={setIsSideMenuActive} />
               </div>
             </div>
           </div>
@@ -136,7 +127,7 @@ function Header() {
       >
         <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 items-center">
           {/* Logo */}
-          <div className="flex col-span-6 lg:col-span-2">
+          <div className="flex col-span-6 md:col-span-2">
             <Link href="/" aria-label="Home">
               <Image
                 src="/logo.jpg"
@@ -150,32 +141,31 @@ function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex justify-center items-center col-span-8 gap-6">
-            {links.map((link, index) => (
-              <div key={index} className="relative group">
-                <Link
-                  href={link.href}
-                  onClick={(e) => link.subLinks && e.preventDefault()}
-                  aria-label={link.label}
-                  className="flex items-center text-softWhite font-medium px-3 py-2 transition-colors duration-200 hover:text-dustyBlue"
-                >
-                  {link.label.toUpperCase()}
-                  {link.subLinks && <BiChevronDown className="ml-1 w-4 h-4" />}
-                </Link>
-              </div>
-            ))}
-          </nav>
+          <nav className="hidden md:flex justify-center items-center col-span-8 lg:gap-9 md:gap-5 gap-1">
+              {links.map((link, index) => (
+                <div key={index} className="relative group">
+                  <Link
+                    href={link.href}
+                    onClick={(e) => link.subLinks && e.preventDefault()}
+                    className="flex items-center text-softWhite font-medium lg:text-base text-sm lg:px-3 md:px-2 py-2 transition-colors hover:text-dustyBlue"
+                  >
+                    {link.label.toUpperCase()}
+                    {link.subLinks && <BiChevronDown className="ml-1 w-4 h-4" />}
+                  </Link>
+                </div>
+              ))}
+            </nav>
 
           {/* Button */}
-          <div className="flex items-center justify-end lg:col-span-2 col-span-6">
+          <div className="flex items-center justify-end md:col-span-2 col-span-6">
             <button
-              className="hidden lg:block py-2 px-5 uppercase bg-buttonBlue text-softWhite font-semibold rounded-sm shadow transition duration-300 hover:bg-hoverButtonBlue hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sageGreen"
+              className="hidden md:block py-2 px-5 lg:text-base md:text-sm uppercase bg-buttonBlue text-softWhite font-semibold rounded-lg shadow transition duration-300 hover:bg-hoverButtonBlue hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sageGreen"
               aria-label="Visit Us"
             >
               VISIT US
             </button>
-            <div className="lg:hidden relative w-full h-full">
-              <SideMenu isActive={isFixedSideMenuActive} setIsActive={setIsFixedSideMenuActive} />
+            <div className="md:hidden relative w-full h-full flex items-center justify-end">
+              <Menu isActive={isFixedSideMenuActive} setIsActive={setIsFixedSideMenuActive} />
             </div>
           </div>
         </div>

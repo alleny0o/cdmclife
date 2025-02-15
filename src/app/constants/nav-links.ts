@@ -27,8 +27,8 @@ export type SubLink = {
       href: "/",
     },
     {
-      label: "About Us",
-      href: "/about-us",
+      label: "About",
+      href: "/about",
     },
     {
       label: "Sermons",
@@ -39,8 +39,8 @@ export type SubLink = {
       href: "/missions",
     },
     {
-      label: "Resources",
-      href: "/resources",
+      label: "More",
+      href: "/more",
       subLinks: [
         {
           header: "Church Life",

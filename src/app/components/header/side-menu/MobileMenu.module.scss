@@ -1,0 +1,57 @@
+.button {
+    position: relative;
+    z-index: 1000;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0.6px);
+    -webkit-backdrop-filter: blur(0.6px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .burger {
+      width: 100%;
+      position: relative; // Make sure the pseudo-elements are positioned relative to this container
+  
+      &::after, &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        width: 40%;
+        height: 1px;
+        background-color: white;
+        transition: transform 0.3s, top 0.3s;
+        transform: translateX(-50%);
+      }
+  
+      // Position the lines relative to the center of the button
+      &::after {
+        top: calc(50% - 3px);
+      }
+      &::before {
+        top: calc(50% + 3px);
+      }
+    }
+  
+    // Active state transforms the burger into an X
+    .burgerActive {
+      &::after, &::before {
+        top: 50%; // Both lines meet at the center
+        transform: translateX(-50%);
+      }
+  
+      &::after {
+        transform: translateX(-50%) rotate(45deg);
+      }
+      &::before {
+        transform: translateX(-50%) rotate(-45deg);
+      }
+    }
+  }
+  

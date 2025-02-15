@@ -3,153 +3,96 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Links } from "@/app/constants/nav-links";
 import Link from "next/link";
-import { GoPlus } from "react-icons/go";
-import { TbMinus } from "react-icons/tb";
-import Image from "next/image";
+import { HiChevronRight } from "react-icons/hi";
+import { HiChevronDown } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 
-function DropdownLink(input: Links) {
+const DropdownLink = (props: Links) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const hasActiveSublink = input.subLinks?.some((section) => section.subMenu?.some((item) => item.href === pathname));
-
-  const containerVariants = {
-    initial: {
-      y: "30vh",
-      transition: {
-        duration: 0.5,
-        ease: [0.37, 0, 0.63, 1],
-      },
-    },
-    open: {
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0, 0.55, 0.45, 1],
-      },
-    },
-  };
-
-  const dropdownVariants = {
-    initial: { height: 0, opacity: 0 },
-    animate: {
-      height: "auto",
-      opacity: 1,
-      transition: {
-        height: { duration: 0.8, ease: "easeOut" },
-        opacity: { duration: 0.2 },
-      },
-    },
-    exit: {
-      height: 0,
-      transition: {
-        height: { duration: 0.8, ease: "easeIn" },
-      },
-    },
-  };
+  const hasActiveSublink = props.subLinks?.some(
+    (section) => section.subMenu?.some((item) => item.href === pathname)
+  );
 
   return (
-    <motion.div variants={containerVariants} className="w-full">
-      <div className="group cursor-pointer w-full relative" onClick={() => setIsOpen(!isOpen)}>
-        <div
-          className={`
+    <div className="w-full">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full group"
+        aria-expanded={isOpen}
+      >
+        <div className={`
           flex items-center justify-between
-          font-medium lg:text-3xl text-2xl lg:px-3 md:px-2 py-2
-          transition-all duration-300
+          font-medium lg:text-3xl text-2xl py-2
+          transition-colors duration-300 relative
           ${hasActiveSublink ? "text-dustyBlue tracking-wider" : "text-vintageCream"}
-        `}
-        >
-          {input.label.toUpperCase()}
+        `}>
+          {props.label.toUpperCase()}
           {isOpen ? (
-            <TbMinus className={`duration-300 ${hasActiveSublink ? "text-dustyBlue" : "text-vintageCream"}`} />
+            <HiChevronDown className={hasActiveSublink ? "text-dustyBlue" : "text-vintageCream"} />
           ) : (
-            <GoPlus className={`duration-300 ${hasActiveSublink ? "text-dustyBlue" : "text-vintageCream"}`} />
+            <HiChevronRight className={hasActiveSublink ? "text-dustyBlue" : "text-vintageCream"} />
           )}
+          <span className={`
+            absolute -bottom-1 left-0 w-0 h-[1px] 
+            transition-all duration-300 ease-in-out
+            group-hover:w-full
+            ${isOpen ? "w-full" : ""} 
+            ${hasActiveSublink ? "bg-dustyBlue w-full" : "bg-vintageCream"}
+          `}/>
         </div>
-        <span
-          className={`
-            absolute -bottom-1 left-0 h-[1px] bg-vintageCream
-            ${isOpen ? "w-full transition-[width] duration-300 ease-in-out" : "w-0 transition-all duration-300 ease-in-out"}
-            ${hasActiveSublink ? "w-full bg-dustyBlue" : ""}
-          `}
-        />
-      </div>
+        <div className={`
+          h-[1px] w-full transition-colors duration-300
+          ${hasActiveSublink ? "bg-dustyBlue" : "bg-vintageCream"}
+        `}/>
+      </button>
 
-      <div className={`h-[1px] w-full ${hasActiveSublink ? "bg-dustyBlue" : "bg-vintageCream"}`} />
-
-      <AnimatePresence mode="wait">
-        {isOpen && input.subLinks && (
+      <AnimatePresence>
+        {isOpen && props.subLinks && (
           <motion.div
-            variants={dropdownVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            style={{ overflow: "hidden" }}
-            className="mt-2.5 bg-[#1c1c1c] shadow-md rounded-2xl w-full"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="overflow-hidden"
           >
-            <div className="px-4 py-5">
-              {input.subLinks.map((subLink, index) => (
+            <div className="mt-2.5 bg-[#1c1c1c] shadow-md rounded-2xl p-4">
+              {props.subLinks.map((section, index) => (
                 <div key={index} className="mb-6 last:mb-0">
-                  {subLink.header && <h3 className="text-lg font-semibold mb-2 text-white uppercase">{subLink.header}</h3>}
-
-                  {subLink.subMenu && (
-                    <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
-                      {subLink.subMenu.map((menuItem, i) => {
-                        const isActiveSublink = pathname === menuItem.href;
+                  {section.header && (
+                    <h3 className="text-lg font-semibold mb-2 text-white uppercase">
+                      {section.header}
+                    </h3>
+                  )}
+                  {section.subMenu && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2">
+                      {section.subMenu.map((item, i) => {
+                        const isActive = pathname === item.href;
                         return (
-                          <motion.div
+                          <Link
                             key={i}
-                            className="relative flex items-start space-x-3 group/item"
-                            whileHover={{ scale: 1.02, x: 5 }} // Slight scale-up on hover
-                            transition={{ duration: 0.2, ease: "easeOut" }}
+                            href={item.href}
+                            className={`
+                              flex items-start gap-3 p-2 rounded-lg
+                              transition-colors duration-300
+                              hover:bg-white/5
+                              active:bg-white/10
+                              ${isActive ? "text-dustyBlue" : "text-vintageCream"}
+                            `}
                           >
-                            <motion.div
-                              className="mt-1"
-                              whileHover={{ scale: 1.2, rotate: 3 }} // Rotate and scale-up effect on icon
-                              transition={{ duration: 0.2 }}
-                            >
-                              {menuItem.icon && <menuItem.icon className="text-vintageCream text-lg" />}
-                            </motion.div>
-
-                            <Link
-                              href={menuItem.href}
-                              className={`block transition-all duration-300 relative ${
-                                isActiveSublink ? "text-dustyBlue" : "text-vintageCream"
-                              }`}
-                            >
-                              <div>
-                                <div className="font-medium">{menuItem.label}</div>
-                              </div>
-                              {menuItem.caption && <p className="text-wrap text-sm text-stone-400">{menuItem.caption}</p>}
-
-                              {/* Underline animation */}
-                              <motion.span
-                                className="absolute bottom-0 left-0 w-0 h-[1px] bg-dustyBlue"
-                                whileHover={{ width: "100%" }}
-                                transition={{ duration: 0.3, ease: "easeOut" }}
-                              />
-                            </Link>
-                          </motion.div>
+                            {item.icon && (
+                              <item.icon className="text-lg flex-shrink-0 mt-1" />
+                            )}
+                            <div>
+                              <div className="font-medium">{item.label}</div>
+                              {item.caption && (
+                                <p className="text-sm text-stone-400">{item.caption}</p>
+                              )}
+                            </div>
+                          </Link>
                         );
                       })}
-                    </motion.div>
-                  )}
-
-                  {subLink.subImages && (
-                    <div className="grid grid-cols-2 gap-4 mt-4">
-                      {subLink.subImages.map((imgItem, i) => (
-                        <Link href={imgItem.href} key={i} className="block transition-transform duration-200 hover:scale-105">
-                          <Image
-                            src={imgItem.image}
-                            alt={imgItem.label}
-                            width={100}
-                            height={100}
-                            className="w-full h-auto mb-2 rounded-lg"
-                          />
-                          <p className="text-sm font-medium text-vintageBurgundy">{imgItem.label}</p>
-                        </Link>
-                      ))}
                     </div>
                   )}
                 </div>
@@ -158,8 +101,8 @@ function DropdownLink(input: Links) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
-}
+};
 
 export default DropdownLink;

@@ -1,58 +1,38 @@
 "use client";
+import { type FC } from "react";
 import { Links } from "@/app/constants/nav-links";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-function NavLink(input: Links) {
+const NavLink: FC<Links> = (props) => {
   const pathname = usePathname();
-  const isActive = pathname === input.href;
-
-  const variants = {
-    initial: {
-      y: "30vh",
-      transition: {
-        duration: 0.5,
-        ease: [0.37, 0, 0.63, 1],
-      },
-    },
-    open: {
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0, 0.55, 0.45, 1],
-      },
-    },
-  };
+  const isActive = pathname === props.href;
 
   return (
-    <motion.div variants={variants}>
+    <div>
       <Link
-        href={input.href ?? "/"}
-        onClick={(e) => input.subLinks && e.preventDefault()}
+        href={props.href ?? "/"}
         className={`
-          flex items-center 
-          font-medium lg:text-3xl text-2xl lg:px-3 md:px-2 py-2
-          transition-all duration-300
-          relative
-          group
-          ${isActive ? 'text-dustyBlue tracking-wider' : 'text-softWhite'}
+          block font-medium lg:text-3xl text-2xl py-2
+          transition-colors duration-300
+          relative group
+          ${isActive ? "text-dustyBlue tracking-wider" : "text-softWhite"}
         `}
       >
-        {input.label.toUpperCase()}
+        {props.label.toUpperCase()}
         <span className={`
           absolute -bottom-1 left-0 w-0 h-[1px] 
           transition-all duration-300 ease-in-out
           group-hover:w-full
-          ${isActive ? 'w-full bg-dustyBlue' : 'bg-softWhite'}
+          ${isActive ? "w-full bg-dustyBlue" : "bg-softWhite"}
         `}/>
       </Link>
       <div className={`
-        h-[1px] w-full
-        ${isActive ? 'bg-dustyBlue' : 'bg-softWhite'}
+        h-[1px] w-full transition-colors duration-300
+        ${isActive ? "bg-dustyBlue" : "bg-softWhite"}
       `}/>
-    </motion.div>
+    </div>
   );
-}
+};
 
 export default NavLink;

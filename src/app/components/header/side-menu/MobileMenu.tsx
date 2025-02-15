@@ -1,96 +1,54 @@
-// Menu.tsx
-import styles from "./MobileMenu.module.scss";
+"use client";
+import { type FC } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import NavLink from "./link/NavLink";
 import DropdownLink from "./link/DropdownLink";
 import { links } from "@/app/constants/nav-links";
+import styles from "./MobileMenu.module.scss";
 
-type MobileMenuProps = {
+interface MobileMenuProps {
   isActive: boolean;
   setIsActive: (isActive: boolean) => void;
-};
+}
 
-function MobileMenu({ isActive, setIsActive }: MobileMenuProps) {
-  const menuVariants = {
-    initial: {
-      scaleY: 0,
-    },
-    animate: {
-      scaleY: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.12, 0, 0.39, 0],
-      },
-    },
-    exit: {
-      scaleY: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.12, 0, 0.39, 1],
-        delay: 0.5,
-      },
-    },
-  };
-
-  const containerVariants = {
-    initial: {
-      transition: {
-        staggerChildren: 0.09,
-        staggerDirection: -1,
-      },
-    },
-    open: {
-      transition: {
-        staggerChildren: 0.09,
-        delayChildren: 0.3,
-        staggerDirection: 1,
-      },
-    },
-  };
-
+const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
   return (
     <div className="relative">
-      <div onClick={() => setIsActive(!isActive)} className={styles.button}>
-        <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
-      </div>
+      <button 
+        onClick={() => setIsActive(!isActive)} 
+        className={styles.button}
+        aria-label="Toggle mobile menu"
+      >
+        <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`} />
+      </button>
 
       <AnimatePresence>
         {isActive && (
           <motion.div
-            variants={menuVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="fixed left-0 top-0 w-full h-screen bg-deepBlack overflow-y-auto z-[100]"
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              transformOrigin: 'top'
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 w-full h-screen bg-deepBlack overflow-y-auto z-[100]"
           >
-            <motion.div
-              variants={containerVariants}
-              initial="initial"
-              animate="open"
-              exit="initial"
-              className="py-24 min-h-screen flex flex-col items-center"
-            >
-              <div className="w-[80%] max-w-lg space-y-2">
+            <div className="min-h-screen py-24 px-8">
+              <div className="max-w-lg mx-auto space-y-2">
                 {links.map((link, index) => (
-                  <div key={index} className="relative">
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
                     {link.subLinks ? <DropdownLink {...link} /> : <NavLink {...link} />}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
-}
+};
 
 export default MobileMenu;

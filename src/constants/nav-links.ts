@@ -34,8 +34,8 @@ export type SubLink = {
       href: "/about",
     },
     {
-      label: "Sermons",
-      href: "/sermons",
+      label: "Ministries",
+      href: "/ministries",
     },
     {
       label: "Missions",

@@ -9,6 +9,7 @@
   --darker-navy: #1A2A4D;
   --vintage-navy: #2B3C5A;
   --darker-black: #1A1A1A;
+  --soft-black: #474747;
   --black: #2C2C2C;
   --deep-gray: rgb(86, 86, 86);
   --white: #FAF9F6;
@@ -24,7 +25,7 @@
   --vintage-cream: #fdf6ec;       /* Warm off-white cream */
   --vintage-burgundy: #4f2121;    /* Deep vintage burgundy */
   --light-gray: #cecece; /* Light vintage burgundy */
-  --vintage-gold: #d4af7f;        /* Muted antique gold */
+  --vintage-gold: #b89361;        /* Muted antique gold */
   --vintage-grey: #8d8d8d;        /* Soft vintage grey */
 }
 

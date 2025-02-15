@@ -1,6 +1,6 @@
 import { MdLocationPin } from "react-icons/md";
 import Link from "next/link";
-import { SOCIAL_MEDIAS } from "@/app/constants/social-medias";
+import { SOCIAL_MEDIAS } from "@/constants/social-medias";
 
 export const TopBar = () => (
   <div className="block w-full h-full border-b-[1px] border-white/10">

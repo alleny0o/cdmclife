@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { TopBar } from "./TopBar";
 import { TopHeader } from "./TopHeader";
 import { FixedHeader } from "./FixedHeader";
 
 export default function Header() {
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
   const [activeMenu, setActiveMenu] = useState<'main' | 'fixed' | null>(null);
@@ -45,7 +47,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="z-50 absolute top-0 left-0 right-0 flex flex-col justify-center transition-opacity duration-300">
+      <header className={`z-50 ${pathname === "/" ? "absolute" : "relative bg-deepBlack"} top-0 left-0 right-0 flex flex-col justify-center transition-opacity duration-300`}>
         <TopBar />
         <TopHeader activeMenu={activeMenu} onMenuToggle={() => handleMenuToggle("main")} />
       </header>

@@ -1,5 +1,5 @@
 import { BiChevronDown } from "react-icons/bi";
-import { links } from "@/app/constants/nav-links";
+import { links } from "@/constants/nav-links";
 import Link from "next/link";
 
 export const Navigation = () => (

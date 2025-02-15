@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Links } from "@/app/constants/nav-links";
+import { Links } from "@/constants/nav-links";
 import Link from "next/link";
 import { HiChevronRight } from "react-icons/hi";
 import { HiChevronDown } from "react-icons/hi";

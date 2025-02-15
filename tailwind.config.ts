@@ -15,6 +15,7 @@ export default {
         vintageNavy: "var(--vintage-navy)",
         darkerBlack: "var(--darker-black)",
         deepBlack: "var(--black)",
+        softBlack: "var(--soft-black)",
         deepGray: "var(--deep-gray)",
         softWhite: "var(--white)",
         mutedBlue: "var(--blue)",

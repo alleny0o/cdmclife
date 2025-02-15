@@ -13,9 +13,9 @@ interface FixedHeaderProps {
 export const FixedHeader = ({ isVisible, activeMenu, onMenuToggle }: FixedHeaderProps) => (
   <motion.header
     initial={{ y: "-100%" }}
-    animate={isVisible || activeMenu ? { y: 0 } : { y: "-100%" }}
+    animate={isVisible || activeMenu === 'fixed' ? { y: 0 } : { y: "-100%" }}
     transition={{ duration: 0.35, ease: "easeInOut" }}
-    className="z-10 fixed top-0 flex w-full h-24 bg-slate-800/95 backdrop-blur-sm items-center shadow-lg"
+    className="z-20 fixed top-0 flex w-full h-24 bg-slate-800/95 backdrop-blur-sm items-center shadow-lg"
   >
     <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 items-center">
       <div className="flex col-span-6 md:col-span-2">

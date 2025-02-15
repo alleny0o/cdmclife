@@ -42,7 +42,6 @@ function NavLink(input: Links) {
         {input.label.toUpperCase()}
         <span className={`
           absolute -bottom-1 left-0 w-0 h-[1px] 
-          bg-softWhite
           transition-all duration-300 ease-in-out
           group-hover:w-full
           ${isActive ? 'w-full bg-dustyBlue' : 'bg-softWhite'}

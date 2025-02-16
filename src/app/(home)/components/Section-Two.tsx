@@ -33,7 +33,7 @@ const articles = [
 function SectionTwo() {
   return (
     <section className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12 max-w-xl text-left">
           <p className="font-handlee mb-2 font-semibold text-dustyBlue md:mb-3 text-base sm:text-lg">

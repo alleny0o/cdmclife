@@ -3,10 +3,10 @@ import React from 'react';
 
 function SectionOne() {
   return (
-    <section className="h-full w-full max-w-5xl mx-auto text-left py-16 px-6">
+    <section className="h-full w-full max-w-5xl mx-auto text-left pt-16 pb-10 px-6">
       <div className="container mx-auto">
         {/* Title Section */}
-        <div className="mb-8 max-w-xl">
+        <div className="mb-8 max-w-full">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
             Missions
           </h1>

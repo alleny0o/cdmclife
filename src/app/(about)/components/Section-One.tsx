@@ -7,7 +7,7 @@ function SectionOne() {
         {/* Title Section */}
         <div className="mb-12 max-w-full">
           <h1 className="text-3xl md:text-4xl font-bold text-deepBlack leading-tight">
-            About Us
+            About
           </h1>
           <p className="mt-3 text-base md:text-lg text-deepBlack leading-relaxed">
             We are a church dedicated to growing in Christ, serving our communities, and sharing the gospel in both word and action. Our mission is to build a Christ-centered life through worship, discipleship, and love.

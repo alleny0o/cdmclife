@@ -30,7 +30,7 @@ const articles = [
   },
 ];
 
-function SectionTwo() {
+function Missions() {
   return (
     <section className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="max-w-7xl mx-auto">
@@ -100,4 +100,4 @@ function SectionTwo() {
   );
 }
 
-export default SectionTwo;
+export default Missions;

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-function SectionOne() {
+function Hero() {
   return (
     <section
       className="relative h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-scroll-mobile"
@@ -55,4 +55,4 @@ function SectionOne() {
   );
 }
 
-export default SectionOne;
+export default Hero;

@@ -28,31 +28,20 @@ const sermons = [
   },
 ];
 
-function SectionThree() {
+function Sermons() {
   return (
-    <section className="relative min-h-screen w-full py-20">
+    <section className="relative h-full w-full py-20">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <Image
-          src="/sermons-bg.png"
-          alt="vintage texture or clouds"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          quality={90}
-        />
+        <Image src="/sermons-bg.png" alt="vintage texture or clouds" fill className="object-cover" sizes="100vw" quality={90} />
       </div>
 
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="font-handlee text-lg mb-3 text-dustyBlue font-semibold">
-            What a joy it is to
-          </p>
-          <h2 className="text-3xl md:text-4xl text-deepBlack font-bold">
-            Experience Our Sermons
-          </h2>
+          <p className="font-handlee text-lg mb-3 text-dustyBlue font-semibold">What a joy it is to</p>
+          <h2 className="text-3xl md:text-4xl text-deepBlack font-bold">Experience Our Sermons</h2>
         </div>
 
         {/* Sermons List */}
@@ -63,7 +52,8 @@ function SectionThree() {
               className="bg-softWhite rounded-lg border border-dustyBlue/20 p-6 flex flex-col md:flex-row items-start gap-6 shadow-sm hover:border-dustyBlue/30 transition-colors"
             >
               {/* Video Thumbnail Container */}
-              <div className="w-full md:w-64 h-48 relative rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+              {/* Video Thumbnail Container */}
+              <div className="w-full md:w-64 relative rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 aspect-video">
                 <iframe
                   className="w-full h-full absolute inset-0"
                   src={`https://www.youtube.com/embed/${sermon.videoId}`}
@@ -80,13 +70,9 @@ function SectionThree() {
                   <span>•</span>
                   <span>{sermon.date}</span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-deepBlack mb-4">
-                  {sermon.title}
-                </h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-deepBlack mb-4">{sermon.title}</h3>
                 <div className="flex items-center gap-4">
-                  <span className="text-warmGray text-sm">
-                    Duration: {sermon.duration}
-                  </span>
+                  <span className="text-warmGray text-sm">Duration: {sermon.duration}</span>
                 </div>
               </div>
             </div>
@@ -104,4 +90,4 @@ function SectionThree() {
   );
 }
 
-export default SectionThree;
+export default Sermons;

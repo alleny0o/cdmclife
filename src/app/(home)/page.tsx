@@ -1,13 +1,15 @@
-import SectionOne from "./components/Section-One";
-import SectionTwo from "./components/Section-Two";
-import SectionThree from "./components/Section-Three";
+import Hero from "./components/Hero";
+import Missions from "./components/Missions";
+import Sermons from "./components/Sermons";
+import Gallery from "./components/Gallery";
 
 export default function Home() {
   return (
     <div>
-      <SectionOne />
-      <SectionTwo />
-      <SectionThree />
+      <Hero />
+      <Missions />
+      <Sermons />
+      <Gallery />
     </div>
   );
 }

@@ -14,7 +14,7 @@ function Gallery() {
           {/* MOBILE: Snap scroll */}
           <div className="flex gap-4 flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory sm:hidden scrollbar-hide">
             {images.map((image, index) => (
-              <div key={index} className="w-[88%] flex-shrink-0 snap-center">
+              <div key={index} className="w-[86.5%] flex-shrink-0 snap-center">
                 <div
                   className="w-full aspect-video bg-cover bg-center rounded-lg"
                   style={{ backgroundImage: `url(${image})` }}

@@ -16,7 +16,7 @@ function Gallery() {
             {images.map((image, index) => (
               <div key={index} className="w-[86.5%] flex-shrink-0 snap-center">
                 <div
-                  className="w-full aspect-square bg-cover bg-center rounded-lg"
+                  className="w-full aspect-[4/5] bg-cover bg-center rounded-lg"
                   style={{ backgroundImage: `url(${image})` }}
                 />
               </div>

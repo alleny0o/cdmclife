@@ -26,18 +26,6 @@ function Hero() {
           }}
           className="max-w-[90%] sm:max-w-4xl flex flex-col items-center text-center"
         >
-          {/* Animated Heading */}
-          {/* <motion.h1
-  variants={{
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    visible: { opacity: 1, y: 0, scale: 1 },
-  }}
-  className="mb-4 md:mb-10 text-4xl sm:text-5xl md:text-7xl font-bold text-softWhite drop-shadow-md leading-tight landscape:hidden"
->
-  Faith as Small as a Mustard Seed
-</motion.h1> */}
-
-
           {/* Animated Paragraph */}
           <motion.p
             variants={{

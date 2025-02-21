@@ -47,6 +47,17 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeMegaMenu]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setActiveMegaMenu(null);
+      };
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const isActive = (link: Links) => pathname === link.href;
   const isSubLinkActive = (link: Links) =>
     link.subLinks?.some((subLink) => subLink.subMenu?.some((menuItem) => pathname === menuItem.href));

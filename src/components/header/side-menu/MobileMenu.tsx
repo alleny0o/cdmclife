@@ -8,14 +8,14 @@ import styles from "./MobileMenu.module.scss";
 
 interface MobileMenuProps {
   isActive: boolean;
-  setIsActive: (isActive: boolean) => void;
+  setIsActive: () => void;
 }
 
 const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
   return (
-    <div className="relative">
+    <div className="relative mobile-menu">
       <button 
-        onClick={() => setIsActive(!isActive)} 
+        onClick={setIsActive}
         className={styles.button}
         aria-label="Toggle mobile menu"
       >
@@ -39,7 +39,11 @@ const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    {link.subLinks ? <DropdownLink {...link} /> : <NavLink link={link} setIsActive={setIsActive}  />}
+                    {link.subLinks ? (
+                      <DropdownLink {...link} />
+                    ) : (
+                      <NavLink link={link} setIsActive={setIsActive} />
+                    )}
                   </motion.div>
                 ))}
               </div>

@@ -14,8 +14,8 @@ export default function Header() {
   const [activeMenu, setActiveMenu] = useState<"main" | "fixed" | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Handle body scroll lock
   useEffect(() => {
-    // Lock/unlock body scroll only when menu is manually opened
     document.body.style.overflow = activeMenu ? "hidden" : "auto";
     
     const handleResize = () => {
@@ -28,12 +28,12 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, [activeMenu]);
 
+  // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       const latest = scrollY.get();
       const isScrollingUp = latest < lastScrollY;
       
-      // Only update visibility based on scroll position
       setIsVisible(latest > 150 && isScrollingUp);
       setLastScrollY(latest);
     };
@@ -42,8 +42,44 @@ export default function Header() {
     return () => unsubscribe();
   }, [scrollY, lastScrollY]);
 
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (activeMenu && !(event.target as Element).closest('.mobile-menu')) {
+        setActiveMenu(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [activeMenu]);
+
+  // Handle escape key
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && activeMenu) {
+        setActiveMenu(null);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [activeMenu]);
+
+  // Close menu on route change
+  useEffect(() => {
+    setActiveMenu(null);
+  }, [pathname]);
+
   const handleMenuToggle = (menuType: "main" | "fixed") => {
-    setActiveMenu((prev) => (prev === menuType ? null : menuType));
+    setActiveMenu((prev) => {
+      // If the same menu is clicked, close it
+      if (prev === menuType) {
+        return null;
+      }
+      // If a different menu is clicked, close the current one and open the new one
+      return menuType;
+    });
   };
 
   const isTransparent = ["/", "/about", "/worship", "/missions"].includes(pathname);
@@ -56,7 +92,10 @@ export default function Header() {
         } top-0 left-0 right-0 flex flex-col justify-center transition-opacity duration-300`}
       >
         <TopBar />
-        <TopHeader activeMenu={activeMenu} onMenuToggle={() => handleMenuToggle("main")} />
+        <TopHeader 
+          activeMenu={activeMenu} 
+          onMenuToggle={() => handleMenuToggle("main")} 
+        />
       </header>
       <FixedHeader 
         isVisible={isVisible} 

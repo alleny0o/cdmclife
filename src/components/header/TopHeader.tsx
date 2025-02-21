@@ -10,6 +10,7 @@ interface TopHeaderProps {
 }
 
 export const TopHeader = ({ activeMenu, onMenuToggle }: TopHeaderProps) => {
+  const isActive = activeMenu === "main";
 
   return (
     <div className="w-full transition-opacity duration-300">
@@ -22,12 +23,14 @@ export const TopHeader = ({ activeMenu, onMenuToggle }: TopHeaderProps) => {
 
         <div className="flex items-center justify-end md:col-span-2 col-span-6 gap-4">
           <VisitButton />
-          <div className="md:hidden">
-            <MobileMenu isActive={activeMenu === "main"} setIsActive={onMenuToggle} />
+          <div className="md:hidden mobile-menu">
+            <MobileMenu 
+              isActive={isActive}
+              setIsActive={onMenuToggle} 
+            />
           </div>
         </div>
       </div>
     </div>
   );
 };
-

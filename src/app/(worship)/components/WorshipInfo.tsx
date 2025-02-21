@@ -1,67 +1,72 @@
 "use client";
+import { H2 } from "@/components/text/H2";
+import { H3 } from "@/components/text/H3";
+import { P } from "@/components/text/P";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Section, Container } from "@/components/layouts/Layouts";
+
 function WorshipInfo() {
   return (
-    <section className="min-h-screen w-full max-w-5xl mx-auto py-16 px-6">
-      <div className="container mx-auto">
-        {/* Title */}
-        <div className="mb-8 max-w-xl">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Worship Services</h1>
-          <p className="mt-3 text-lg text-gray-700">Join us for meaningful worship and fellowship.</p>
-        </div>
-
-        {/* Worship Services Overview */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* English Worship */}
-          <div className="p-6 border border-gray-200 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold text-gray-900">English Ministry</h2>
-            <p className="mt-3 text-lg text-gray-700">
-              Gather with us every <strong>Sunday at 11:00 AM</strong> for our English worship service.
-            </p>
+    <Section>
+      <Container className="pt-14 pb-24">
+        <div className="w-full max-w-5xl mx-auto">
+          {/* Title */}
+          <div className="mb-12 max-w-xl">
+            <H2>Worship Services</H2>
           </div>
 
-          {/* Korean Worship */}
-          <div className="p-6 border border-gray-200 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold text-gray-900">Korean Ministry</h2>
-            <p className="mt-3 text-lg text-gray-700">
-              Join us every <strong>Sunday at 9:00 AM</strong> for our Korean worship service.
-            </p>
+          {/* Worship Services Overview */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* English Worship */}
+            <div className="p-8 border border-[var(--deep-gray)] rounded-xl shadow-md bg-[var(--soft-white)] transition hover:shadow-lg">
+              <H3 className="!font-semibold">English Ministry</H3>
+              <P className="mt-4 text-[var(--soft-black)]">
+                Gather with us every <strong className="text-[var(--muted-blue)]">Sunday at 11:00 AM</strong> for our English
+                worship service.
+              </P>
+            </div>
+
+            {/* Korean Worship */}
+            <div className="p-8 border border-[var(--deep-gray)] rounded-xl shadow-md bg-[var(--soft-white)] transition hover:shadow-lg">
+              <H3 className="!font-semibold">Korean Ministry</H3>
+              <P className="mt-4 text-[var(--soft-black)]">
+                Gather with us every <strong className="text-[var(--muted-blue)]">Sunday at 9:00 AM</strong> for our Korean
+                worship service.
+              </P>
+            </div>
+          </div>
+
+          {/* Joint Worship */}
+          <div className="mt-12 p-8 border-l-4 border-[var(--dusty-blue)] bg-[var(--faded-blue)]/20 rounded-xl shadow-md">
+            <P className="text-[var(--soft-black)]">
+              <strong className="text-[var(--vintage-navy)]">Joint Worship Service:</strong> On the first Sunday of every month,
+              we gather as one community at <strong className="text-[var(--muted-blue)]">11:00 AM</strong> for a combined service.{" "}
+              <Link
+                href="/announcements"
+                className="text-vintageNavy font-medium underline hover:text-[var(--dusty-blue)] transition italic"
+              >
+                Click here
+              </Link>{" "}
+              to see the next joint worship sermon.
+            </P>
+            <P className="mt-2 text-[var(--deep-gray)] text-sm">(No separate Korean worship on these days.)</P>
+          </div>
+
+          {/* Worship Image */}
+          <div className="mt-14">
+            <Image
+              src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg"
+              alt="Worship Gathering"
+              width={800}
+              height={450}
+              className="w-full rounded-xl shadow-md"
+            />
           </div>
         </div>
-
-        {/* Joint Worship */}
-        <div className="mt-8 p-6 border-l-4 border-gray-300 bg-gray-50 rounded-lg">
-          <p className="text-lg text-gray-800">
-            <strong>Joint Worship Service:</strong> On the first Sunday of every month, we gather as one community at{" "}
-            <strong>11:00 AM</strong> for a combined service. <br />
-            (No separate Korean worship on these days.)
-          </p>
-
-          {/* Button to Announcements */}
-          <div className="mt-4">
-            <Link
-              href="/announcements"
-              className="inline-block px-4 py-2 text-lg font-medium text-gray-900 border border-gray-300 rounded-md hover:bg-gray-100 transition"
-            >
-              See Next Joint Worship
-            </Link>
-          </div>
-        </div>
-
-        {/* Worship Image */}
-        <div className="mt-12">
-          <Image
-            src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg"
-            alt="Worship Gathering"
-            width={800}
-            height={450}
-            className="w-full rounded-lg shadow-sm"
-          />
-        </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }
 

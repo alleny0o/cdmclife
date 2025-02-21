@@ -4,7 +4,7 @@ type TabLayoutProps = {
 
 function TabLayout(input: TabLayoutProps) {
   return (
-    <section className="pt-10 pb-16 px-4">
+    <section className="pt-10 pb-16">
         {input.children}
     </section>
   )

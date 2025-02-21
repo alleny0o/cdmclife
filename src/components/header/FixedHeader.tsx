@@ -19,8 +19,8 @@ export const FixedHeader = ({ isVisible, activeMenu, onMenuToggle }: FixedHeader
       initial={{ y: "-100%" }}
       animate={isVisible || isActive ? { y: 0 } : { y: "-100%" }}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="z-20 fixed top-0 flex w-full h-24 bg-deepBlack items-center"
-    >
+      className="z-20 fixed top-0 flex w-full h-24 bg-deepBlack items-center shadow-lg border-b border-white/10"
+      >
       <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 items-center">
         <div className="flex col-span-6 md:col-span-2">
           <Logo className="transition-transform duration-300 hover:scale-105" />

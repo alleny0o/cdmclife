@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs'
 
 function MissionsPage() {
   return (
-    <div>
+    <div className="w-full h-full bg-white">
         <Hero title="Missions" image="mustard-seed-bible.jpg" />
         <Breadcrumbs />
         <SectionOne />

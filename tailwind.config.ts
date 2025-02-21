@@ -20,6 +20,7 @@ export default {
         softWhite: "var(--white)",
         mutedBlue: "var(--blue)",
         fadedBlue: "var(--light-blue)",
+        
         dustyBlue: "var(--dusty-blue)",
         buttonBlue: "var(--button-blue)",
         hoverButtonBlue: "var(--hover-button-blue)",

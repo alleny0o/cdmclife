@@ -17,7 +17,7 @@ const tabs = [
 
 function AboutPage() {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-white">
         <Hero title="About" image="mustard-seed-bible.jpg" />
         <Breadcrumbs />
         <div className="mt-10"></div>

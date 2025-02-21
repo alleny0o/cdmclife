@@ -34,7 +34,7 @@ function Tabs({ tabs, defaultTab = 0, maxWidth = "max-w-7xl" }: TabProps) {
 
   return (
     <>
-      <Container className={maxWidth}>
+      <Container className={`${maxWidth}`}>
         <div className="w-full flex flex-col items-center">
           {/* Mobile Tabs Dropdown */}
           <div className="w-full md:hidden" ref={dropdownRef}>

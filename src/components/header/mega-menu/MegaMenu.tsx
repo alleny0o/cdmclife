@@ -73,7 +73,7 @@ function MegaMenu(input: MegaMenuProps) {
           exit="exit"
           className={`absolute z-50 right-0 left-0 top-[calc(100%)] ${
             megaMenuColor === "clear"
-              ? "bg-[rgba(62,62,62,0.05)] backdrop-blur-[17px] border border-[rgba(255,255,255,0.18)]"
+              ? "bg-[rgba(62,62,62,0.05)] backdrop-blur-[17px] border border-[rgba(255,255,255,0.18)] !border-l-0 !border-r-0"
               : "bg-white border border-gray-200 shadow-lg"
           } p-6 transition-all duration-300`}
         >

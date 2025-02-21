@@ -3,6 +3,7 @@ import React from "react";
 
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
+import { ItalicsP } from "@/components/text/ItalicsP";
 
 const sermons = [
   {
@@ -44,8 +45,8 @@ function Sermons() {
         <div className="relative z-10 max-w-7xl mx-auto sm:px-6">
           {/* Header */}
           <div className="text-center mb-12">
-            <p className="font-handlee text-lg mb-3 text-dustyBlue font-semibold">What a joy it is to</p>
-            <H2>Experience Our Sermons</H2>
+            <ItalicsP className="text-dustyBlue">What a joy it is to</ItalicsP>
+            <H2 className="mt-[0.25rem]">Experience Our Sermons</H2>
           </div>
 
           {/* Sermons List */}

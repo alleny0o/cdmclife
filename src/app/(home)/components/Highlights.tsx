@@ -29,15 +29,15 @@ const articles = [
   },
 ];
 
-function CTA() {
+function Highlights() {
   return (
     <Section className="min-h-screen pt-12 md:pt-14">
       <Container className="max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-left">
           <ItalicsP className="text-dustyBlue">Welcome to</ItalicsP>
-          <H2 className="mt-4">Christ Disciple Mission Church</H2>
-          <P>Discover what we do!</P>
+          <H2 className="mt-[0.275rem]">Christ Disciple Mission Church</H2>
+          <P>From Small Seeds, Great Things Grow.</P>
         </div>
 
         {/* Articles List */}
@@ -91,4 +91,4 @@ function CTA() {
   );
 }
 
-export default CTA;
+export default Highlights;

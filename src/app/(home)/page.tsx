@@ -1,5 +1,5 @@
 import Hero from "./components/Hero";
-import CTA from "./components/CTA";
+import Highlights from "./components/Highlights";
 import Sermons from "./components/Sermons";
 import Gallery from "./components/Gallery";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
@@ -9,7 +9,7 @@ export default function Home() {
     <div>
       <Hero />
       <Breadcrumbs />
-      <CTA />
+      <Highlights />
       <Sermons />
       <Gallery />
     </div>

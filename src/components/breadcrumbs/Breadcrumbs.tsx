@@ -14,7 +14,7 @@ const Breadcrumbs = () => {
   // Function to find the matching link and build the breadcrumb path
   const getBreadcrumbItems = () => {
     const pathSegments = pathname.split('/').filter(Boolean);
-    const breadcrumbItems: Array<{ label: string; href: string; icon?: IconType | any }> = [
+    const breadcrumbItems: Array<{ label: string; href: string; icon?: IconType }> = [
       { label: 'Home', href: '/', icon: Home }
     ];
 

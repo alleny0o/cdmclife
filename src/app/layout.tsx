@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full overscroll-none">
+    <html lang="en" className="h-full overscroll-none bg-deepBlack">
       <body className={`${geistSans.variable} ${geistMono.variable} ${handlee.variable} ${openSans.variable} antialiased overflow-x-hidden flex-col`}>
         <Header />
         <main className="relative min-h-full w-full flex-1">{children}</main>

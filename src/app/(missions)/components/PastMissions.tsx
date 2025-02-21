@@ -1,3 +1,4 @@
+import { Container, Section } from "@/components/layouts/Layouts";
 import Image from "next/image";
 import React from "react";
 
@@ -152,8 +153,9 @@ const DesktopTimelineItem: React.FC<DesktopTimelineItemProps> = ({ item, index }
 
 const PastMissions: React.FC = () => {
   return (
-    <div className="relative w-full h-full bg-lightGray">
-      <section className="w-full max-w-5xl mx-auto py-16 px-6">
+    <Section className="relative w-full h-full bg-lightGray">
+      <Container className="w-full pt-14 pb-24">
+        <div className="w-full max-w-5xl mx-auto">
         {/* Section Title */}
         <div className="text-left mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Past Missions</h2>
@@ -170,8 +172,9 @@ const PastMissions: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
-    </div>
+        </div>
+      </Container>
+    </Section>
   );
 };
 

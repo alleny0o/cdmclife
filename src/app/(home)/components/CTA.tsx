@@ -29,7 +29,7 @@ const articles = [
   },
 ];
 
-function Missions() {
+function CTA() {
   return (
     <Section className="min-h-screen pt-12 md:pt-14">
       <Container className="max-w-7xl">
@@ -91,4 +91,4 @@ function Missions() {
   );
 }
 
-export default Missions;
+export default CTA;

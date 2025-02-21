@@ -91,7 +91,7 @@ const MobileTimelineItem: React.FC<MobileTimelineItemProps> = ({ item, index, to
             alt={item.missionTitle}
             width={400} // Make image wider but controlled
             height={250} // Maintain consistent height
-            className="w-full h-full object-cover rounded-lg shadow-md"
+            className="w-full h-full max-h-[32rem] object-cover rounded-lg shadow-md"
           />
         </div>
       </div>

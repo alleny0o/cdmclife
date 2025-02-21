@@ -4,6 +4,7 @@ import React from "react";
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
 import { ItalicsP } from "@/components/text/ItalicsP";
+import Link from "next/link";
 
 const sermons = [
   {
@@ -85,9 +86,9 @@ function Sermons() {
 
           {/* View All Button */}
           <div className="mt-10 text-center">
-            <button className="bg-transparent border-2 border-deepBlack text-deepBlack px-8 py-3 rounded-md font-medium text-sm md:text-base hover:bg-deepBlack hover:text-softWhite transition-colors">
+            <Link href="/worship" className="bg-transparent border-2 border-deepBlack text-deepBlack px-8 py-3 rounded-md font-medium text-sm md:text-base hover:bg-deepBlack hover:text-softWhite transition-colors">
               MORE INFO
-            </button>
+            </Link>
           </div>
         </div>
       </Container>

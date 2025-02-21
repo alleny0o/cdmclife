@@ -33,6 +33,7 @@ const Breadcrumbs = () => {
               const subMenuItem = subLink.subMenu?.find(item => item.href.includes(segment));
               if (subMenuItem) {
                 found = {
+                  id: link.id,
                   label: subMenuItem.label,
                   href: subMenuItem.href,
                   icon: subMenuItem.icon

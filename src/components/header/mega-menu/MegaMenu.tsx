@@ -3,13 +3,11 @@
 import { Links, links } from "@/constants/nav-links";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import { useMegaMenu } from "../context/MegaMenuContext";
 
 type MegaMenuProps = {
   activeMegaMenu: Links["id"] | null;
-  direction: "l" | "r" | null;
 };
 
 function MegaMenu(input: MegaMenuProps) {
@@ -33,25 +31,61 @@ function MegaMenu(input: MegaMenuProps) {
     };
   }, [setMegaMenuColor]);
 
+  const menuVariants = {
+    initial: { 
+      opacity: 0,
+      y: 10,
+      transition: { duration: 0.2, ease: "easeOut" }
+    },
+    animate: { 
+      opacity: 1,
+      y: 0,
+      transition: { 
+        duration: 0.3,
+        ease: "easeOut",
+        staggerChildren: 0.1
+      }
+    },
+    exit: { 
+      opacity: 0,
+      y: -10,
+      transition: { 
+        duration: 0.2,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const itemVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 }
+  };
+
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {activeMenu && (
         <motion.div
           id="overlay-content"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
+          variants={menuVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
           className={`absolute z-50 right-0 left-0 top-[calc(100%)] ${
             megaMenuColor === "clear"
               ? "bg-[rgba(62,62,62,0.05)] backdrop-blur-[17px] border border-[rgba(255,255,255,0.18)]"
               : "bg-white border border-gray-200 shadow-lg"
-          } p-6 transition-colors duration-300`}
+          } p-6 transition-all duration-300`}
         >
           <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 lg:gap-6 gap-4">
             {activeMenu.subLinks?.map((section, index) => (
-              <div key={index} className="flex flex-col space-y-2">
+              <motion.div 
+                key={index} 
+                variants={itemVariants}
+                className="flex flex-col space-y-2"
+              >
                 <h3
-                  className={`text-base font-semibold mb-2 uppercase transition ${
+                  className={`text-base font-semibold mb-2 uppercase transition-colors duration-200 ${
                     megaMenuColor === "white" ? "text-gray-800" : "text-white/90"
                   }`}
                 >
@@ -63,7 +97,7 @@ function MegaMenu(input: MegaMenuProps) {
                       key={subIndex}
                       href={item.href}
                       target={item.label === "Shop" ? "_blank" : "_self"}
-                      className={`flex items-start space-x-3 p-2 rounded-[10px] transition duration-200 
+                      className={`flex items-start space-x-3 p-2 rounded-[10px] transition-all duration-200 
                       ${
                         megaMenuColor === "white"
                           ? "hover:bg-gray-100 active:bg-gray-200"
@@ -72,7 +106,7 @@ function MegaMenu(input: MegaMenuProps) {
                     >
                       {item.icon && (
                         <span
-                          className={`mt-0.5 transition ${
+                          className={`mt-0.5 transition-colors duration-200 ${
                             megaMenuColor === "white" ? "text-gray-600" : "text-white/80"
                           }`}
                         >
@@ -82,7 +116,7 @@ function MegaMenu(input: MegaMenuProps) {
 
                       <div>
                         <span
-                          className={`block text-sm font-medium transition ${
+                          className={`block text-sm font-medium transition-colors duration-200 ${
                             megaMenuColor === "white" ? "text-gray-900" : "text-white/90"
                           }`}
                         >
@@ -91,7 +125,7 @@ function MegaMenu(input: MegaMenuProps) {
 
                         {item.caption && (
                           <span
-                            className={`block text-xs transition ${
+                            className={`block text-xs transition-colors duration-200 ${
                               megaMenuColor === "white" ? "text-gray-500" : "text-white/70"
                             }`}
                           >
@@ -102,7 +136,7 @@ function MegaMenu(input: MegaMenuProps) {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>

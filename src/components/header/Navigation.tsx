@@ -9,24 +9,36 @@ import MegaMenu from "./mega-menu/MegaMenu";
 export const Navigation = () => {
   const pathname = usePathname();
   const [activeMegaMenu, setActiveMegaMenu] = useState<Links["id"] | null>(null);
-  const [direction, setDirection] = useState<"l" | "r" | null>(null);
   const menuRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const handleSetSelected = (val: Links["id"] | null) => {
-    if (typeof val === "number" && typeof activeMegaMenu === "number") {
-      setDirection(val > activeMegaMenu ? "r" : "l");
-    } else {
-      setDirection(null);
-    }
-
-    // Always update activeMegaMenu state
     setActiveMegaMenu(val);
   };
+
+  const prevScrollY = useRef(window.scrollY);
 
   useEffect(() => {
     if (!activeMegaMenu) return;
 
-    const handleScroll = () => setActiveMegaMenu(null);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const prevY = prevScrollY.current;
+
+      // If we are above 140 and now below 160, we are in range
+      const inRange = currentScrollY >= 150 && currentScrollY <= 160;
+
+      // If we jumped **past** the range in one scroll event (fast scrolling)
+      const jumpedPast =
+        (prevY < 150 && currentScrollY > 160) || // Fast scroll DOWN past range
+        (prevY > 160 && currentScrollY < 150);  // Fast scroll UP past range
+
+      if (inRange || jumpedPast) {
+        setActiveMegaMenu(null);
+      }
+
+      prevScrollY.current = currentScrollY; // Update previous scroll position
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeMegaMenu]);
@@ -103,7 +115,7 @@ export const Navigation = () => {
                 />
               </button>
 
-              {activeMegaMenu && <MegaMenu activeMegaMenu={activeMegaMenu} direction={direction} />}
+              {activeMegaMenu && <MegaMenu activeMegaMenu={activeMegaMenu} />}
             </>
           )}
         </div>

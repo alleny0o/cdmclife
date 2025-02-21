@@ -3,7 +3,7 @@
 import { Links, links } from "@/constants/nav-links";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useMegaMenu } from "../context/MegaMenuContext";
 
 type MegaMenuProps = {

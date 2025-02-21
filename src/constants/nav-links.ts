@@ -38,8 +38,8 @@ export const links: Links[] = [
     icon: Users
   },
   {
-    label: "Sermons",
-    href: "/sermons",
+    label: "Worship",
+    href: "/worship",
     icon: Church
   },
   {

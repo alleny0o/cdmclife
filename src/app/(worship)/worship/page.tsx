@@ -1,13 +1,13 @@
 import Hero from "@/components/hero/Hero";
-import SectionOne from "../components/Section-One";
+import WorshipInfo from "../components/WorshipInfo";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 
 function SermonsPage() {
   return (
     <div className="w-full h-full">
-        <Hero title="Sermons" image="mustard-seed-bible.jpg" />
+        <Hero title="Worship" image="mustard-seed-bible.jpg" />
         <Breadcrumbs />
-        <SectionOne />
+        <WorshipInfo />
     </div>
   )
 }

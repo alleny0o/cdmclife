@@ -1,14 +1,19 @@
-import { FaYoutube, FaFacebook } from "react-icons/fa";
+import { CiInstagram, CiYoutube, CiFacebook } from "react-icons/ci";
 
 export const SOCIAL_MEDIAS = [
     {
+        name: "Instagram",
+        url: "https://www.instagram.com/",
+        icon: CiInstagram,
+    },
+    {
         name: "YouTube",
         url: "https://www.youtube.com/@cdmc7150",
-        icon: FaYoutube,
+        icon: CiYoutube,
     },
     {
         name: "Facebook",
         url: "https://www.facebook.com/travilahbaptistchurch/",
-        icon: FaFacebook,
+        icon: CiFacebook,
     },
 ];

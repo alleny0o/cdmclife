@@ -33,8 +33,8 @@ const secondLinks = [
 
 function Footer() {
   return (
-    <footer id="relume" className="bg-deepBlack px-[5%] py-12 md:py-18 lg:py-20">
-      <div className="max-w-7xl mx-auto">
+    <footer id="relume" className="bg-deepBlack py-14 lg:py-16">
+      <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12 pb-12 md:gap-y-16 md:pb-18 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4 lg:pb-20">
           {/* Left Section: Logo, Contact, and Social */}
           <div>
@@ -51,13 +51,13 @@ function Footer() {
               <p className="text-vintageCream mb-1 text-sm font-semibold">Contact:</p>
               <Link
                 href="tel:18001234567"
-                className="text-vintageCream block text-sm underline decoration-black underline-offset-1"
+                className="text-vintageCream block text-sm underline decoration-vintageCream underline-offset-1"
               >
                 (301) 836-2098
               </Link>
               <Link
                 href="mailto:info@relume.io"
-                className="text-vintageCream block text-sm underline decoration-black underline-offset-1"
+                className="text-vintageCream block text-sm underline decoration-vintageCream underline-offset-1"
               >
                 info@cdmc.io
               </Link>

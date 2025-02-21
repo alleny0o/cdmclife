@@ -22,10 +22,9 @@ function Gallery() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isMobile]);
 
-  const handleScroll = (e: any) => {
-    if (!isMobile) return;
-    const scrollPosition = e.target.scrollLeft;
-    const itemWidth = e.target.offsetWidth * 0.84; // 84% width + gap
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {    if (!isMobile) return;
+    const scrollPosition = (e.target as HTMLDivElement).scrollLeft;
+    const itemWidth = (e.target as HTMLDivElement).offsetWidth * 0.84; // 84% width + gap
     const newIndex = Math.round(scrollPosition / itemWidth);
     setCurrent(newIndex);
   };
@@ -39,9 +38,9 @@ function Gallery() {
   };
 
   return (
-    <section className="bg-lightGray flex flex-col items-center justify-between w-full px-6 py-16 sm:px-12 md:px-20 lg:p-24 overflow-x-hidden">
+    <section className="bg-lightGray flex flex-col items-center justify-between w-full px-6 py-20 sm:px-12 md:px-20 lg:px-24 lg:py-24 overflow-x-hidden">
       <MotionConfig transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}>
-        <div className="relative w-full max-w-4xl mx-auto">
+        <div className="relative w-full max-w-5xl mx-auto">
           {/* MOBILE: Snap scroll */}
           <div
             className="flex gap-4 flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory sm:hidden scrollbar-hide"

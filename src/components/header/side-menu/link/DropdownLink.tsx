@@ -80,6 +80,7 @@ const DropdownLink = (props: Links) => {
                               active:bg-white/10
                               ${isActive ? "text-dustyBlue" : "text-vintageCream"}
                             `}
+                            target="_blank"
                           >
                             {item.icon && (
                               <item.icon className="text-lg flex-shrink-0 mt-1" />

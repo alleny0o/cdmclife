@@ -62,7 +62,6 @@ export default function Header() {
         isVisible={isVisible} 
         activeMenu={activeMenu} 
         onMenuToggle={() => handleMenuToggle("fixed")} 
-
       />
     </MegaMenuProvider>
   );

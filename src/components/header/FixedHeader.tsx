@@ -12,7 +12,7 @@ interface FixedHeaderProps {
 }
 
 export const FixedHeader = ({ isVisible, activeMenu, onMenuToggle }: FixedHeaderProps) => {
-  const showHeader = isVisible;
+  const showHeader = isVisible || activeMenu === "fixed";
 
   return (
     <motion.header

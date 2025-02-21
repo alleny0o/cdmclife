@@ -41,7 +41,7 @@ function Sermons() {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto sm:px-6">
           {/* Header */}
           <div className="text-center mb-12">
             <p className="font-handlee text-lg mb-3 text-dustyBlue font-semibold">What a joy it is to</p>
@@ -55,7 +55,6 @@ function Sermons() {
                 key={sermon.id}
                 className="bg-softWhite rounded-lg border border-dustyBlue/20 p-6 flex flex-col md:flex-row items-start gap-6 shadow-sm hover:border-dustyBlue/30 transition-colors"
               >
-                {/* Video Thumbnail Container */}
                 {/* Video Thumbnail Container */}
                 <div className="w-full md:w-64 relative rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 md:aspect-video sm:aspect-[21/9] aspect-video">
                   <iframe

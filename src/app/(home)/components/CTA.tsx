@@ -37,7 +37,7 @@ function CTA() {
         <div className="mb-12 text-left">
           <ItalicsP className="text-dustyBlue">Welcome to</ItalicsP>
           <H2 className="mt-4">Christ Disciple Mission Church</H2>
-          <P> Discover what we do!</P>
+          <P>Discover what we do!</P>
         </div>
 
         {/* Articles List */}
@@ -71,14 +71,14 @@ function CTA() {
                   Learn More <RxChevronRight className="ml-2" />
                 </Link>
               </div>
-              <div>
-                <Link href={article.link} className="flex aspect-[4/3] w-full">
+              <div className="relative w-full h-0 pb-[75%]">
+                <Link href={article.link} className="absolute inset-0">
                   <Image
                     src={article.imageUrl}
                     alt={article.imageAlt}
-                    width={800}
-                    height={600}
-                    className="w-full object-cover rounded"
+                    fill
+                    className="object-cover rounded"
+                    sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </Link>
               </div>

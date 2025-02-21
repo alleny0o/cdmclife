@@ -18,7 +18,7 @@ const Breadcrumbs = () => {
       { label: 'Home', href: '/', icon: Home }
     ];
 
-    let currentLink = links;
+    const currentLink = links;
     let currentPath = '';
 
     pathSegments.forEach((segment) => {

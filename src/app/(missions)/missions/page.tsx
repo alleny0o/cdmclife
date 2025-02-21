@@ -1,6 +1,6 @@
 import Hero from '@/components/hero/Hero'
-import SectionOne from '../components/Section-One'
-import SectionTwo from '../components/Section-Two'
+import Missions from '../components/Missions'
+import PastMissions from '../components/PastMissions'
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs'
 
 function MissionsPage() {
@@ -8,8 +8,8 @@ function MissionsPage() {
     <div className="w-full h-full bg-white">
         <Hero title="Missions" image="mustard-seed-bible.jpg" />
         <Breadcrumbs />
-        <SectionOne />
-        <SectionTwo />
+        <Missions />
+        <PastMissions />
     </div>
   )
 }

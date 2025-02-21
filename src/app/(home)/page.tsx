@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 
 export default function Home() {
   return (
-    <div>
+    <div className="w-full h-full bg-white">
       <Hero />
       <Breadcrumbs />
       <Highlights />

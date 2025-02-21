@@ -72,12 +72,6 @@ export const Navigation = () => {
     `;
   };
 
-  const getSubLinkClasses = (isActive: boolean) => `
-    block px-4 py-2 text-sm transition-all duration-200 
-    hover:bg-gray-800 hover:pl-5
-    ${isActive ? "bg-gray-800" : ""}
-  `;
-
   return (
     <nav className="hidden md:flex justify-center items-center col-span-8 lg:gap-9 md:gap-5 gap-1">
       {links.map((link, index) => (

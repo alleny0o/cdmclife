@@ -31,7 +31,7 @@ function MegaMenu(input: MegaMenuProps) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [setMegaMenuColor]);
 
   return (
     <AnimatePresence>

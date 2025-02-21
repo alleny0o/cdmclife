@@ -15,7 +15,11 @@ export const Navigation = () => {
     setActiveMegaMenu(val);
   };
 
-  const prevScrollY = useRef(window.scrollY);
+  const prevScrollY = useRef(0); // Default to 0 (safe for SSR)
+
+  useEffect(() => {
+    prevScrollY.current = window.scrollY; // Initialize after mounting
+  }, []);
 
   useEffect(() => {
     if (!activeMegaMenu) return;

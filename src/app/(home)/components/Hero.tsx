@@ -32,11 +32,19 @@ function Hero() {
               hidden: { opacity: 0, y: 10 },
               visible: { opacity: 1, y: 0 },
             }}
-            className="landscape:mb-0 max-w-2xl sm:max-w-3xl text-lg sm:text-xl md:text-2xl text-softWhite leading-relaxed"
+            className="landscape:mb-0 max-w-2xl sm:max-w-3xl text-base sm:text-lg md:text-xl text-softWhite leading-relaxed"
           >
-            &quot;He gives snow like wool; he scatters the frost like ashes. He casts forth his ice like morsels; who can stand
-            before his cold? He sends out his word, and melts them; he causes his wind to blow, and the waters flow.&quot;
-            <br />- Psalm 147:16-18
+            He gives snow like wool; he scatters the frost like ashes. He casts forth his ice like morsels; who can stand
+            before his cold? He sends out his word, and melts them; he causes his wind to blow, and the waters flow.
+          </motion.p>
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="mt-2 text-right text-lg sm:text-xl md:text-2xl font-semibold text-softWhite"
+          >
+            - Psalm 147:16-18
           </motion.p>
         </motion.div>
       </div>

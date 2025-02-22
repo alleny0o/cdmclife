@@ -3,15 +3,15 @@
 import { motion } from "framer-motion";
 
 type HeroProps = {
-    title: string;
-    image: string;
+  title: string;
+  image: string;
 };
 
 function Hero(input: HeroProps) {
   return (
     <>
       <section
-        className="relative h-screen bg-right bg-cover bg-no-repeat bg-fixed bg-scroll-mobile"
+        className="relative h-screen bg-center bg-cover bg-no-repeat bg-fixed bg-scroll-mobile"
         style={{
           backgroundImage: `url('${input.image}')`,
         }}
@@ -34,7 +34,7 @@ function Hero(input: HeroProps) {
             }}
             className="max-w-[90%] sm:max-w-4xl flex flex-col items-center text-center"
           >
-            {/* Animated Heading with enhanced typography */}
+            {/* Animated Heading */}
             <motion.h1
               variants={{
                 hidden: { opacity: 0, y: 10 },
@@ -46,6 +46,21 @@ function Hero(input: HeroProps) {
             </motion.h1>
           </motion.div>
         </div>
+
+        {/* Responsive & Animated Quote Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="absolute bottom-8 right-8 sm:w-[400px] md:w-[500px] text-xs sm:text-sm md:text-base text-white p-2 sm:p-4 hidden sm:block"
+        >
+          <p className="leading-relaxed text-right">
+            Jesus said the kingdom of heaven is{" "}
+            <span className="italic">&ldquo;like a tiny mustard seed that grows into a large tree,&rdquo;</span> providing shelter
+            for birds, showing how something small can become very big.
+          </p>
+          <p className="mt-2 text-right font-semibold">- Matthew 13:31-32</p>
+        </motion.div>
       </section>
     </>
   );

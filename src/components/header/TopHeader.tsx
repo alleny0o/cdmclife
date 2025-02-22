@@ -16,7 +16,7 @@ export const TopHeader = ({ activeMenu, onMenuToggle }: TopHeaderProps) => {
     <div className="w-full transition-opacity duration-300">
       <div className="grid grid-cols-12 max-w-7xl mx-auto px-8 py-4 items-center">
         <div className="flex col-span-6 md:col-span-2">
-          <Logo className="transition-transform duration-300 hover:scale-105" />
+          <Logo />
         </div>
 
         <Navigation />

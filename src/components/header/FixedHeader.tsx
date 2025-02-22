@@ -23,7 +23,7 @@ export const FixedHeader = ({ isVisible, activeMenu, onMenuToggle }: FixedHeader
       >
       <div className="w-full max-w-7xl mx-auto px-8 grid grid-cols-12 items-center">
         <div className="flex col-span-6 md:col-span-2">
-          <Logo className="transition-transform duration-300 hover:scale-105" />
+          <Logo />
         </div>
         <Navigation />
         <div className="flex items-center justify-end md:col-span-2 col-span-6">

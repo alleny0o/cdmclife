@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 function SermonsPage() {
   return (
     <div className="w-full h-full bg-white">
-        <Hero title="Worship" image="mustard-seed-bible.jpg" />
+        <Hero title="Worship" image="og-mustard-seed.jpg" />
         <Breadcrumbs />
         <WorshipInfo />
     </div>

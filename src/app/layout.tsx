@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon/favicon.ico",
     shortcut: "/favicon/favicon.ico",
+    apple: "/favicon/apple-touch-icon.png",
   },
   title: {
     default: "Christ Disciple Mission Church",

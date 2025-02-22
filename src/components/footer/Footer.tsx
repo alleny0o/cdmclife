@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { BiLogoFacebookCircle, BiLogoYoutube } from "react-icons/bi";
+import { Logo } from "../header/Logo";
 
 const socialLinks = [
   {
@@ -39,9 +40,7 @@ function Footer() {
           {/* Left Section: Logo, Contact, and Social */}
           <div>
             <div className="mb-6 md:mb-8">
-              <Link href="#">
-                <h1 className="text-vintageCream font-bold text-3xl">CDMC</h1>
-              </Link>
+              <Logo />
             </div>
             <div className="mb-6 md:mb-8">
               <p className="text-vintageCream mb-1 text-sm font-semibold">Address:</p>

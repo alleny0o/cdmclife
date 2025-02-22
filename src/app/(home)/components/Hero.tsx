@@ -32,7 +32,7 @@ function Hero() {
               hidden: { opacity: 0, y: 10 },
               visible: { opacity: 1, y: 0 },
             }}
-            className="landscape:mb-0 max-w-2xl sm:max-w-3xl text-sm sm:text-base md:text-lg lg:text-xl text-softWhite leading-relaxed"
+            className="pt-10 landscape:mb-0 max-w-2xl sm:max-w-3xl text-sm sm:text-base md:text-lg lg:text-xl text-softWhite leading-relaxed"
           >
             He gives snow like wool; he scatters the frost like ashes. He casts forth his ice like morsels; who can stand
             before his cold? He sends out his word, and melts them; he causes his wind to blow, and the waters flow.

@@ -3,7 +3,7 @@ import { type FC } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import NavLink from "./link/NavLink";
 import DropdownLink from "./link/DropdownLink";
-import { links } from "@/constants/nav-links";
+import { LINKS } from "@/constants/nav-links";
 import styles from "./MobileMenu.module.scss";
 
 interface MobileMenuProps {
@@ -32,7 +32,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
           >
             <div className="min-h-screen py-24 px-8">
               <div className="max-w-lg mx-auto space-y-2">
-                {links.map((link, index) => (
+                {LINKS.map((link, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}

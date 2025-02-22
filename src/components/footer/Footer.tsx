@@ -4,50 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Logo } from "../header/Logo";
 import { SOCIAL_MEDIAS } from "@/constants/social-medias";
-
-interface NavLink {
-  name: string;
-  path: string;
-  external?: boolean;
-}
-
-const NAVIGATION: { title: string; links: NavLink[] }[] = [
-  {
-    title: "Main",
-    links: [
-      { name: "Home", path: "/" },
-      { name: "About", path: "/about" },
-      { name: "Worship", path: "/worship" },
-      { name: "Missions", path: "/missions" },
-    ],
-  },
-  {
-    title: "Church Updates",
-    links: [
-      { name: "Announcements", path: "/announcements" },
-      { name: "Schedule", path: "/schedule" },
-    ],
-  },
-  {
-    title: "Community & Faith",
-    links: [
-      { name: "Fellowship", path: "/fellowship" },
-      { name: "Bible Study", path: "/bible-study" },
-    ],
-  },
-  {
-    title: "Serve & Connect",
-    links: [
-      { name: "Community Service", path: "/community-service" },
-      { name: "Donate", path: "/donate" },
-      { name: "Contact Us", path: "/contact" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [{ name: "Shop", path: "https://biblebrowsing.com", external: true }],
-  },
-];
+import { FOOTER_LINKS } from "@/constants/nav-links";
 
 function Footer() {
   return (
@@ -102,21 +59,21 @@ function Footer() {
 
           {/* Right Section: Navigation Links */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {NAVIGATION.map(({ title, links }, index) => (
+            {FOOTER_LINKS.map(({ title, links }, index) => (
               <div key={index} className="space-y-3">
                 <p className="text-white text-sm font-bold">{title}</p>
                 <ul className="space-y-2">
                   {links.map(({ name, path, external = false }, subIndex) => (
                     <li key={subIndex}>
                       {external ? (
-                        <a
+                        <Link
                           href={path}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-vintageCream text-sm hover:text-vintageCream/80 transition-colors"
                         >
                           {name}
-                        </a>
+                        </Link>
                       ) : (
                         <Link 
                           href={path}

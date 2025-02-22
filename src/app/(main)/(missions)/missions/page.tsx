@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 function MissionsPage() {
   return (
-    <div className="w-full h-full bg-white">
+    <div className="w-full h-full bg-stone-50">
         <Hero title="Missions" image="hero/og-mustard-seed.jpg" />
         <Breadcrumbs />
         <Missions />

@@ -5,7 +5,7 @@ import { ChevronRight, Home } from "lucide-react";
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IconType } from "react-icons";
-import { links } from '@/constants/nav-links';
+import { LINKS } from '@/constants/nav-links';
 import { Container, Section } from '../layouts/Layouts';
 
 const Breadcrumbs = () => {
@@ -18,7 +18,7 @@ const Breadcrumbs = () => {
       { label: 'Home', href: '/', icon: Home }
     ];
 
-    const currentLink = links;
+    const currentLink = LINKS;
     let currentPath = '';
 
     pathSegments.forEach((segment) => {

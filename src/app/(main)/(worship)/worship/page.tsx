@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 function SermonsPage() {
   return (
-    <div className="w-full h-full bg-white">
+    <div className="w-full h-full bg-stone-50">
         <Hero title="Worship" image="hero/og-mustard-seed.jpg" />
         <Breadcrumbs />
         <WorshipInfo />

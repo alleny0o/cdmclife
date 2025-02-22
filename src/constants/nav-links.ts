@@ -1,3 +1,4 @@
+// main nav links
 import { Home, Users, Church, Globe, MoreHorizontal } from "lucide-react";
 import { IconType } from "react-icons";
 import { TfiAnnouncement } from "react-icons/tfi";
@@ -28,7 +29,7 @@ export type Links = {
 };
 
 // Updated links array with Shopify store link
-export const links: Links[] = [
+export const LINKS: Links[] = [
   {
     id: 1,
     label: "Home",
@@ -127,5 +128,50 @@ export const links: Links[] = [
         ],
       },
     ],
+  },
+];
+
+// footer nav links
+interface NavLink {
+  name: string;
+  path: string;
+  external?: boolean;
+}
+
+export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
+  {
+    title: "Main",
+    links: [
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
+      { name: "Worship", path: "/worship" },
+      { name: "Missions", path: "/missions" },
+    ],
+  },
+  {
+    title: "Church Updates",
+    links: [
+      { name: "Announcements", path: "/announcements" },
+      { name: "Schedule", path: "/schedule" },
+    ],
+  },
+  {
+    title: "Community & Faith",
+    links: [
+      { name: "Fellowship", path: "/fellowship" },
+      { name: "Bible Study", path: "/bible-study" },
+    ],
+  },
+  {
+    title: "Serve & Connect",
+    links: [
+      { name: "Community Service", path: "/community-service" },
+      { name: "Donate", path: "/donate" },
+      { name: "Contact Us", path: "/contact" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [{ name: "Shop", path: "https://biblebrowsing.com", external: true }],
   },
 ];

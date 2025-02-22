@@ -20,7 +20,7 @@ function WorshipInfo() {
           {/* Worship Services Overview */}
           <div className="grid md:grid-cols-2 gap-6">
             {/* English Worship */}
-            <div className="p-8 border border-[var(--deep-gray)] rounded-xl shadow-md bg-[var(--soft-white)] transition hover:shadow-lg">
+            <div className="p-6 md:p-8 border border-stone-200 hover:border-stone-300 rounded-xl shadow-md bg-[var(--soft-white)] transition hover:shadow-lg">
               <H3 className="!font-semibold">English Ministry</H3>
               <P className="mt-4 text-[var(--soft-black)]">
                 Gather with us every <strong className="text-[var(--muted-blue)]">Sunday at 11:00 AM</strong> for our English
@@ -29,7 +29,7 @@ function WorshipInfo() {
             </div>
 
             {/* Korean Worship */}
-            <div className="p-8 border border-[var(--deep-gray)] rounded-xl shadow-md bg-[var(--soft-white)] transition hover:shadow-lg">
+            <div className="p-6 md:p-8 border border-stone-200 hover:border-stone-300 rounded-xl shadow-md bg-[var(--soft-white)] transition hover:shadow-lg">
               <H3 className="!font-semibold">Korean Ministry</H3>
               <P className="mt-4 text-[var(--soft-black)]">
                 Gather with us every <strong className="text-[var(--muted-blue)]">Sunday at 9:00 AM</strong> for our Korean

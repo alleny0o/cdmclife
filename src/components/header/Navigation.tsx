@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { BiChevronDown } from "react-icons/bi";
-import { Links, links } from "@/constants/nav-links";
+import { Links, LINKS } from "@/constants/nav-links";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MegaMenu from "./mega-menu/MegaMenu";
@@ -101,7 +101,7 @@ export const Navigation = () => {
 
   return (
     <nav className="hidden md:flex justify-center items-center col-span-8 lg:gap-9 md:gap-5 gap-1">
-      {links.map((link, index) => (
+      {LINKS.map((link, index) => (
         <div
           key={index}
           className="group"
@@ -130,7 +130,7 @@ export const Navigation = () => {
                 />
               </button>
 
-              {activeMegaMenu && <MegaMenu activeMegaMenu={activeMegaMenu} />}
+              {activeMegaMenu && <MegaMenu activeMegaMenu={activeMegaMenu} setActiveMegaMenu={setActiveMegaMenu} />}
             </>
           )}
         </div>

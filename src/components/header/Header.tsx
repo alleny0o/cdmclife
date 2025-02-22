@@ -7,6 +7,10 @@ import { TopHeader } from "./TopHeader";
 import { FixedHeader } from "./FixedHeader";
 import { MegaMenuProvider } from "./context/MegaMenuContext";
 
+export function isTransparentPath(pathname: string): boolean {
+  return ["/", "/about", "/worship", "/missions"].includes(pathname);
+};
+
 export default function Header() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
@@ -82,7 +86,8 @@ export default function Header() {
     });
   };
 
-  const isTransparent = ["/", "/about", "/worship", "/missions"].includes(pathname);
+  // Determine if header should be transparent
+  const isTransparent = isTransparentPath(pathname);
 
   return (
     <MegaMenuProvider>

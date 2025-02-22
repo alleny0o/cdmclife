@@ -1,18 +1,23 @@
 "use client";
 
-import { Links, links } from "@/constants/nav-links";
+import { Links, LINKS } from "@/constants/nav-links";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useMegaMenu } from "../context/MegaMenuContext";
+import { usePathname } from "next/navigation";
+import { isTransparentPath } from "../Header";
 
 type MegaMenuProps = {
   activeMegaMenu: Links["id"] | null;
+  setActiveMegaMenu: (val: Links["id"] | null) => void;
 };
 
 function MegaMenu(input: MegaMenuProps) {
+  const pathname = usePathname();
   const { megaMenuColor, setMegaMenuColor } = useMegaMenu();
-  const activeMenu = input.activeMegaMenu !== null ? links[input.activeMegaMenu - 1] : null;
+  const activeMenu = input.activeMegaMenu !== null ? LINKS[input.activeMegaMenu - 1] : null;
+  const isTransparent = isTransparentPath(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,7 +77,7 @@ function MegaMenu(input: MegaMenuProps) {
           animate="animate"
           exit="exit"
           className={`absolute z-50 right-0 left-0 top-[calc(100%)] ${
-            megaMenuColor === "clear"
+            (megaMenuColor === "clear" && isTransparent)
               ? "bg-[rgba(62,62,62,0.05)] backdrop-blur-[17px] border border-[rgba(255,255,255,0.18)] !border-l-0 !border-r-0"
               : "bg-white border border-gray-200 shadow-lg"
           } p-6 transition-all duration-300`}
@@ -86,7 +91,7 @@ function MegaMenu(input: MegaMenuProps) {
               >
                 <h3
                   className={`text-base font-semibold mb-2 uppercase transition-colors duration-200 ${
-                    megaMenuColor === "white" ? "text-gray-800" : "text-white/90"
+                    (megaMenuColor === "white" || !isTransparent) ? "text-gray-800" : "text-white/90"
                   }`}
                 >
                   {section.header}
@@ -96,10 +101,11 @@ function MegaMenu(input: MegaMenuProps) {
                     <Link
                       key={subIndex}
                       href={item.href}
+                      onClick={() => input.setActiveMegaMenu(null)}
                       target={item.label === "Shop" ? "_blank" : "_self"}
                       className={`flex items-start space-x-3 p-2 rounded-[10px] transition-all duration-200 
                       ${
-                        megaMenuColor === "white"
+                        (megaMenuColor === "white" || !isTransparent)
                           ? "hover:bg-gray-100 active:bg-gray-200"
                           : "hover:bg-[rgba(255,255,255,0.2)] active:bg-[rgba(255,255,255,0.2)]"
                       }`}
@@ -107,7 +113,7 @@ function MegaMenu(input: MegaMenuProps) {
                       {item.icon && (
                         <span
                           className={`mt-0.5 transition-colors duration-200 ${
-                            megaMenuColor === "white" ? "text-gray-600" : "text-white/80"
+                            (megaMenuColor === "white" || !isTransparent)  ? "text-gray-600" : "text-white/80"
                           }`}
                         >
                           {React.createElement(item.icon)}
@@ -117,7 +123,7 @@ function MegaMenu(input: MegaMenuProps) {
                       <div>
                         <span
                           className={`block text-sm font-medium transition-colors duration-200 ${
-                            megaMenuColor === "white" ? "text-gray-900" : "text-white/90"
+                            (megaMenuColor === "white" || !isTransparent) ? "text-gray-900" : "text-white/90"
                           }`}
                         >
                           {item.label}
@@ -126,7 +132,7 @@ function MegaMenu(input: MegaMenuProps) {
                         {item.caption && (
                           <span
                             className={`block text-xs transition-colors duration-200 ${
-                              megaMenuColor === "white" ? "text-gray-500" : "text-white/70"
+                              (megaMenuColor === "white" || !isTransparent) ? "text-gray-500" : "text-white/70"
                             }`}
                           >
                             {item.caption}

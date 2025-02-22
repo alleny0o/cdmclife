@@ -52,7 +52,7 @@ function Hero(input: HeroProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="absolute bottom-8 right-8 sm:w-[400px] md:w-[500px] text-xs sm:text-sm md:text-base text-white p-2 sm:p-4 hidden sm:block"
+          className="absolute bottom-8 right-8 w-[500px] text-xs sm:text-sm md:text-base text-white p-2 sm:p-4 hidden sm:block"
         >
           <p className="leading-relaxed text-right">
             Jesus said the kingdom of heaven is{" "}

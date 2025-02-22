@@ -39,7 +39,7 @@ function Sermons() {
       <Container>
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image src="/sermons-bg.png" alt="vintage texture or clouds" fill className="object-cover" sizes="100vw" quality={90} />
+          <Image src="/homepage/sermons-bg.png" alt="vintage texture or clouds" fill className="object-cover" sizes="100vw" quality={90} />
         </div>
 
         {/* Content Container */}

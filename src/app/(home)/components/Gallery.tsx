@@ -3,7 +3,7 @@ import { motion, MotionConfig } from "framer-motion";
 import { useState, useEffect } from "react";
 import { GoChevronRight, GoChevronLeft } from "react-icons/go";
 
-const images = ["/gallery1.jpg", "/gallery2.jpg", "/gallery3.jpg"];
+const images = ["/homepage/gallery1.jpg", "/homepage/gallery2.jpg", "/homepage/gallery3.jpg"];
 
 function Gallery() {
   const [current, setCurrent] = useState(0);

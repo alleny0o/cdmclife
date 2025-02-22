@@ -26,9 +26,19 @@ const handlee = Handlee({
 });
 
 export const metadata: Metadata = {
-  title: "Christ Disciple Mission Church",
-  description:
-    "Join a community that lives out the teachings of Christ through dynamic ministries, missions, and outreach.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
+  title: {
+    default: "Christ Disciple Mission Church",
+    template: "%s | Christ Disciple Mission Church",
+  },
+  description: "Christ Disciple Mission Church – Growing in faith like a mustard seed, spreading Christ’s love through worship, discipleship, and service.",
+  openGraph: {
+    images: [
+      {
+        url: "/open-graph/open-graph.jpg",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

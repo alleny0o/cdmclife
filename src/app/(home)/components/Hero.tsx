@@ -6,7 +6,7 @@ function Hero() {
   return (
     <section
       className="relative h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-scroll-mobile"
-      style={{ backgroundImage: "url('/snow-church.png')" }}
+      style={{ backgroundImage: "url('/homepage/snow-church.png')" }}
     >
       {/* Dark overlay using a custom deepBlack with adjusted opacity */}
       <div className="absolute inset-0 bg-deepBlack opacity-60" />

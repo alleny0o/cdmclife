@@ -11,7 +11,7 @@ function Hero(input: HeroProps) {
   return (
     <>
       <section
-        className="relative h-screen bg-right bg-cover bg-no-repeat bg-fixed bg-scroll-mobile"
+        className="relative h-screen bg-center bg-cover bg-no-repeat bg-fixed bg-scroll-mobile"
         style={{
           backgroundImage: `url('${input.image}')`,
         }}

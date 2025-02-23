@@ -4,12 +4,15 @@
 
 cdmclife.org is the official website for Christ Disciple Mission Church, built with **Next.js 15**, offering a modern and seamless digital experience for members and visitors. This platform features dynamic content, a donation system, an events calendar, and contact capabilities.
 
+<br/>
+
 <!-- For the image, replace 'your-image-path.jpg' with your actual image path -->
 ![CDMCLife Preview](./public/website-preview.png)
 
 ---
 
 ## ✨ Features  
+
 ✅ **Content Management** – Powered by **Sanity.io** for easy updates.  
 ✅ **Donation System** – Secure online giving with **Stripe** integration.  
 ✅ **Event Calendar** – Keep track of upcoming church activities.  
@@ -17,12 +20,16 @@ cdmclife.org is the official website for Christ Disciple Mission Church, built w
 ✅ **Beautiful Animations** – Enhanced with **Framer Motion**.  
 ✅ **Responsive UI** – Built with **Tailwind CSS** for a clean, mobile-friendly design.  
 
+<br/>
+
 ---
 
 ## 🚀 Tech Stack  
+
 | **Category**     | **Technology**         | **Badge** |
 |-----------------|----------------------|----------|
 | **Frontend**     | Next.js 15 (App Router)  | ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white) |
+| **Language**     | TypeScript            | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) |
 | **CMS**          | Sanity.io             | ![Sanity](https://img.shields.io/badge/Sanity.io-ff2d20?logo=sanity&logoColor=white) |
 | **Payments**     | Stripe                | ![Stripe](https://img.shields.io/badge/Stripe-6267E1?logo=stripe&logoColor=white) |
 | **Email**        | Nodemailer            | ![Nodemailer](https://img.shields.io/badge/Nodemailer-yellow?logo=gmail&logoColor=white) |

@@ -19,12 +19,14 @@ cdmclife.org is the official website for Christ Disciple Mission Church, built w
 ---
 
 ## 🚀 Tech Stack  
-| **Category**     | **Technology**         |
-|-----------------|----------------------|
-| **Frontend**     | Next.js 15 (App Router)  |
-| **CMS**          | Sanity.io             |
-| **Payments**     | Stripe                |
-| **Email**        | Nodemailer            |
-| **UI Styling**   | Tailwind CSS          |
-| **Animations**   | Framer Motion         |
-| **Hosting**      | Vercel                |
+| **Category**     | **Technology**         | **Badge** |
+|-----------------|----------------------|----------|
+| **Frontend**     | Next.js 15 (App Router)  | ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white) |
+| **CMS**          | Sanity.io             | ![Sanity](https://img.shields.io/badge/Sanity.io-ff2d20?logo=sanity&logoColor=white) |
+| **Payments**     | Stripe                | ![Stripe](https://img.shields.io/badge/Stripe-6267E1?logo=stripe&logoColor=white) |
+| **Email**        | Nodemailer            | ![Nodemailer](https://img.shields.io/badge/Nodemailer-yellow?logo=gmail&logoColor=white) |
+| **UI Styling**   | Tailwind CSS          | ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white) |
+| **Animations**   | Framer Motion         | ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-0055FF?logo=framer&logoColor=white) |
+| **Hosting**      | Vercel                | ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white) |
+
+---

@@ -1,7 +1,7 @@
 # CDMCLife 🌿✝️  
 [![Website](https://img.shields.io/badge/Website-Live-blue)](https://cdmclife.org)
 
-CDMCLife is the official website for Christ Disciple Mission Church, built with **Next.js 15**, offering a modern and seamless digital experience for members and visitors. This platform features dynamic content, a donation system, an events calendar, and contact capabilities.
+cdmclife.org is the official website for Christ Disciple Mission Church, built with **Next.js 15**, offering a modern and seamless digital experience for members and visitors. This platform features dynamic content, a donation system, an events calendar, and contact capabilities.
 
 <!-- For the image, replace 'your-image-path.jpg' with your actual image path -->
 ![CDMCLife Preview](./public/website-preview.png)

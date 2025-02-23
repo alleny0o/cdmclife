@@ -1,5 +1,5 @@
 # Christ Disciple Mission Church 🌱✝️  
-<a href="https://cdmclife.org" target="_blank" rel="noopener noreferrer">
+<a href="https://cdmclife.org" target="_blank" rel="noopener noreferrer" style="margin: 10px; display: inline-block;">
   <img src="https://img.shields.io/badge/Website-Live-blue" alt="Website">
 </a>
 

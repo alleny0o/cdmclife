@@ -1,4 +1,4 @@
-# Christ Disciple Mission Church 🌱✝️  
+# Christ Disciple Mission Church 🌱 ✝️  
 
 [![Website](https://img.shields.io/badge/Website-Live-blue)](https://cdmclife.org)
 

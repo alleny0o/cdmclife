@@ -12,12 +12,12 @@ function NotFound() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center text-gray-100 p-4">
       <div className="text-center space-y-8">
-        <div className="relative h-[120px] w-[170px] sm:h-[140px] sm:w-[200px] md:h-[160px] md:w-[225px] mx-auto">
+        <div className="relative h-[100px] w-[225px] sm:h-[125px] sm:w-[285px] md:h-[160px] md:w-[365px] mx-auto mb-10">
           <Image
-            src="/og-logo.jpg"
+            src="/open-graph/cdmc-opengraph.png"
             alt="CDMC"
-            width={176}
-            height={176}
+            width={1200}
+            height={630}
             quality={100}
             className="h-full w-full scale-[1.3] object-cover rounded-xl"
             priority

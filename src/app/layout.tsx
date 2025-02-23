@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description: "Growing in faith like a mustard seed.",
     images: [
       {
-        url: "/open-graph/open-graph.jpg",
+        url: "/open-graph/cdmc-opengraph.png",
       },
     ],
   },

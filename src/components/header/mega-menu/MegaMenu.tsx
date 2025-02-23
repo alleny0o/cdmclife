@@ -97,50 +97,63 @@ function MegaMenu(input: MegaMenuProps) {
                   {section.header}
                 </h3>
                 <div className="flex flex-col space-y-2">
-                  {section.subMenu?.map((item, subIndex) => (
-                    <Link
-                      key={subIndex}
-                      href={item.href}
-                      onClick={() => input.setActiveMegaMenu(null)}
-                      target={item.label === "Shop" ? "_blank" : "_self"}
-                      className={`flex items-start space-x-3 p-2 rounded-[10px] transition-all duration-200 
-                      ${
-                        (megaMenuColor === "white" || !isTransparent)
-                          ? "hover:bg-gray-100 active:bg-gray-200"
-                          : "hover:bg-[rgba(255,255,255,0.2)] active:bg-[rgba(255,255,255,0.2)]"
-                      }`}
-                    >
-                      {item.icon && (
-                        <span
-                          className={`mt-0.5 transition-colors duration-200 ${
-                            (megaMenuColor === "white" || !isTransparent)  ? "text-gray-600" : "text-white/80"
-                          }`}
-                        >
-                          {React.createElement(item.icon)}
-                        </span>
-                      )}
-
-                      <div>
-                        <span
-                          className={`block text-sm font-medium transition-colors duration-200 ${
-                            (megaMenuColor === "white" || !isTransparent) ? "text-gray-900" : "text-white/90"
-                          }`}
-                        >
-                          {item.label}
-                        </span>
-
-                        {item.caption && (
+                  {section.subMenu?.map((item, subIndex) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <Link
+                        key={subIndex}
+                        href={item.href}
+                        onClick={() => input.setActiveMegaMenu(null)}
+                        target={item.label === "Shop" ? "_blank" : "_self"}
+                        className={`flex items-start space-x-3 p-2 rounded-[10px] transition-all duration-200 
+                        ${
+                          isActive
+                            ? ((megaMenuColor === "white" || !isTransparent)
+                              ? "bg-gray-100"
+                              : "bg-[rgba(255,255,255,0.2)]")
+                            : ((megaMenuColor === "white" || !isTransparent)
+                              ? "hover:bg-gray-100 active:bg-gray-200"
+                              : "hover:bg-[rgba(255,255,255,0.2)] active:bg-[rgba(255,255,255,0.2)]")
+                        }`}
+                      >
+                        {item.icon && (
                           <span
-                            className={`block text-xs transition-colors duration-200 ${
-                              (megaMenuColor === "white" || !isTransparent) ? "text-gray-500" : "text-white/70"
+                            className={`mt-0.5 transition-colors duration-200 ${
+                              (megaMenuColor === "white" || !isTransparent)
+                                ? `text-gray-600 ${isActive ? "text-gray-800" : ""}`
+                                : `text-white/80 ${isActive ? "text-white" : ""}`
                             }`}
                           >
-                            {item.caption}
+                            {React.createElement(item.icon)}
                           </span>
                         )}
-                      </div>
-                    </Link>
-                  ))}
+
+                        <div>
+                          <span
+                            className={`block text-sm font-medium transition-colors duration-200 ${
+                              (megaMenuColor === "white" || !isTransparent)
+                                ? `text-gray-900 ${isActive ? "font-semibold" : ""}`
+                                : `text-white/90 ${isActive ? "text-white font-semibold" : ""}`
+                            }`}
+                          >
+                            {item.label}
+                          </span>
+
+                          {item.caption && (
+                            <span
+                              className={`block text-xs transition-colors duration-200 ${
+                                (megaMenuColor === "white" || !isTransparent)
+                                  ? `text-gray-500 ${isActive ? "text-gray-700" : ""}`
+                                  : `text-white/70 ${isActive ? "text-white/90" : ""}`
+                              }`}
+                            >
+                              {item.caption}
+                            </span>
+                          )}
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
               </motion.div>
             ))}

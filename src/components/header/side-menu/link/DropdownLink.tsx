@@ -66,7 +66,7 @@ const DropdownLink = (props: Links) => {
                     </h3>
                   )}
                   {section.subMenu && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                       {section.subMenu.map((item, i) => {
                         const isActive = pathname === item.href;
                         return (
@@ -75,10 +75,11 @@ const DropdownLink = (props: Links) => {
                             href={item.href}
                             className={`
                               flex items-start gap-3 p-2 rounded-lg
-                              transition-colors duration-300
+                              transition-all duration-300
                               hover:bg-white/5
                               active:bg-white/10
-                              ${isActive ? "text-dustyBlue" : "text-vintageCream"}
+                              text-vintageCream
+                              ${isActive ? "bg-white/10" : ""}
                             `}
                             target={item.label === "Shop" ? "_blank" : "_self"}
                           >

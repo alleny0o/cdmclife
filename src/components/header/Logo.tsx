@@ -7,7 +7,7 @@ interface LogoProps {
 
 export const Logo = ({ className = "" }: LogoProps) => (
   <Link href="/" aria-label="Home">
-    <div className="group relative lg:h-[88px] lg:w-[88px] sm:w-[82px] sm:h-[82px] w-[74px] h-[74px] overflow-hidden rounded-full flex justify-center items-center transition-transform duration-300 hover:scale-105 active:scale-95">
+    <div className="group relative lg:h-[88px] lg:w-[88px] md:w-[82px] md:h-[82px] w-[74px] h-[74px] overflow-hidden rounded-full flex justify-center items-center transition-transform duration-300 hover:scale-105 active:scale-95">
       <Image
         src="/cdmc-logo.png" // Use WebP if possible (fallback to PNG if not available)
         alt="CDMC"

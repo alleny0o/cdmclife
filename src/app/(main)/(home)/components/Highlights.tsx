@@ -31,7 +31,7 @@ const articles = [
 
 function Highlights() {
   return (
-    <Section className="min-h-full pt-12 md:pt-14 bg-white">
+    <Section className="min-h-full pt-12 md:pt-14">
       <Container className="max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-left">

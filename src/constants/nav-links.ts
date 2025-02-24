@@ -5,7 +5,7 @@ import { TfiAnnouncement } from "react-icons/tfi";
 import { IoCalendarNumber } from "react-icons/io5";
 import { GiThreeFriends, GiClover } from "react-icons/gi";
 import { RiContactsBook2Line } from "react-icons/ri";
-import { BiBible, BiDonateHeart } from "react-icons/bi";
+import { BiBible } from "react-icons/bi";
 import { CiShop } from "react-icons/ci";
 
 export type SubLink = {
@@ -103,12 +103,6 @@ export const LINKS: Links[] = [
             icon: GiClover,
           },
           {
-            label: "Donate",
-            href: "/donate",
-            caption: "Support our mission",
-            icon: BiDonateHeart,
-          },
-          {
             label: "Contact Us",
             href: "/contact-us",
             caption: "Reach out to us",
@@ -166,7 +160,6 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
     title: "Serve & Connect",
     links: [
       { name: "Community Service", path: "/community-service" },
-      { name: "Donate", path: "/donate" },
       { name: "Contact Us", path: "/contact" },
     ],
   },

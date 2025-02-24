@@ -8,6 +8,8 @@ import { IconType } from "react-icons";
 import { LINKS } from '@/constants/nav-links';
 import { Container, Section } from '../layouts/Layouts';
 
+import { BiDonateHeart } from "react-icons/bi";
+
 const Breadcrumbs = () => {
   const pathname = usePathname();
 
@@ -17,14 +19,24 @@ const Breadcrumbs = () => {
     const breadcrumbItems: Array<{ label: string; href: string; icon?: IconType }> = [
       { label: 'Home', href: '/', icon: Home }
     ];
-
+  
     const currentLink = LINKS;
     let currentPath = '';
-
+  
     pathSegments.forEach((segment) => {
+      // Handle "donate" explicitly
+      if (segment === "donate") {
+        breadcrumbItems.push({
+          label: "Donate",
+          icon: BiDonateHeart,
+          href: "/donate"
+        });
+        return;
+      }
+  
       // Search in main links
       let found = currentLink.find(link => link.href?.includes(segment));
-
+  
       // If not found in main links, search in sublinks
       if (!found) {
         for (const link of currentLink) {
@@ -44,7 +56,7 @@ const Breadcrumbs = () => {
           }
         }
       }
-
+  
       if (found) {
         currentPath += `/${segment}`;
         breadcrumbItems.push({
@@ -54,9 +66,10 @@ const Breadcrumbs = () => {
         });
       }
     });
-
+  
     return breadcrumbItems;
   };
+  
 
   const breadcrumbItems = getBreadcrumbItems();
 

@@ -4,9 +4,9 @@ import { HiCheckCircle } from "react-icons/hi";
 
 function Missions() {
   return (
-    <Section>
+    <Section className="sm:px-6">
       <Container className="pt-14 pb-24">
-        <div className="w-full max-w-5xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto">
           {/* Title Section */}
           <div className="mb-12 relative text-left">
             <H2>Missions</H2>

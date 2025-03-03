@@ -9,9 +9,9 @@ import { Section, Container } from "@/components/layouts/Layouts";
 
 function WorshipInfo() {
   return (
-    <Section>
+    <Section className="sm:px-6">
       <Container className="pt-14 pb-24">
-        <div className="w-full max-w-5xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto">
           {/* Title */}
           <div className="mb-12 max-w-xl">
             <H2>Worship Services</H2>

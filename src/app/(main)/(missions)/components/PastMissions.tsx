@@ -153,9 +153,9 @@ const DesktopTimelineItem: React.FC<DesktopTimelineItemProps> = ({ item, index }
 
 const PastMissions: React.FC = () => {
   return (
-    <Section className="relative w-full h-full bg-lightGray">
+    <Section className="relative w-full h-full bg-lightGray sm:px-6">
       <Container className="w-full pt-14 pb-24">
-        <div className="w-full max-w-5xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-left mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Past Missions</h2>

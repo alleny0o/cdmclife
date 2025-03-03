@@ -1,8 +1,11 @@
+import TabLayout from "./layouts/TabLayout"
 
 
 function OurTeam() {
   return (
-    <div>OurTeam</div>
+    <TabLayout>
+      Our Team
+    </TabLayout>
   )
 }
 

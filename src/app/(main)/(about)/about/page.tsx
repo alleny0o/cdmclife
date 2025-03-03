@@ -3,6 +3,7 @@ import AboutUs from "../components/AboutUs";
 import Hero from "@/components/hero/Hero";
 import Tabs from "@/components/tabs/Tabs";
 import { Metadata } from "next";
+import OurTeam from "../components/OurTeam";
 
 export const metadata: Metadata = {
   title: "About",
@@ -17,7 +18,7 @@ const tabs = [
   },
   {
     title: "Our Team",
-    content: <div>Contact content</div>,
+    content: <OurTeam />,
   },
 ];
 

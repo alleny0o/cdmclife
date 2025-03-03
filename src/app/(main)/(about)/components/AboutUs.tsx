@@ -1,7 +1,6 @@
 import TabLayout from "./layouts/TabLayout";
 import { H2 } from "@/components/text/H2";
 import { P } from "@/components/text/P";
-import { H3 } from "@/components/text/H3";
 
 function AboutUs() {
   return (

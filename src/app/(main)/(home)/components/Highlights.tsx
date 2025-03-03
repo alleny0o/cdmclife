@@ -7,31 +7,31 @@ import { H2 } from "@/components/text/H2";
 import { H3 } from "@/components/text/H3";
 import { P } from "@/components/text/P";
 import { ItalicsP } from "@/components/text/ItalicsP";
+import { client } from "@/sanity/lib/client";
+import { HighlightsCard } from "@/sanity/lib/interface";
 
-const articles = [
-  {
-    id: 1,
-    title: "Community Services",
-    description: "Join us in making a difference through community service and outreach programs.",
-    imageUrl: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-    imageAlt: "Community Services Image",
-    link: "/community-services",
-    tags: ["Outreach Program", "Community Service", "Volunteer Opportunities"],
-  },
-  {
-    id: 2,
-    title: "Missions",
-    description: "Expanding our reach through local and global mission initiatives.",
-    imageUrl: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-    imageAlt: "Missions Image",
-    link: "#",
-    tags: ["Global Missions", "Local Missions", "Mission Trips"],
-  },
-];
+async function getData() {
+  const query = `*[_type == 'highlights'] {
+      _id,
+      title,
+      description,
+      "imageURL": image.asset->url,
+      tags,
+      href,
+      order,
+  }`;
 
-function Highlights() {
+  const highlights = await client.fetch(query);
+
+  return highlights;
+};
+
+async function Highlights() {
+  const data: HighlightsCard[] = await getData();
+  const highlights = data.sort((a, b) => a.order - b.order);
+
   return (
-    <Section className="min-h-full pt-12 md:pt-14">
+    <Section className="min-h-full pt-12 md:pt-14 sm:px-6">
       <Container className="max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-left">
@@ -42,45 +42,40 @@ function Highlights() {
 
         {/* Articles List */}
         <div>
-          {articles.map((article) => (
+          {highlights.map((highlight) => (
             <article
-              key={article.id}
+              key={highlight._id}
               className="grid grid-cols-1 items-center gap-x-12 gap-y-6 border-t border-border-primary py-8 sm:grid-cols-2 sm:gap-y-0 lg:gap-x-[4.9rem] lg:py-12"
             >
               <div>
                 <H3 className="mb-2">
-                  <Link href={article.link}>{article.title}</Link>
+                  <div>{highlight.title}</div>
                 </H3>
-                <P>{article.description}</P>
+                <P>{highlight.description}</P>
                 <ul className="mt-3 flex flex-wrap gap-2 md:mt-4">
-                  {article.tags.map((tag, index) => (
+                  {highlight.tags.map((tag, index) => (
                     <li key={index}>
-                      <Link
-                        href={article.link}
-                        className="bg-background-secondary px-2 py-1 text-xs md:text-sm font-semibold rounded"
-                      >
-                        {tag}
-                      </Link>
+                      <div className="bg-background-secondary px-2 py-1 text-xs md:text-sm font-semibold rounded">{tag}</div>
                     </li>
                   ))}
                 </ul>
                 <Link
-                  href={article.link}
+                  href={highlight.href}
                   className="inline-flex items-center border-2 border-deepBlack text-deepBlack px-6 py-2 rounded-md font-medium hover:bg-deepBlack hover:text-softWhite transition-colors mt-6 md:mt-8 text-sm md:text-base"
                 >
                   Learn More <RxChevronRight className="ml-2" />
                 </Link>
               </div>
               <div className="relative w-full h-0 pb-[75%]">
-                <Link href={article.link} className="absolute inset-0">
+                <div className="absolute inset-0">
                   <Image
-                    src={article.imageUrl}
-                    alt={article.imageAlt}
+                    src={highlight.imageURL}
+                    alt={highlight.title}
                     fill
                     className="object-cover rounded"
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
-                </Link>
+                </div>
               </div>
             </article>
           ))}

@@ -5,35 +5,36 @@ import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
 import { ItalicsP } from "@/components/text/ItalicsP";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { SermonCard } from "@/sanity/lib/interface";
 
-const sermons = [
-  {
-    id: 1,
-    title: "Finding Peace in God's Presence",
-    speaker: "Pastor Hank Shin",
-    date: "02/10/2024",
-    videoId: "YOUR_YOUTUBE_VIDEO_ID_1",
-    duration: "45:30",
-  },
-  {
-    id: 2,
-    title: "Walking in Faith Through Challenges",
-    speaker: "Pastor Hank Shin",
-    date: "02/03/2024",
-    videoId: "YOUR_YOUTUBE_VIDEO_ID_2",
-    duration: "38:15",
-  },
-  {
-    id: 3,
-    title: "The Power of Prayer in Daily Life",
-    speaker: "Pastor Hank Shin",
-    date: "01/27/2024",
-    videoId: "YOUR_YOUTUBE_VIDEO_ID_3",
-    duration: "42:20",
-  },
-];
+async function getData() {
+  const query = `*[_type == 'sermons'] {
+    _id,
+    title,
+    pastor,
+    link,
+    duration,
+    date,
+    order
+  }`;
 
-function Sermons() {
+  const sermons: SermonCard[] = await client.fetch(query);
+
+  return sermons.map((sermon) => ({
+    ...sermon,
+    embedUrl: sermon.link.includes("/live/")
+      ? `https://www.youtube.com/embed/${sermon.link.split("/live/")[1].split("?")[0]}`
+      : sermon.link,
+  }));
+};
+
+
+async function Sermons() {
+
+  const data: SermonCard[] = await getData();  
+  const sermons = data.sort((a, b) => a.order - b.order);
+
   return (
     <Section className="py-20">
       <Container>
@@ -54,14 +55,14 @@ function Sermons() {
           <div className="space-y-8 max-w-5xl mx-auto">
             {sermons.map((sermon) => (
               <div
-                key={sermon.id}
+                key={sermon._id}
                 className="bg-softWhite rounded-lg border border-dustyBlue/20 p-6 flex flex-col md:flex-row items-start gap-6 shadow-sm hover:border-dustyBlue/30 transition-colors"
               >
                 {/* Video Thumbnail Container */}
                 <div className="w-full md:w-64 relative rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 md:aspect-video sm:aspect-[21/9] aspect-video">
                   <iframe
                     className="w-full h-full absolute inset-0"
-                    src={`https://www.youtube.com/embed/${sermon.videoId}`}
+                    src={sermon.embedUrl}
                     title={sermon.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -71,7 +72,7 @@ function Sermons() {
                 {/* Sermon Details */}
                 <div className="flex-1">
                   <div className="flex items-center gap-2 text-warmGray text-sm mb-2">
-                    <span className="font-medium">{sermon.speaker}</span>
+                    <span className="font-medium">{sermon.pastor}</span>
                     <span>•</span>
                     <span>{sermon.date}</span>
                   </div>

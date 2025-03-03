@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import TabLayout from "./layouts/TabLayout";
 import { H2 } from "@/components/text/H2";
 import { P } from "@/components/text/P";

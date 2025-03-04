@@ -3,7 +3,6 @@ import React from "react";
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
 import { ItalicsP } from "@/components/text/ItalicsP";
-import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { SermonCard } from "@/sanity/lib/interface";
 import ButtonLink from "@/components/ButtonLink";

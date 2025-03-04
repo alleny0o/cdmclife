@@ -1,6 +1,5 @@
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
-import { HiCheckCircle } from "react-icons/hi";
 
 function Missions() {
   return (

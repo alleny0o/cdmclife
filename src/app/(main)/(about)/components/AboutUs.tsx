@@ -59,7 +59,7 @@ function AboutUs() {
                     />
                   </div>
                   <p className="text-sm text-gray-500 italic mt-4">
-                    "Growing together in faith and love."
+                    &ldquo;Growing together in faith and love.&rdquo;
                   </p>
                 </div>
               </div>

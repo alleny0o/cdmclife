@@ -38,7 +38,7 @@ function WorshipInfo() {
               </div>
               
               <P className="mt-4 text-[var(--soft-black)] leading-relaxed">
-                Gather with us every Sunday for our English worship service. Join our community in praise, prayer, and the study of God's Word.
+                Gather with us every Sunday for our English worship service. Join our community in praise, prayer, and the study of God&apos;s Word.
               </P>
             </div>
 
@@ -56,7 +56,7 @@ function WorshipInfo() {
               </div>
               
               <P className="mt-4 text-[var(--soft-black)] leading-relaxed">
-                Gather with us every Sunday for our Korean worship service. Join our community in praise, prayer, and the study of God's Word.
+                Gather with us every Sunday for our Korean worship service. Join our community in praise, prayer, and the study of God&apos;s Word.
               </P>
             </div>
           </div>

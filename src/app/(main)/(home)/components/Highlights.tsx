@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { RxChevronRight } from "react-icons/rx";
 import { ArrowUpRight } from "lucide-react";
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";

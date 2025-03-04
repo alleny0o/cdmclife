@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { RxChevronRight } from "react-icons/rx";
+import { ArrowUpRight } from "lucide-react";
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
 import { H3 } from "@/components/text/H3";
@@ -31,48 +32,65 @@ async function Highlights() {
   const highlights = data.sort((a, b) => a.order - b.order);
 
   return (
-    <Section className="min-h-full pt-12 md:pt-14 sm:px-6">
+    <Section className="min-h-full pt-12 pb-20 sm:px-6">
       <Container className="max-w-7xl">
-        {/* Header */}
-        <div className="mb-12 text-left">
-          <ItalicsP className="text-dustyBlue">Welcome to</ItalicsP>
-          <H2 className="mt-[0.275rem]">Christ Disciple Mission Church</H2>
-          <P>From Small Seeds, Great Things Grow.</P>
-        </div>
+        {/* Enhanced Header with decorative elements */}
+        <div className="mb-16 text-left relative">
+          <ItalicsP className="text-dustyBlue tracking-wide">Welcome to</ItalicsP>
+          <H2 className="mt-1 text-4xl sm:text-5xl font-medium tracking-tight">
+            Christ Disciple Mission Church
+          </H2>
+          <P className="mt-4 text-lg text-deepBlack/80 max-w-xl font-light tracking-wide">
+            From Small Seeds, Great Things Grow.
+          </P>
+          <div className="absolute -bottom-6 left-0 w-40 h-px bg-gradient-to-r from-dustyBlue to-transparent"></div>
+          </div>
 
-        {/* Articles List */}
+        {/* Refined Articles List */}
         <div>
-          {highlights.map((highlight) => (
+          {highlights.map((highlight, index) => (
             <article
               key={highlight._id}
-              className="grid grid-cols-1 items-center gap-x-12 gap-y-6 border-t border-border-primary py-8 sm:grid-cols-2 sm:gap-y-0 lg:gap-x-[4.9rem] lg:py-12"
+              className={`grid grid-cols-1 items-center gap-x-16 gap-y-8 border-t border-border-primary py-12 sm:grid-cols-2 sm:gap-y-0 lg:gap-x-20 lg:py-16 ${
+                index === highlights.length - 1 ? "border-b" : ""
+              }`}
             >
-              <div>
-                <H3 className="mb-2">
+              <div className="order-2 sm:order-1">
+                <H3 className="mb-3 text-2xl md:text-3xl font-medium text-deepBlack tracking-tight">
                   <div>{highlight.title}</div>
                 </H3>
-                <P>{highlight.description}</P>
-                <ul className="mt-3 flex flex-wrap gap-2 md:mt-4">
+                <P className="text-base md:text-lg font-light leading-relaxed text-deepBlack/80">
+                  {highlight.description}
+                </P>
+                <ul className="mt-4 mb-8 flex flex-wrap gap-2 md:mt-6">
                   {highlight.tags.map((tag, index) => (
                     <li key={index}>
-                      <div className="bg-background-secondary px-2 py-1 text-xs md:text-sm font-semibold rounded">{tag}</div>
+                      <div className="bg-background-secondary/80 px-3 py-1 text-xs md:text-sm font-medium rounded-full">
+                        {tag}
+                      </div>
                     </li>
                   ))}
                 </ul>
                 <Link
                   href={highlight.href}
-                  className="inline-flex items-center border-2 border-deepBlack text-deepBlack px-6 py-2 rounded-md font-medium hover:bg-deepBlack hover:text-softWhite transition-colors mt-6 md:mt-8 text-sm md:text-base"
+                  className="group inline-flex items-center border-2 border-deepBlack text-deepBlack px-6 py-2 rounded-md font-medium hover:bg-deepBlack hover:text-softWhite transition-all duration-300 text-sm md:text-base relative overflow-hidden"
                 >
-                  Learn More <RxChevronRight className="ml-2" />
+                  <span className="relative z-10">Learn More</span>
+                  <span className="relative z-10 ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                    <ArrowUpRight size={18} />
+                  </span>
+                  <span className="absolute inset-0 bg-deepBlack -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
                 </Link>
               </div>
-              <div className="relative w-full h-0 pb-[75%]">
-                <div className="absolute inset-0">
+              
+              <div className="relative w-full h-0 pb-[65%] order-1 sm:order-2 overflow-hidden rounded-lg shadow-md">
+                <div className="absolute inset-0 group">
+                  <div className="absolute inset-0 bg-gradient-to-t from-deepBlack/20 to-transparent z-10"></div>
                   <Image
                     src={highlight.imageURL}
                     alt={highlight.title}
                     fill
-                    className="object-cover rounded"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
@@ -80,7 +98,6 @@ async function Highlights() {
             </article>
           ))}
         </div>
-        <div className="mt-12 flex justify-center" />
       </Container>
     </Section>
   );

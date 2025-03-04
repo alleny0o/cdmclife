@@ -19,15 +19,14 @@ export const TopHeader = ({ activeMenu, onMenuToggle }: TopHeaderProps) => {
           <Logo />
         </div>
 
-        <Navigation />
+        <div className="col-span-8 hidden md:flex justify-center">
+          <Navigation />
+        </div>
 
         <div className="flex items-center justify-end md:col-span-2 col-span-6 gap-4">
           <VisitButton />
           <div className="md:hidden mobile-menu">
-            <MobileMenu 
-              isActive={isActive}
-              setIsActive={onMenuToggle} 
-            />
+            <MobileMenu isActive={isActive} setIsActive={onMenuToggle} />
           </div>
         </div>
       </div>

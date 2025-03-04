@@ -1,4 +1,6 @@
+import ButtonLink from "@/components/ButtonLink";
 import { Container, Section } from "@/components/layouts/Layouts";
+import { H2 } from "@/components/text/H2";
 import Image from "next/image";
 import React from "react";
 
@@ -14,15 +16,15 @@ const timelineData: TimelineItem[] = [
   {
     id: 1,
     year: "2021",
-    missionTitle: "Guatamala",
+    missionTitle: "Guatemala",
     description:
-      "In 2021, our team traveled to Haiti to provide aid and support. We built homes and offered medical assistance to those in need. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+      "In 2021, our team traveled to Guatemala to provide aid and support. We built homes and offered medical assistance to those in need.",
     image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
   },
   {
     id: 2,
     year: "2020",
-    missionTitle: "Guatamala",
+    missionTitle: "Guatemala",
     description:
       "Our local outreach in 2020 focused on supporting families in need. We distributed food and essentials to those affected by the pandemic.",
     image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
@@ -30,7 +32,7 @@ const timelineData: TimelineItem[] = [
   {
     id: 3,
     year: "2019",
-    missionTitle: "Guatamala",
+    missionTitle: "Guatemala",
     description:
       "In 2019, we ventured to Kenya to support education initiatives. Our efforts helped build schools and provide resources for local children.",
     image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
@@ -38,7 +40,7 @@ const timelineData: TimelineItem[] = [
   {
     id: 4,
     year: "2018",
-    missionTitle: "Guatamala",
+    missionTitle: "Guatemala",
     description:
       "Our 2018 disaster relief efforts provided immediate assistance to hurricane victims. We delivered supplies and support to affected communities.",
     image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
@@ -53,21 +55,26 @@ interface ContentBoxProps {
 const ContentBox: React.FC<ContentBoxProps> = ({ item, extraClasses = "" }) => {
   return (
     <div
-      className={`w-full bg-white/10 rounded-md shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[1px] border border-white/10 ${extraClasses} px-4 py-2`}
+      className={`w-full bg-[#F8FAFC] rounded-lg shadow-md border border-[#E2E8F0] 
+        px-6 py-4 text-left ${extraClasses}`}
     >
-      <h1 className="text-xl font-bold mb-1">{item.year}</h1>
-      <h3 className="text-lg font-semibold mb-2">{item.missionTitle}</h3>
-      <p className="text-sm mb-4">{item.description}</p>
-      <button className="px-4 py-1.5 text-sm border border-black/50 rounded hover:bg-black hover:text-white transition-colors">
+      <h1 className="text-2xl font-semibold text-[#1E293B] mb-2">{item.year}</h1>
+      <h3 className="text-lg font-medium text-[#475569] mb-3">{item.missionTitle}</h3>
+      <p className="text-base text-[#64748B] leading-relaxed">{item.description}</p>
+      <ButtonLink
+        href="#"
+        target="_blank"
+        className="mt-4 inline-block px-4 py-2 rounded-md text-sm font-medium transition"
+      >
         More Details
-      </button>
+      </ButtonLink>
     </div>
   );
 };
 
 const TimelineDot: React.FC = () => (
   <div className="relative bg-black w-full h-full">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[15px] h-[15px] bg-black rounded-full" />
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[15px] h-[15px] bg-[#0F172A] rounded-full" />
   </div>
 );
 
@@ -82,16 +89,13 @@ const MobileTimelineItem: React.FC<MobileTimelineItemProps> = ({ item, index, to
     <div className="md:hidden contents">
       <TimelineDot />
       <div className={`w-full flex flex-col gap-4 items-center ${index !== totalCount - 1 ? "pb-[30px]" : ""}`}>
-        {/* Text Box */}
         <ContentBox item={item} extraClasses="text-left" />
-
-        {/* Image (Properly Aligned) */}
         <div className="w-full flex justify-center">
           <Image
             src={item.image}
             alt={item.missionTitle}
-            width={400} // Make image wider but controlled
-            height={250} // Maintain consistent height
+            width={400}
+            height={250}
             className="w-full h-full max-h-[32rem] object-cover rounded-lg shadow-md"
           />
         </div>
@@ -99,7 +103,6 @@ const MobileTimelineItem: React.FC<MobileTimelineItemProps> = ({ item, index, to
     </div>
   );
 };
-
 
 interface DesktopTimelineItemProps {
   item: TimelineItem;
@@ -112,37 +115,33 @@ const DesktopTimelineItem: React.FC<DesktopTimelineItemProps> = ({ item, index }
     <div className="hidden md:contents">
       {isEven ? (
         <>
-          {/* Left column (Image) */}
           <div className="col-span-1 pb-[30px] px-[20px] w-full">
             <Image
               src={item.image}
               alt={item.missionTitle}
               width={150}
               height={150}
-              className="w-full lg:h-96 md:h-80 object-cover"
+              className="w-full lg:h-96 md:h-80 object-cover rounded-md shadow-md"
             />
           </div>
           <TimelineDot />
-          {/* Right column (Content) */}
           <div className="col-span-1 flex items-start w-full">
             <ContentBox item={item} extraClasses="mx-[20px] mb-[30px]" />
           </div>
         </>
       ) : (
         <>
-          {/* Left column (Content) */}
           <div className="col-span-1 flex items-start w-full">
             <ContentBox item={item} extraClasses="mx-[20px] mb-[30px]" />
           </div>
           <TimelineDot />
-          {/* Right column (Image) */}
           <div className="col-span-1 pb-[30px] px-[20px] w-full">
             <Image
               src={item.image}
               alt={item.missionTitle}
               width={150}
               height={150}
-              className="w-full lg:h-96 md:h-80 object-cover"
+              className="w-full lg:h-96 md:h-80 object-cover rounded-md shadow-md"
             />
           </div>
         </>
@@ -154,24 +153,26 @@ const DesktopTimelineItem: React.FC<DesktopTimelineItemProps> = ({ item, index }
 const PastMissions: React.FC = () => {
   return (
     <Section className="relative w-full h-full bg-lightGray sm:px-6">
-      <Container className="w-full pt-14 pb-24">
+      <Container className="w-full py-20">
         <div className="w-full max-w-7xl mx-auto">
-        {/* Section Title */}
-        <div className="text-left mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Past Missions</h2>
-        </div>
-
-        {/* Section Timeline */}
-        <div className="w-full h-full mx-auto max-w-7xl">
-          <div className="grid grid-cols-[2px_1fr] md:grid-cols-[1fr_3px_1fr] gap-x-4">
-            {timelineData.map((item, index) => (
-              <React.Fragment key={item.id}>
-                <MobileTimelineItem item={item} index={index} totalCount={timelineData.length} />
-                <DesktopTimelineItem item={item} index={index} />
-              </React.Fragment>
-            ))}
+          <div className="mb-8 max-w-xl relative">
+            <div className="h-px w-16 bg-[#64748B] absolute -top-4 left-0"></div>
+            <H2 className="text-4xl sm:text-5xl font-light tracking-tight text-[#1E293B]">
+              Past <span className="font-semibold">Missions</span>
+            </H2>
+            <div className="mt-4 w-16 h-1 bg-gradient-to-r from-[#64748B] to-[#94A3B8] rounded-full"></div>
           </div>
-        </div>
+
+          <div className="w-full h-full mx-auto max-w-7xl">
+            <div className="grid grid-cols-[2px_1fr] md:grid-cols-[1fr_3px_1fr] gap-x-4">
+              {timelineData.map((item, index) => (
+                <React.Fragment key={item.id}>
+                  <MobileTimelineItem item={item} index={index} totalCount={timelineData.length} />
+                  <DesktopTimelineItem item={item} index={index} />
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </Section>

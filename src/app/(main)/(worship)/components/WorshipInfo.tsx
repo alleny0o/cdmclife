@@ -98,9 +98,6 @@ function WorshipInfo() {
                 className="w-full transition duration-700 hover:scale-105"
               />
             </div>
-            <div className="mt-3 text-center text-sm text-[var(--deep-gray)] italic">
-              Join us as we worship together as a community of faith
-            </div>
           </div>
         </div>
       </Container>

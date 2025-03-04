@@ -8,14 +8,25 @@ export const metadata: Metadata = {
   description: "Join us for worship— Our service times and location details.",
 };
 
-function SermonsPage() {
+function WorshipPage() {
   return (
     <div className="w-full h-full bg-stone-50">
-        <Hero title="Worship" image="hero/og-mustard-seed.jpg" />
-        <Breadcrumbs />
-        <WorshipInfo />
+      <Hero
+        title="Worship"
+        image="hero/og-mustard-seed.jpg"
+        verse={{
+          text: `Sing to God, sing in praise of his name,
+          extol him who rides on the clouds;
+          rejoice before him—his name is the Lord.
+          A father to the fatherless, a defender of widows,
+          is God in his holy dwelling.`,
+          reference: "Psalm 68:4-5",
+        }}
+      />
+      <Breadcrumbs />
+      <WorshipInfo />
     </div>
-  )
+  );
 }
 
-export default SermonsPage;
+export default WorshipPage;

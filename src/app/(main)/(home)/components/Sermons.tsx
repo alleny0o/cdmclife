@@ -6,6 +6,7 @@ import { ItalicsP } from "@/components/text/ItalicsP";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { SermonCard } from "@/sanity/lib/interface";
+import ButtonLink from "@/components/ButtonLink";
 
 async function getData() {
   const query = `*[_type == 'sermons'] {
@@ -52,7 +53,7 @@ async function Sermons() {
           {/* Header - Refined Typography */}
           <div className="text-center mb-14">
             <ItalicsP className="text-dustyBlue tracking-wide">Join us as we</ItalicsP>
-            <H2 className="mt-1 font-light tracking-tight">
+            <H2 className="mt-1 text-3xl sm:text-4xl md:text-5xl font-light tracking-tight">
               Explore <span className="font-medium">God’s Word</span>
             </H2>
           </div>
@@ -93,12 +94,7 @@ async function Sermons() {
 
           {/* View All Button - Subtle Enhancement */}
           <div className="mt-12 text-center">
-            <Link
-              href="/worship"
-              className="uppercase bg-transparent border-2 border-deepBlack text-deepBlack px-8 py-3 rounded-md font-light tracking-wide text-sm md:text-base hover:bg-deepBlack hover:text-softWhite transition-colors"
-            >
-              Worship Details
-            </Link>
+            <ButtonLink href="/worship">Worship Details</ButtonLink>
           </div>
         </div>
       </Container>

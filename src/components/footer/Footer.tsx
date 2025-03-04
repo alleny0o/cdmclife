@@ -28,28 +28,26 @@ function Footer() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.2fr_2fr] lg:gap-20">
           {/* Left Section: Logo, Contact, and Social */}
           <div className="space-y-8">
-            {/* Fix: Only Logo Clickable */}
             <Logo />
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-white text-sm tracking-wider uppercase mb-2">Our Sanctuary</h3>
-                <p className="text-vintageCream text-sm font-light">12811 Glen Rd, Gaithersburg, MD 20878</p>
+                <h3 className="text-white text-xs sm:text-sm tracking-wider uppercase mb-2">Our Sanctuary</h3>
+                <p className="text-vintageCream text-xs sm:text-sm font-light">12811 Glen Rd, Gaithersburg, MD 20878</p>
               </div>
 
               <div>
-                <h3 className="text-white text-sm tracking-wider uppercase mb-2">Reach Out</h3>
-                {/* Fix: Ensure phone & email are on separate lines */}
+                <h3 className="text-white text-xs sm:text-sm tracking-wider uppercase mb-2">Reach Out</h3>
                 <div className="flex flex-col space-y-1">
                   <Link
                     href="tel:13018362098"
-                    className="text-vintageCream text-sm font-light transition-colors hover:text-white"
+                    className="text-vintageCream text-xs sm:text-sm font-light transition-colors hover:text-white"
                   >
                     (301) 836-2098
                   </Link>
                   <Link
                     href="mailto:info@cdmc.io"
-                    className="text-vintageCream text-sm font-light transition-colors hover:text-white"
+                    className="text-vintageCream text-xs sm:text-sm font-light transition-colors hover:text-white"
                   >
                     info@cdmc.io
                   </Link>
@@ -78,10 +76,10 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {FOOTER_LINKS.map(({ title, links }, index) => (
               <div key={index} className="space-y-3">
-                <h3 className="text-white text-sm tracking-wider uppercase">{title}</h3>
+                <h3 className="text-white text-xs sm:text-sm tracking-wider uppercase">{title}</h3>
                 <ul className="space-y-2">
                   {links.map(({ name, path, external = false }, subIndex) => {
-                    const isActive = pathname === path; // Check if link is active
+                    const isActive = pathname === path;
 
                     return (
                       <li key={subIndex}>
@@ -89,7 +87,7 @@ function Footer() {
                           href={path}
                           target={external ? "_blank" : "_self"}
                           rel={external ? "noopener noreferrer" : ""}
-                          className={`relative text-vintageCream text-sm font-light transition-colors hover:text-white
+                          className={`relative text-vintageCream text-xs sm:text-sm font-light transition-colors hover:text-white
                             ${isActive ? "text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white after:transition-all" : ""}
                           `}
                         >

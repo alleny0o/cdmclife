@@ -9,6 +9,7 @@ import { P } from "@/components/text/P";
 import { ItalicsP } from "@/components/text/ItalicsP";
 import { client } from "@/sanity/lib/client";
 import { HighlightsCard } from "@/sanity/lib/interface";
+import ButtonLink from "@/components/ButtonLink";
 
 async function getData() {
   const query = `*[_type == 'highlights'] {
@@ -36,7 +37,7 @@ async function Highlights() {
         {/* Enhanced Header with decorative elements */}
         <div className="mb-16 text-left relative">
           <ItalicsP className="text-dustyBlue tracking-wide">Welcome to</ItalicsP>
-          <H2 className="mt-1 text-4xl sm:text-5xl font-medium tracking-tight">
+          <H2 className="mt-1 text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
             Christ Disciple Mission Church
           </H2>
           <P className="mt-4 text-lg text-deepBlack/80 max-w-xl font-light tracking-wide">
@@ -70,16 +71,7 @@ async function Highlights() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={highlight.href}
-                  className="group inline-flex items-center border-2 border-deepBlack text-deepBlack px-6 py-2 rounded-md font-medium hover:bg-deepBlack hover:text-softWhite transition-all duration-300 text-sm md:text-base relative overflow-hidden"
-                >
-                  <span className="relative z-10">Learn More</span>
-                  <span className="relative z-10 ml-2 transition-transform duration-300 group-hover:translate-x-1">
-                    <ArrowUpRight size={18} />
-                  </span>
-                  <span className="absolute inset-0 bg-deepBlack -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
-                </Link>
+                <ButtonLink href={highlight.href}>Learn More</ButtonLink>
               </div>
               
               <div className="relative w-full h-0 pb-[65%] order-1 sm:order-2 overflow-hidden rounded-lg shadow-md">

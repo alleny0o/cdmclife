@@ -25,12 +25,19 @@ const tabs = [
 function AboutPage() {
   return (
     <div className="w-full h-full bg-stone-50">
-        <Hero title="About" image="hero/og-mustard-seed.jpg" />
-        <Breadcrumbs />
-        <div className="mt-10"></div>
-        <Tabs tabs={tabs} />
+      <Hero
+        title="About"
+        image="hero/og-mustard-seed.jpg"
+        verse={{
+          text: "Blessed are the merciful, for they will be shown mercy.",
+          reference: "Matthew 5:7",
+        }}
+      />
+      <Breadcrumbs />
+      <div className="mt-10"></div>
+      <Tabs tabs={tabs} />
     </div>
-  )
+  );
 }
 
 export default AboutPage;

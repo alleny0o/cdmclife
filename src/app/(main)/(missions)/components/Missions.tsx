@@ -5,63 +5,33 @@ import { HiCheckCircle } from "react-icons/hi";
 function Missions() {
   return (
     <Section className="sm:px-6">
-      <Container className="pt-14 pb-24">
+      <Container className="py-20">
         <div className="w-full max-w-7xl mx-auto">
           {/* Title Section */}
-          <div className="mb-12 relative text-left">
-            <H2>Missions</H2>
-            <p className="mt-3 text-base md:text-lg text-gray-600">
-              Discover our mission work and the impact we&apos;re making around the world.
-            </p>
+          <div className="mb-8 max-w-xl relative">
+            <div className="h-px w-16 bg-dustyBlue absolute -top-4 left-0"></div>
+            <H2 className="text-4xl sm:text-5xl font-medium tracking-tight">Missions</H2>
           </div>
 
           {/* Mission Information */}
-          <div className="space-y-6">
-            <div className="border border-softBlack rounded-lg shadow-md overflow-hidden">
-              <div className="p-8">
-                <h2 className="text-2xl font-bold mb-4 text-darkerNavy">🌍 Guatemala Mission Trip</h2>
-                <p className="text-deepGray leading-relaxed">
-                  Every year, we travel to Guatemala to <strong>serve, build, and grow</strong> alongside local communities. From
-                  constructing homes to sharing meals, every moment is an opportunity to make a difference.
-                </p>
-
-                <ul className="mt-6 space-y-3">
-                  <li className="flex items-center gap-3 text-deepGray">
-                    <HiCheckCircle className="w-5 h-5 text-mutedBlue" />
-                    <span>
-                      🏡 <strong>Build & repair homes</strong>—roofs, walls, and safe living spaces
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3 text-deepGray">
-                    <HiCheckCircle className="w-5 h-5 text-mutedBlue" />
-                    <span>
-                      🐓 <strong>Construct chicken coops</strong> for families to raise their own food
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3 text-deepGray">
-                    <HiCheckCircle className="w-5 h-5 text-mutedBlue" />
-                    <span>
-                      🤝 <strong>Fellowship with the community</strong>—share meals, laughter, and stories
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3 text-deepGray">
-                    <HiCheckCircle className="w-5 h-5 text-mutedBlue" />
-                    <span>
-                      🙏 <strong>Pray with children at orphanages</strong> and offer encouragement
-                    </span>
-                  </li>
-                </ul>
-
-                <p className="mt-6 text-deepGray font-semibold">
-                  Join us for this <strong>yearly mission</strong>—build with your hands, grow in faith, and experience the joy of
-                  serving others.
-                </p>
-              </div>
-            </div>
+          <div className="text-lg text-deepGray leading-relaxed space-y-6">
+            <p>
+              Every year, we travel to <strong>Guatemala</strong> to serve, build, and grow alongside local communities. From
+              constructing homes to sharing meals, every moment is an opportunity to make a difference.
+            </p>
+            <p>
+              Our mission includes building and repairing homes, constructing chicken coops for sustainable food sources, and forming
+              meaningful relationships through fellowship. We also dedicate time to praying with children at orphanages, bringing hope
+              and encouragement to the communities we visit.
+            </p>
+            <p className="font-semibold">
+              Join us for this <strong>yearly mission</strong>—build with your hands, grow in faith, and experience the joy of
+              serving others.
+            </p>
           </div>
 
           {/* Image Grid */}
-          <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4 mt-10">
+          <div className="sm:w-full sm:max-w-5xl mx-auto max-w-[90%] columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4 mt-10">
             <img
               className="w-full h-[280px] rounded-xl shadow object-cover break-inside-avoid"
               src="/missions/missions-03.jpeg"

@@ -29,7 +29,7 @@ function OurHistory() {
                 In <strong>1893</strong>, 12 members of Rockville Baptist Church and 3 members of Upper Seneca Baptist Church
                 joined together to start a mission church known as <strong>Travilah Baptist Church</strong>. On
                 <strong> February 18, 1894</strong>, the church doors were opened, beginning a journey dedicated to
-                spreading Christ’s teachings.
+                spreading Christ&apos;s teachings.
               </P>
               <div className="h-px w-full bg-gray-100 my-6"></div>
               <P className="!text-lg font-light leading-relaxed text-deepGray tracking-wide">
@@ -68,7 +68,7 @@ function OurHistory() {
                     />
                   </div>
                   <p className="text-sm text-gray-500 italic mt-4 text-center">
-                    "Carrying forward the mission of faith and service."
+                    &ldquo;Carrying forward the mission of faith and service.&rdquo;
                   </p>
                 </div>
               </div>
@@ -77,9 +77,9 @@ function OurHistory() {
                 <div className="p-6 bg-gray-50 rounded-lg shadow-sm">
                   <h3 className="text-xl font-semibold text-gray-900 text-center">A Legacy of Faith</h3>
                   <P className="text-gray-700 mt-2 text-center">
-                    "As I stand before you today, we remember those who have gone before us.
+                    &ldquo;As I stand before you today, we remember those who have gone before us.
                     Since 2020, some have left to be with our Lord, but their faith lives on in us.
-                    May God continue to bless this church as He has for over 131 years."
+                    May God continue to bless this church as He has for over 131 years.&rdquo;
                   </P>
                 </div>
               </div>

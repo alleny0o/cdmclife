@@ -118,10 +118,10 @@ const trustees_team = {
   ] as TeamMember[],
 };
 
-const result = {
-  leadership_team,
-  trustees_team,
-};
+// const result = {
+//   leadership_team,
+//   trustees_team,
+// };
 
 function OurTeam() {
   return (

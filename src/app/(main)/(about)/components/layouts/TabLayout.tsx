@@ -4,7 +4,7 @@ type TabLayoutProps = {
 
 function TabLayout(input: TabLayoutProps) {
   return (
-    <section className="min-h-screen pt-10 pb-16 lg:px-0">
+    <section className="min-h-screen lg:px-0">
         {input.children}
     </section>
   )

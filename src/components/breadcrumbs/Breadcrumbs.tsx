@@ -7,11 +7,19 @@ import Link from 'next/link';
 import { IconType } from "react-icons";
 import { LINKS } from '@/constants/nav-links';
 import { Container, Section } from '../layouts/Layouts';
+import { CgProfile } from "react-icons/cg";
 
-import { BiDonateHeart } from "react-icons/bi";
 
 const Breadcrumbs = () => {
   const pathname = usePathname();
+
+  // Function to properly format dynamic segment (e.g., reverend-shin → Reverend Shin)
+  const formatDynamicSegment = (segment: string) => {
+    return segment
+      .split('-') // Split words by hyphen
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+      .join(' '); // Join words back with space
+  };
 
   // Function to find the matching link and build the breadcrumb path
   const getBreadcrumbItems = () => {
@@ -19,27 +27,28 @@ const Breadcrumbs = () => {
     const breadcrumbItems: Array<{ label: string; href: string; icon?: IconType }> = [
       { label: 'Home', href: '/', icon: Home }
     ];
-  
-    const currentLink = LINKS;
+
     let currentPath = '';
-  
-    pathSegments.forEach((segment) => {
-      // Handle "donate" explicitly
-      if (segment === "donate") {
+
+    pathSegments.forEach((segment, index) => {
+      currentPath += `/${segment}`;
+
+      // Special case: Handle `/about/[name]`
+      if (pathSegments[0] === 'about' && index === 1) {
         breadcrumbItems.push({
-          label: "Donate",
-          icon: BiDonateHeart,
-          href: "/donate"
+          label: formatDynamicSegment(segment), // Convert slug to title
+          href: currentPath,
+          icon: CgProfile,
         });
         return;
       }
-  
+
       // Search in main links
-      let found = currentLink.find(link => link.href?.includes(segment));
-  
+      let found = LINKS.find(link => link.href?.includes(segment));
+
       // If not found in main links, search in sublinks
       if (!found) {
-        for (const link of currentLink) {
+        for (const link of LINKS) {
           if (link.subLinks) {
             for (const subLink of link.subLinks) {
               const subMenuItem = subLink.subMenu?.find(item => item.href.includes(segment));
@@ -56,9 +65,8 @@ const Breadcrumbs = () => {
           }
         }
       }
-  
+
       if (found) {
-        currentPath += `/${segment}`;
         breadcrumbItems.push({
           label: found.label,
           href: found.href || currentPath,
@@ -66,10 +74,9 @@ const Breadcrumbs = () => {
         });
       }
     });
-  
+
     return breadcrumbItems;
   };
-  
 
   const breadcrumbItems = getBreadcrumbItems();
 

@@ -7,6 +7,7 @@ import { GiThreeFriends, GiClover } from "react-icons/gi";
 import { RiContactsBook2Line } from "react-icons/ri";
 import { BiBible } from "react-icons/bi";
 import { CiShop } from "react-icons/ci";
+import { BiDonateHeart } from "react-icons/bi";
 
 export type SubLink = {
   header?: string;
@@ -111,13 +112,19 @@ export const LINKS: Links[] = [
         ],
       },
       {
-        header: "Resources",
+        header: "Shop & Donate",
         subMenu: [
           {
-            label: "Shop",
+            label: "Store",
             href: "https://biblebrowsing.com",
-            caption: "Christian merch",
+            caption: "Christian clothes and gifts",
             icon: CiShop,
+          },
+          {
+            label: "Donate",
+            href: "/donate",
+            caption: "Support our mission",
+            icon: BiDonateHeart,
           },
         ],
       },
@@ -164,7 +171,10 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
     ],
   },
   {
-    title: "Resources",
-    links: [{ name: "Shop", path: "https://biblebrowsing.com", external: true }],
+    title: "Shop & Donate",
+    links: [
+      { name: "Store", path: "https://biblebrowsing.com", external: true },
+      { name: "Donate", path: "/donate" },
+    ],
   },
 ];

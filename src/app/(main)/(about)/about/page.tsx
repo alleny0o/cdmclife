@@ -4,6 +4,7 @@ import Hero from "@/components/hero/Hero";
 import Tabs from "@/components/tabs/Tabs";
 import { Metadata } from "next";
 import OurTeam from "../components/OurTeam";
+import OurHistory from "../components/OurHistory";
 
 export const metadata: Metadata = {
   title: "About",
@@ -15,6 +16,10 @@ const tabs = [
   {
     title: "About Us",
     content: <AboutUs />,
+  },
+  {
+    title: "Our History",
+    content: <OurHistory />,
   },
   {
     title: "Our Team",

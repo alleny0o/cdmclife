@@ -155,12 +155,11 @@ const PastMissions: React.FC = () => {
     <Section className="relative w-full h-full bg-lightGray sm:px-6">
       <Container className="w-full py-20">
         <div className="w-full max-w-7xl mx-auto">
-          <div className="mb-8 max-w-xl relative">
+          <div className="mb-10 max-w-xl relative">
             <div className="h-px w-16 bg-[#64748B] absolute -top-4 left-0"></div>
             <H2 className="text-4xl sm:text-5xl font-light tracking-tight text-[#1E293B]">
               Past <span className="font-semibold">Missions</span>
             </H2>
-            <div className="mt-4 w-16 h-1 bg-gradient-to-r from-[#64748B] to-[#94A3B8] rounded-full"></div>
           </div>
 
           <div className="w-full h-full mx-auto max-w-7xl">

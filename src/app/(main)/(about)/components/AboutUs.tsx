@@ -7,13 +7,13 @@ function AboutUs() {
   return (
     <TabLayout>
       {/* Hero Section with Visual Element */}
-      <div className="w-full pb-16 relative">
+      <div className="w-full pt-16 pb-20 relative">
 
-        <div className="max-w-7xl mx-auto pt-6">
+        <div className="max-w-7xl mx-auto">
           {/* Elegant Title with Decorative Element */}
           <div className="relative mb-12">
             <div className="h-px w-16 bg-dustyBlue absolute -top-4 left-0"></div>
-            <H2 className="text-4xl sm:text-5xl font-light tracking-tight text-gray-900">
+            <H2 className="font-light tracking-tight text-gray-900">
               About <span className="font-medium">Us</span>
             </H2>
           </div>
@@ -21,7 +21,7 @@ function AboutUs() {
           {/* Enhanced Text Presentation */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             <div className="md:col-span-7 lg:col-span-8">
-              <P className="text-base sm:text-lg md:text-xl font-light leading-relaxed text-gray-700 tracking-wide">
+              <P className="!text-lg font-light leading-relaxed text-gray-700 tracking-wide">
                 Christ Disciple Mission Church (CDMC) is dedicated to fulfilling the Great Commission (Matthew 28:18-20) by making
                 disciples who make disciples. This involves following Christ&apos;s example and growing in faith through Bible
                 study, prayer, obedience, and community (Acts 2:42-47).
@@ -29,7 +29,7 @@ function AboutUs() {
 
               <div className="h-px w-full bg-gray-100 my-6"></div>
 
-              <P className="text-base sm:text-lg md:text-xl font-light leading-relaxed text-gray-700 tracking-wide">
+              <P className="!text-lg font-light leading-relaxed text-deepGray tracking-wide">
                 CDMC emphasizes service to both local and global communities, reflecting Christ&apos;s heart for the poor and
                 marginalized (Matthew 25:34-40) through outreach, evangelism, and missions. Worship is central to their community,
                 with believers gathering to glorify God and build strong fellowships (Hebrews 10:24-25).
@@ -37,7 +37,7 @@ function AboutUs() {
 
               <div className="h-px w-full bg-gray-100 my-6"></div>
 
-              <P className="text-base sm:text-lg md:text-xl font-light leading-relaxed text-gray-700 tracking-wide">
+              <P className="!text-lg font-light leading-relaxed text-deepGray tracking-wide">
                 The church prioritizes leadership development and empowering members for service (Ephesians 4:12). Ultimately,
                 CDMC strives to live out the gospel in word and deed, reaching the lost, nurturing believers, and glorifying God
                 in all aspects of life, reflecting His character and expanding His Kingdom on Earth.

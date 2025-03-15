@@ -1,13 +1,13 @@
-// main nav links
-import { Home, Users, Church, Globe, MoreHorizontal } from "lucide-react";
+import { Home, Users, Church, Globe } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import { IconType } from "react-icons";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { IoCalendarNumber } from "react-icons/io5";
 import { GiThreeFriends, GiClover } from "react-icons/gi";
 import { RiContactsBook2Line } from "react-icons/ri";
-import { BiBible } from "react-icons/bi";
+import { BiBible, BiDonateHeart } from "react-icons/bi";
 import { CiShop } from "react-icons/ci";
-import { BiDonateHeart } from "react-icons/bi";
+import { FaSeedling } from "react-icons/fa"; // Mustard Seed icon
 
 export type SubLink = {
   header?: string;
@@ -29,39 +29,41 @@ export type Links = {
   subLinks?: SubLink[];
 };
 
-// Updated links array with Shopify store link
 export const LINKS: Links[] = [
-  {
-    id: 1,
-    label: "Home",
-    href: "/",
-    icon: Home,
-  },
-  {
-    id: 2,
-    label: "About",
-    href: "/about",
-    icon: Users,
-  },
-  {
-    id: 3,
-    label: "Worship",
-    href: "/worship",
-    icon: Church,
-  },
-  {
-    id: 4,
-    label: "Missions",
-    href: "/missions",
-    icon: Globe,
-  },
+  { id: 1, label: "Home", href: "/", icon: Home },
+  { id: 2, label: "About", href: "/about", icon: Users },
+  { id: 3, label: "Worship", href: "/worship", icon: Church },
+  { id: 4, label: "Missions", href: "/missions", icon: Globe },
   {
     id: 5,
     label: "More",
     icon: MoreHorizontal,
     subLinks: [
       {
-        header: "Church Updates",
+        header: "Faith & Growth",
+        subMenu: [
+          {
+            label: "Fellowship",
+            href: "/fellowship",
+            caption: "Grow together in faith",
+            icon: GiThreeFriends,
+          },
+          {
+            label: "Bible Study",
+            href: "/bible-study",
+            caption: "Explore God's Word",
+            icon: BiBible,
+          },
+          {
+            label: "Mustard Seed",
+            href: "/mustard-seed",
+            caption: "A tiny seed, a great kingdom",
+            icon: FaSeedling,
+          },
+        ],
+      },
+      {
+        header: "Church Life & Updates",
         subMenu: [
           {
             label: "Announcements",
@@ -78,24 +80,7 @@ export const LINKS: Links[] = [
         ],
       },
       {
-        header: "Community & Faith",
-        subMenu: [
-          {
-            label: "Fellowship",
-            href: "/fellowship",
-            caption: "Grow together in faith",
-            icon: GiThreeFriends,
-          },
-          {
-            label: "Bible Study",
-            href: "/bible-study",
-            caption: "Explore God's Word",
-            icon: BiBible,
-          },
-        ],
-      },
-      {
-        header: "Serve & Connect",
+        header: "Service & Outreach",
         subMenu: [
           {
             label: "Community Service",
@@ -112,7 +97,7 @@ export const LINKS: Links[] = [
         ],
       },
       {
-        header: "Shop & Donate",
+        header: "Support & Store",
         subMenu: [
           {
             label: "Store",
@@ -132,7 +117,7 @@ export const LINKS: Links[] = [
   },
 ];
 
-// footer nav links
+// Updated footer nav links to match
 interface NavLink {
   name: string;
   path: string;
@@ -150,28 +135,29 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
     ],
   },
   {
-    title: "Church Updates",
+    title: "Faith & Growth",
+    links: [
+      { name: "Fellowship", path: "/fellowship" },
+      { name: "Bible Study", path: "/bible-study" },
+      { name: "Mustard Seed", path: "/mustard-seed" },
+    ],
+  },
+  {
+    title: "Church Life & Updates",
     links: [
       { name: "Announcements", path: "/announcements" },
       { name: "Schedule", path: "/schedule" },
     ],
   },
   {
-    title: "Community & Faith",
-    links: [
-      { name: "Fellowship", path: "/fellowship" },
-      { name: "Bible Study", path: "/bible-study" },
-    ],
-  },
-  {
-    title: "Serve & Connect",
+    title: "Service & Outreach",
     links: [
       { name: "Community Service", path: "/community-service" },
-      { name: "Contact Us", path: "/contact" },
+      { name: "Contact Us", path: "/contact-us" },
     ],
   },
   {
-    title: "Shop & Donate",
+    title: "Support & Store",
     links: [
       { name: "Store", path: "https://biblebrowsing.com", external: true },
       { name: "Donate", path: "/donate" },

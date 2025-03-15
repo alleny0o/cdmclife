@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { useScroll } from "framer-motion";
 import { TopBar } from "./TopBar";
@@ -9,7 +9,7 @@ import { MegaMenuProvider } from "./context/MegaMenuContext";
 
 export function isTransparentPath(pathname: string): boolean {
   return ["/", "/about", "/worship", "/missions"].includes(pathname);
-};
+}
 
 export default function Header() {
   const pathname = usePathname();
@@ -18,7 +18,7 @@ export default function Header() {
   const [activeMenu, setActiveMenu] = useState<"main" | "fixed" | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Handle body scroll lock
+  // Handle body scroll lock - optimized with useCallback
   useEffect(() => {
     document.body.style.overflow = activeMenu ? "hidden" : "auto";
     
@@ -28,63 +28,65 @@ export default function Header() {
       }
     };
     
-    window.addEventListener("resize", handleResize);
+    // Add passive flag for better performance
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => window.removeEventListener("resize", handleResize);
   }, [activeMenu]);
 
-  // Handle scroll behavior
-  useEffect(() => {
-    const handleScroll = () => {
+  // Memoize scroll handler with useCallback
+  const handleScroll = useCallback(() => {
+    // Use requestAnimationFrame to throttle scroll events
+    requestAnimationFrame(() => {
       const latest = scrollY.get();
       const isScrollingUp = latest < lastScrollY;
       
-      setIsVisible(latest > 150 && isScrollingUp);
-      setLastScrollY(latest);
-    };
-
-    const unsubscribe = scrollY.on("change", handleScroll);
-    return () => unsubscribe();
+      // Only update state if there's a significant change
+      if (Math.abs(latest - lastScrollY) > 5) {
+        setIsVisible(latest > 150 && isScrollingUp);
+        setLastScrollY(latest);
+      }
+    });
   }, [scrollY, lastScrollY]);
 
-  // Handle click outside
+  // Optimized scroll behavior
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (activeMenu && !(event.target as Element).closest('.mobile-menu')) {
-        setActiveMenu(null);
-      }
-    };
+    const unsubscribe = scrollY.on("change", handleScroll);
+    return () => unsubscribe();
+  }, [scrollY, handleScroll]);
 
+  // Handle click outside - memoized with useCallback
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (activeMenu && !(event.target as Element).closest('.mobile-menu')) {
+      setActiveMenu(null);
+    }
+  }, [activeMenu]);
+
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [handleClickOutside]);
+
+  // Handle escape key - memoized with useCallback
+  const handleEscape = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape' && activeMenu) {
+      setActiveMenu(null);
+    }
   }, [activeMenu]);
 
-  // Handle escape key
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && activeMenu) {
-        setActiveMenu(null);
-      }
-    };
-
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [activeMenu]);
+  }, [handleEscape]);
 
   // Close menu on route change
   useEffect(() => {
     setActiveMenu(null);
   }, [pathname]);
 
-  const handleMenuToggle = (menuType: "main" | "fixed") => {
-    setActiveMenu((prev) => {
-      // If the same menu is clicked, close it
-      if (prev === menuType) {
-        return null;
-      }
-      // If a different menu is clicked, close the current one and open the new one
-      return menuType;
-    });
-  };
+  // Memoized menu toggle handler
+  const handleMenuToggle = useCallback((menuType: "main" | "fixed") => {
+    setActiveMenu((prev) => prev === menuType ? null : menuType);
+  }, []);
 
   // Determine if header should be transparent
   const isTransparent = isTransparentPath(pathname);

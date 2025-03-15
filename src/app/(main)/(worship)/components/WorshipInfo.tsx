@@ -16,7 +16,7 @@ function WorshipInfo() {
           {/* Enhanced Title with decorative element */}
           <div className="mb-8 max-w-xl relative">
             <div className="h-px w-16 bg-dustyBlue absolute -top-4 left-0"></div>
-            <H2 className="text-4xl sm:text-5xl font-light tracking-tight">
+            <H2 className="font-light tracking-tight">
               Worship <span className="font-medium">Services</span>
             </H2>
             <div className="mt-4 w-16 h-1 bg-gradient-to-r from-[var(--dusty-blue)] to-[var(--muted-blue)] rounded-full"></div>

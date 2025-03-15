@@ -1,5 +1,6 @@
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
+import { P } from "@/components/text/P";
 
 function Missions() {
   return (
@@ -9,24 +10,24 @@ function Missions() {
           {/* Title Section */}
           <div className="mb-8 max-w-xl relative">
             <div className="h-px w-16 bg-dustyBlue absolute -top-4 left-0"></div>
-            <H2 className="text-4xl sm:text-5xl font-medium tracking-tight">Missions</H2>
+            <H2 className="font-medium tracking-tight">Missions</H2>
           </div>
 
           {/* Mission Information */}
           <div className="text-lg text-deepGray leading-relaxed space-y-6">
-            <p>
+            <P className="!text-lg font-light leading-relaxed text-gray-700 tracking-wide">
               Every year, we travel to <strong>Guatemala</strong> to serve, build, and grow alongside local communities. From
               constructing homes to sharing meals, every moment is an opportunity to make a difference.
-            </p>
-            <p>
-              Our mission includes building and repairing homes, constructing chicken coops for sustainable food sources, and forming
-              meaningful relationships through fellowship. We also dedicate time to praying with children at orphanages, bringing hope
-              and encouragement to the communities we visit.
-            </p>
-            <p className="font-semibold">
+            </P>
+            <P className="!text-lg font-light leading-relaxed text-gray-700 tracking-wide">
+              Our mission includes building and repairing homes, constructing chicken coops for sustainable food sources, and
+              forming meaningful relationships through fellowship. We also dedicate time to praying with children at orphanages,
+              bringing hope and encouragement to the communities we visit.
+            </P>
+            <P className="!text-lg font-light leading-relaxed text-gray-700 tracking-wide">
               Join us for this <strong>yearly mission</strong>—build with your hands, grow in faith, and experience the joy of
               serving others.
-            </p>
+            </P>
           </div>
 
           {/* Image Grid */}

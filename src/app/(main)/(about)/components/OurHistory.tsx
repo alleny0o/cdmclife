@@ -49,7 +49,7 @@ function OurHistory() {
                 <P>Pascal & Sophia</P>
                 <P>Sandy & Michelle</P>
                 <P>Michael & Lauren</P>
-                <P>Kris</P>
+                <P>Kris & Grace</P>
               </div>
             </div>
 

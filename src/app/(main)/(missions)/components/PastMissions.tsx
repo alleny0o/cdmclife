@@ -157,8 +157,8 @@ const PastMissions: React.FC = () => {
         <div className="w-full max-w-7xl mx-auto">
           <div className="mb-10 max-w-xl relative">
             <div className="h-px w-16 bg-[#64748B] absolute -top-4 left-0"></div>
-            <H2 className="text-4xl sm:text-5xl font-light tracking-tight text-[#1E293B]">
-              Past <span className="font-semibold">Missions</span>
+            <H2 className="font-light tracking-tight text-[#1E293B]">
+              Past <span className="font-medium">Missions</span>
             </H2>
           </div>
 

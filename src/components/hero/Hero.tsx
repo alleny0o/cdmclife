@@ -9,9 +9,10 @@ type HeroProps = {
     text: string;
     reference: string;
   };
+  opacity?: number;
 };
 
-function Hero({ title, image, verse }: HeroProps) {
+function Hero({ title, image, verse, opacity }: HeroProps) {
   // Function to determine text size based on length
   const getVerseTextSize = (text: string) => {
     if (text.length < 50) return "text-sm md:text-base"; // Short text → larger size
@@ -27,7 +28,10 @@ function Hero({ title, image, verse }: HeroProps) {
         style={{ backgroundImage: `url('${image}')` }}
       >
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-deepBlack opacity-60" />
+        <div
+          className="absolute inset-0 bg-deepBlack"
+          style={{ opacity: opacity ? opacity / 100 : 0.6 }} // Convert percentage to decimal
+        ></div>
       </div>
 
       {/* Content Container */}
@@ -41,9 +45,7 @@ function Hero({ title, image, verse }: HeroProps) {
         {verse && (
           <div className="hidden lg:block bg-white/10 backdrop-blur-md p-3 rounded-lg shadow-md max-w-96 text-white/80 text-right italic absolute bottom-16 right-8">
             <p className={`${getVerseTextSize(verse.text)}`}>{verse.text}</p>
-            <p className={`mt-1 font-semibold text-white/70 ${getVerseTextSize(verse.text)}`}>
-              - {verse.reference}
-            </p>
+            <p className={`mt-1 font-semibold text-white/70 ${getVerseTextSize(verse.text)}`}>- {verse.reference}</p>
           </div>
         )}
       </div>

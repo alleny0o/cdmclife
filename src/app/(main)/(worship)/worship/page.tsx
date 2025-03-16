@@ -13,7 +13,7 @@ function WorshipPage() {
     <div className="w-full h-full bg-stone-50">
       <Hero
         title="Worship"
-        image="hero/og-mustard-seed.jpg"
+        image="/worship/hero/worship-bg.jpg"
         verse={{
           text: `Sing to God, sing in praise of his name,
           extol him who rides on the clouds;
@@ -22,6 +22,7 @@ function WorshipPage() {
           is God in his holy dwelling.`,
           reference: "Psalm 68:4-5",
         }}
+        opacity={50}
       />
       <Breadcrumbs />
       <WorshipInfo />

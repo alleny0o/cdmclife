@@ -5,7 +5,7 @@ import { TfiAnnouncement } from "react-icons/tfi";
 import { IoCalendarNumber } from "react-icons/io5";
 import { GiThreeFriends, GiClover } from "react-icons/gi";
 import { RiContactsBook2Line } from "react-icons/ri";
-import { BiBible, BiDonateHeart } from "react-icons/bi";
+import { BiDonateHeart } from "react-icons/bi";
 import { CiShop } from "react-icons/ci";
 import { FaSeedling } from "react-icons/fa"; // Mustard Seed icon
 
@@ -47,12 +47,6 @@ export const LINKS: Links[] = [
             href: "/fellowship",
             caption: "Grow together in faith",
             icon: GiThreeFriends,
-          },
-          {
-            label: "Bible Study",
-            href: "/bible-study",
-            caption: "Explore God's Word",
-            icon: BiBible,
           },
           {
             label: "Mustard Seed",
@@ -138,7 +132,6 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
     title: "Faith & Growth",
     links: [
       { name: "Fellowship", path: "/fellowship" },
-      { name: "Bible Study", path: "/bible-study" },
       { name: "Mustard Seed", path: "/mustard-seed" },
     ],
   },

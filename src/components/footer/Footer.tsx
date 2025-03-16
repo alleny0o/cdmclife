@@ -45,12 +45,6 @@ function Footer() {
                   >
                     (301) 836-2098
                   </Link>
-                  <Link
-                    href="mailto:info@cdmc.io"
-                    className="text-vintageCream text-xs sm:text-sm font-light transition-colors hover:text-white"
-                  >
-                    info@cdmc.io
-                  </Link>
                 </div>
               </div>
             </div>

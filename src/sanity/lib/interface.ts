@@ -18,3 +18,35 @@ export interface SermonCard {
     date: string;
     order: number;
 };
+
+export interface GalleryImage {
+    _id: string;
+    imageURL: string;
+    order: number;
+};
+
+export interface PastMission {
+    _id: string;
+    year: number;
+    title: string;
+    description: string;
+    imageURL: string;
+    link: string;
+    order: number;
+};
+
+export interface Event {
+    _key: string;
+    title: string;
+    description?: string;
+    date?: string;
+    startTime?: string;
+    endTime?: string;
+};
+
+export interface Announcements {
+    _id: string;
+    weekStart: string;
+    weekEnd: string;
+    events: Event[];
+}

@@ -1,101 +1,128 @@
-import { Container, Section } from '@/components/layouts/Layouts'
-import { H2 } from '@/components/text/H2'
-import React from 'react'
-import { Calendar, Clock } from 'lucide-react'
+import { Container, Section } from "@/components/layouts/Layouts";
+import { H2 } from "@/components/text/H2";
+import React from "react";
+import { Calendar, Clock } from "lucide-react";
+import { client } from "@/sanity/lib/client";
+import { Announcements, Event } from "@/sanity/lib/interface";
 
-interface Announcement {
-  _id: string
-  title: string
-  description: string
-  date?: string
-  time?: string
-  priority: number
+async function getData() {
+  const query = `*[_type == "announcements"] {
+    _id,
+    weekStart,
+    weekEnd,
+    events[] {
+      _key,
+      title,
+      description,
+      date,
+      startTime,
+      endTime,
+    }
+  }[0]`;
+
+  const data = await client.fetch(query);
+  return data;
 }
 
-interface WeeklyAnnouncements {
-  weekStart: string
-  weekEnd: string
-  announcements: Announcement[]
-}
-
-// Sample data structure - this would come from Sanity CMS
-const sampleAnnouncements: WeeklyAnnouncements = {
-  weekStart: "2025-02-17",
-  weekEnd: "2025-02-23",
-  announcements: [
+// Sample data for fallback
+const sampleAnnouncements = {
+  _id: "sample",
+  weekStart: "2025-03-10",
+  weekEnd: "2025-03-16",
+  events: [
     {
-      _id: "1",
-      title: "Sunday Service",
-      description: "Join us for worship at 10:00 AM in the main sanctuary.",
-      date: "2025-02-23",
-      time: "10:00 AM",
-      priority: 1
-    },
-    {
-      _id: "2",
-      title: "Bible Study",
-      description: "Wednesday evening Bible study focusing on the Book of Acts. All are welcome!",
-      date: "2025-02-19",
-      time: "7:00 PM",
-      priority: 2
+      _key: "sample1",
+      title: "Sample Event",
+      description: "This is a sample event description",
+      date: "2025-03-15",
+      startTime: "10:00 AM",
+      endTime: "12:00 PM"
     }
   ]
-}
+};
 
-function AnnouncementsContent({ weeklyAnnouncements = sampleAnnouncements }) {
-  // Format date range
+async function AnnouncementsContent() {
+  // Format date range with smart year display
   const formatDateRange = (start: string, end: string) => {
-    const startDate = new Date(start)
-    const endDate = new Date(end)
-    return `${startDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} - ${endDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`
-  }
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    
+    // Check if years are different
+    const startYear = startDate.getFullYear();
+    const endYear = endDate.getFullYear();
+    
+    if (startYear !== endYear) {
+      // Show year for both dates if they differ
+      return `${startDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} - ${endDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+    } else {
+      // Show year only for the end date if same year
+      return `${startDate.toLocaleDateString("en-US", { month: "long", day: "numeric" })} - ${endDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+    }
+  };
+
+  // Format time range
+  const formatTimeRange = (start: string | undefined, end: string | undefined) => {
+    if (start && end) {
+      return `${start} - ${end}`;
+    } else if (start) {
+      return start;
+    } else if (end) {
+      return end;
+    }
+    return null;
+  };
+
+  // Get data from Sanity
+  const weeklyAnnouncements: Announcements = await getData() || sampleAnnouncements;
 
   return (
-    <Section className="min-h-screen w-full bg-stone-50">
-      <Container className="pt-14 pb-24">
-        <div className="w-full max-w-5xl mx-auto">
-          <div className="mb-8">
-            <H2>Weekly Announcements</H2>
-            <div className="flex items-center gap-2 mt-2 text-stone-600 font-serif">
+    <Section className="sm:px-6 min-h-screen">
+      <Container className="py-20">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="mb-8 max-w-xl relative">
+            <div className="h-px w-16 bg-dustyBlue absolute -top-4 left-0"></div>
+            <H2 className="font-light tracking-tight">
+              Weekly <span className="font-medium">Announcements</span>
+            </H2>
+            <div className="flex items-center gap-2 mt-2 text-stone-600">
               <Calendar size={20} />
               <span>{formatDateRange(weeklyAnnouncements.weekStart, weeklyAnnouncements.weekEnd)}</span>
             </div>
           </div>
 
           <div className="space-y-6">
-            {weeklyAnnouncements.announcements.map((announcement) => (
+            {weeklyAnnouncements.events.map((event: Event) => (
               <div
-                key={announcement._id}
+                key={event._key}
                 className="bg-white p-6 rounded-lg shadow-sm border border-stone-200 hover:border-stone-300 transition-colors"
               >
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-lg md:text-xl font-medium text-stone-800">
-                    {announcement.title}
-                  </h3>
-                  
-                  {(announcement.date || announcement.time) && (
+                  <h3 className="text-lg md:text-xl font-medium text-stone-800">{event.title}</h3>
+
+                  {(event.date || event.startTime || event.endTime) && (
                     <div className="flex flex-wrap items-center gap-4 text-stone-600 text-sm md:text-base">
-                      {announcement.date && (
+                      {event.date && (
                         <span>
-                          {new Date(announcement.date).toLocaleDateString('en-US', { 
-                            weekday: 'long',
-                            month: 'long',
-                            day: 'numeric'
+                          {new Date(event.date).toLocaleDateString("en-US", {
+                            weekday: "long",
+                            month: "long",
+                            day: "numeric",
                           })}
                         </span>
                       )}
-                      {announcement.time && (
+                      
+                      {(event.startTime || event.endTime) && (
                         <div className="flex items-center gap-1.5 text-sm md:text-base">
                           <Clock size={16} className="text-stone-400" />
-                          <span>{announcement.time}</span>
+                          <span>{formatTimeRange(event.startTime, event.endTime)}</span>
                         </div>
                       )}
                     </div>
                   )}
-                  
-                  <p className="text-stone-700 leading-relaxed text-sm md:text-base">
-                    {announcement.description}
-                  </p>
+
+                  {event.description && (
+                    <p className="text-stone-700 leading-relaxed text-sm md:text-base">{event.description}</p>
+                  )}
                 </div>
               </div>
             ))}
@@ -103,7 +130,7 @@ function AnnouncementsContent({ weeklyAnnouncements = sampleAnnouncements }) {
         </div>
       </Container>
     </Section>
-  )
+  );
 }
 
-export default AnnouncementsContent
+export default AnnouncementsContent;

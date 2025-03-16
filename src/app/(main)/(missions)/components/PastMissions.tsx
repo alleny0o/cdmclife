@@ -1,54 +1,27 @@
 import ButtonLink from "@/components/ButtonLink";
 import { Container, Section } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
+import { client } from "@/sanity/lib/client";
+import { PastMission } from "@/sanity/lib/interface";
 import Image from "next/image";
 import React from "react";
 
-interface TimelineItem {
-  id: number;
-  year: string;
-  missionTitle: string;
-  description: string;
-  image: string;
-}
+async function getData() {
+  const query = `*[_type == "missions"] {
+    _id,
+    year,
+    title,
+    description,
+    "imageURL": image.asset->url,
+    link,
+    order,
+  }`;
 
-const timelineData: TimelineItem[] = [
-  {
-    id: 1,
-    year: "2021",
-    missionTitle: "Guatemala",
-    description:
-      "In 2021, our team traveled to Guatemala to provide aid and support. We built homes and offered medical assistance to those in need.",
-    image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-  },
-  {
-    id: 2,
-    year: "2020",
-    missionTitle: "Guatemala",
-    description:
-      "Our local outreach in 2020 focused on supporting families in need. We distributed food and essentials to those affected by the pandemic.",
-    image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-  },
-  {
-    id: 3,
-    year: "2019",
-    missionTitle: "Guatemala",
-    description:
-      "In 2019, we ventured to Kenya to support education initiatives. Our efforts helped build schools and provide resources for local children.",
-    image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-  },
-  {
-    id: 4,
-    year: "2018",
-    missionTitle: "Guatemala",
-    description:
-      "Our 2018 disaster relief efforts provided immediate assistance to hurricane victims. We delivered supplies and support to affected communities.",
-    image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-  },
-];
-
+  const data: PastMission[] = await client.fetch(query);
+  return data;
+};
 interface ContentBoxProps {
-  item: TimelineItem;
+  item: PastMission;
   extraClasses?: string;
 }
 
@@ -59,10 +32,10 @@ const ContentBox: React.FC<ContentBoxProps> = ({ item, extraClasses = "" }) => {
         px-6 py-4 text-left ${extraClasses}`}
     >
       <h1 className="text-2xl font-semibold text-[#1E293B] mb-2">{item.year}</h1>
-      <h3 className="text-lg font-medium text-[#475569] mb-3">{item.missionTitle}</h3>
+      <h3 className="text-lg font-medium text-[#475569] mb-3">{item.title}</h3>
       <p className="text-base text-[#64748B] leading-relaxed">{item.description}</p>
       <ButtonLink
-        href="#"
+        href={item.link}
         target="_blank"
         className="mt-4 inline-block px-4 py-2 rounded-md text-sm font-medium transition"
       >
@@ -79,7 +52,7 @@ const TimelineDot: React.FC = () => (
 );
 
 interface MobileTimelineItemProps {
-  item: TimelineItem;
+  item: PastMission;
   index: number;
   totalCount: number;
 }
@@ -92,8 +65,8 @@ const MobileTimelineItem: React.FC<MobileTimelineItemProps> = ({ item, index, to
         <ContentBox item={item} extraClasses="text-left" />
         <div className="w-full flex justify-center">
           <Image
-            src={item.image}
-            alt={item.missionTitle}
+            src={item.imageURL}
+            alt={item.title}
             width={400}
             height={250}
             className="w-full h-full max-h-[32rem] object-cover rounded-lg shadow-md"
@@ -105,7 +78,7 @@ const MobileTimelineItem: React.FC<MobileTimelineItemProps> = ({ item, index, to
 };
 
 interface DesktopTimelineItemProps {
-  item: TimelineItem;
+  item: PastMission;
   index: number;
 }
 
@@ -117,8 +90,8 @@ const DesktopTimelineItem: React.FC<DesktopTimelineItemProps> = ({ item, index }
         <>
           <div className="col-span-1 pb-[30px] px-[20px] w-full">
             <Image
-              src={item.image}
-              alt={item.missionTitle}
+              src={item.imageURL}
+              alt={item.title}
               width={150}
               height={150}
               className="w-full lg:h-96 md:h-80 object-cover rounded-md shadow-md"
@@ -137,8 +110,8 @@ const DesktopTimelineItem: React.FC<DesktopTimelineItemProps> = ({ item, index }
           <TimelineDot />
           <div className="col-span-1 pb-[30px] px-[20px] w-full">
             <Image
-              src={item.image}
-              alt={item.missionTitle}
+              src={item.imageURL}
+              alt={item.title}
               width={150}
               height={150}
               className="w-full lg:h-96 md:h-80 object-cover rounded-md shadow-md"
@@ -150,7 +123,11 @@ const DesktopTimelineItem: React.FC<DesktopTimelineItemProps> = ({ item, index }
   );
 };
 
-const PastMissions: React.FC = () => {
+const PastMissions: React.FC = async () => {
+
+  const data: PastMission[] = await getData();
+  const sortedData = data.sort((a, b) => a.order - b.order);
+
   return (
     <Section className="relative w-full h-full bg-lightGray sm:px-6">
       <Container className="w-full py-20">
@@ -164,9 +141,9 @@ const PastMissions: React.FC = () => {
 
           <div className="w-full h-full mx-auto max-w-7xl">
             <div className="grid grid-cols-[2px_1fr] md:grid-cols-[1fr_3px_1fr] gap-x-4">
-              {timelineData.map((item, index) => (
-                <React.Fragment key={item.id}>
-                  <MobileTimelineItem item={item} index={index} totalCount={timelineData.length} />
+              {sortedData.map((item, index) => (
+                <React.Fragment key={item._id}>
+                  <MobileTimelineItem item={item} index={index} totalCount={sortedData.length} />
                   <DesktopTimelineItem item={item} index={index} />
                 </React.Fragment>
               ))}

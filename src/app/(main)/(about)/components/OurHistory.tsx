@@ -17,7 +17,7 @@ function OurHistory() {
           </div>
 
           {/* Two-column layout */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 sm:gap-16 md:gap-8">
             {/* Left Side - Historical Text & Founders */}
             <div className="md:col-span-7 lg:col-span-8">
               <P className="!text-lg font-light leading-relaxed text-gray-700 tracking-wide">
@@ -54,27 +54,28 @@ function OurHistory() {
             </div>
 
             {/* Right Side - Visual Elements */}
-            <div className="md:col-span-5 lg:col-span-4 relative flex flex-col space-y-6">
+            <div className="md:col-span-5 lg:col-span-4 relative flex flex-col gap-y-6">
               <div className="absolute top-0 left-0 h-full w-px bg-gray-200"></div>
+              {/* Image container - with adjusted height */}
               <div className="pl-8">
-                <div className="p-6 bg-gray-50 rounded-lg shadow-sm">
-                  <div className="relative w-full h-40">
+                <div className="p-6 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
+                  <div className="relative w-full aspect-[3/4]">
                     <Image
-                      src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg"
-                      alt="Historical church moment"
+                      src="/about/pane-2.jpg"
+                      alt="Special Glass Pane"
                       layout="fill"
-                      objectFit="cover"
-                      className="rounded-lg shadow-md"
+                      objectFit="contain"
+                      className="rounded-lg"
                     />
                   </div>
                   <p className="text-sm text-gray-500 italic mt-4 text-center">
-                    &ldquo;Carrying forward the mission of faith and service.&rdquo;
+                    &ldquo;Continuing a legacy of faith and service.&rdquo;
                   </p>
                 </div>
               </div>
 
               <div className="pl-8">
-                <div className="p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div className="p-6 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
                   <h3 className="text-xl font-semibold text-gray-900 text-center">A Legacy of Faith</h3>
                   <P className="text-gray-700 mt-2 text-center">
                     &ldquo;As I stand before you today, we remember those who have gone before us.

@@ -7,7 +7,7 @@ import { GiThreeFriends, GiClover } from "react-icons/gi";
 import { RiContactsBook2Line } from "react-icons/ri";
 import { BiDonateHeart } from "react-icons/bi";
 import { CiShop } from "react-icons/ci";
-import { FaSeedling } from "react-icons/fa"; // Mustard Seed icon
+import { FaSeedling } from "react-icons/fa";
 
 export type SubLink = {
   header?: string;

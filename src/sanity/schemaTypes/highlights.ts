@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const highlightsType = defineType({
   name: "highlights",
-  title: "Homepage Highlights",
+  title: "Home - Highlights",
   type: "document",
   fields: [
     defineField({

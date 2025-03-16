@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const sermonsType = defineType({
   name: "sermons",
-  title: "Homepage Sermons",
+  title: "Home - Sermons",
   type: "document",
   fields: [
     defineField({

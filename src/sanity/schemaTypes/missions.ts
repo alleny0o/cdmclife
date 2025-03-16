@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const missionsType = defineType({
     name: "missions",
-    title: "Past Missions",
+    title: "Missions - Past Missions",
     type: "document",
     fields: [
         defineField({

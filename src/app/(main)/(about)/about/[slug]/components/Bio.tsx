@@ -17,7 +17,7 @@ function Bio({ member }: BioProps) {
           <div className="flex flex-col gap-4 md:gap-6 mb-8">
             <div>
               <h1 className="text-3xl md:text-4xl lg::text-5xl font-bold tracking-tight">{member.name}</h1>
-              <p className="text-xl md:text-2xl text-stone-600 mt-1">{member.role}</p>
+              <p className="text-xl lg:text-2xl text-stone-600 mt-1">{member.role}</p>
             </div>
 
             <div className="mt-4 sm:mt-6 space-y-3">
@@ -43,9 +43,9 @@ function Bio({ member }: BioProps) {
         </div>
 
         {/* Desktop Layout - Side by Side */}
-        <div className="w-full max-w-7xl mx-auto hidden sm:grid sm:grid-cols-5 gap-12">
+        <div className="w-full max-w-7xl mx-auto hidden sm:grid sm:grid-cols-7 gap-12">
           {/* Bio Content */}
-          <div className="col-span-3 flex flex-col gap-6">
+          <div className="col-span-4 flex flex-col gap-6">
             <div>
               <h1 className="text-4xl font-bold tracking-tight">{member.name}</h1>
               <p className="text-lg text-stone-600 mt-1">{member.role}</p>
@@ -53,13 +53,13 @@ function Bio({ member }: BioProps) {
 
             <div className="space-y-3">
               {member.description?.map((paragraph, idx) => (
-                <p key={idx}>{paragraph.text}</p>
+                <p key={idx} className="md:text-base text-sm">{paragraph.text}</p>
               ))}
             </div>
           </div>
 
           {/* Portrait */}
-          <div className="col-span-2 aspect-[3/4] relative overflow-hidden rounded-sm h-full max-h-[600px]">
+          <div className="col-span-3 md:aspect-[3/4] sm:aspect-[3/5] aspect-[3/4] relative overflow-hidden rounded-sm h-full max-h-[600px]">
             {member.imageURL && (
               <Image
                 src={member.imageURL}

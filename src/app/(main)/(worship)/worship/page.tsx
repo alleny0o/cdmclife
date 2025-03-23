@@ -2,27 +2,43 @@ import Hero from "@/components/hero/Hero";
 import WorshipInfo from "../components/WorshipInfo";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import { Metadata } from "next";
+import { client } from "@/sanity/lib/client";
+import { Hero as HeroType } from "@/sanity/lib/interface";
 
 export const metadata: Metadata = {
   title: "Worship",
   description: "Join us for worship— Our service times and location details.",
 };
 
-function WorshipPage() {
+async function getData() {
+  const query = `*[_type == "worshipHero"] {
+    _id,
+    title,
+    "imageURL": image.asset->url,
+    opacity,
+    verse {
+      text,
+      reference
+    }
+  }[0]`;
+
+  const data = client.fetch(query, {}, { next: { revalidate: 30 } });
+  return data;
+};
+
+async function WorshipPage() {
+  const heroData: HeroType = await getData();
+
   return (
     <div className="w-full h-full bg-stone-50">
       <Hero
-        title="Worship"
-        image="/worship/hero/worship-bg.jpg"
+        title={heroData.title}
+        image={heroData.imageURL}
         verse={{
-          text: `Sing to God, sing in praise of his name,
-          extol him who rides on the clouds;
-          rejoice before him—his name is the Lord.
-          A father to the fatherless, a defender of widows,
-          is God in his holy dwelling.`,
-          reference: "Psalm 68:4-5",
+          text: heroData.verse.text,
+          reference: heroData.verse.reference,
         }}
-        opacity={50}
+        opacity={heroData.opacity ? heroData.opacity : 60}
       />
       <Breadcrumbs />
       <WorshipInfo />

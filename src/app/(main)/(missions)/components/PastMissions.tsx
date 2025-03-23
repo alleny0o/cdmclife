@@ -17,7 +17,7 @@ async function getData() {
     order,
   }`;
 
-  const data: PastMission[] = await client.fetch(query);
+  const data: PastMission[] = await client.fetch(query, {}, { next: { revalidate: 30 }});
   return data;
 };
 interface ContentBoxProps {

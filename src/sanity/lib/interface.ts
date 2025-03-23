@@ -50,3 +50,31 @@ export interface Announcements {
     weekEnd: string;
     events: Event[];
 }
+
+export interface Hero {
+    title: string;
+    imageURL: string;
+    opacity: number | null;
+    verse: {
+        text: string;
+        reference: string;
+    };
+};
+
+export interface TeamMember {
+    _id: string;
+    name: string;
+    role: string;
+    imageURL: string;
+    socialMedia: {
+        facebook?: string;
+        instagram?: string;
+        twitter?: string;
+        linkedin?: string;
+    };
+
+        slug: string;
+        description: {
+            text: string;
+        }[];
+};

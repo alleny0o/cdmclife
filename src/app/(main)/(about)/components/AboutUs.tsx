@@ -17,7 +17,7 @@ function AboutUs() {
           </div>
 
           {/* Two-column layout */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             {/* Left Side - Text Content */}
             <div className="md:col-span-7 lg:col-span-8">
               <P className="!text-lg font-light leading-relaxed text-gray-700 tracking-wide">

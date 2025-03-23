@@ -20,7 +20,7 @@ async function getData() {
       order,
   }`;
 
-  const highlights = await client.fetch(query);
+  const highlights = await client.fetch(query, {}, { next: { revalidate: 30 }});
 
   return highlights;
 };

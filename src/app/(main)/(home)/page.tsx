@@ -3,17 +3,39 @@ import Sermons from "./components/Sermons";
 import Gallery from "./components/Gallery";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import Hero from "@/components/hero/Hero";
+import { client } from "@/sanity/lib/client";
+import { Hero as HeroType } from "@/sanity/lib/interface";
 
-export default function Home() {
+// fetch hero data from sanity
+async function getData() {
+  const query = `*[_type == "homeHero"] {
+    _id,
+    title,
+    "imageURL": image.asset->url,
+    opacity,
+    verse {
+      text,
+      reference
+    }
+  }[0]`;
+
+  const data = client.fetch(query, {}, { next: { revalidate: 30 } });
+  return data;
+};
+
+export default async function Home() {
+  const heroData: HeroType = await getData();
+
   return (
     <div className="w-full h-full bg-stone-50">
       <Hero
-        title="Home"
-        image="/homepage/hero/hero-img.png"
+        title={heroData.title}
+        image={heroData.imageURL}
         verse={{
-          text: "He gives snow like wool; he scatters the frost like ashes. He casts forth his ice like morsels; who can stand before his cold? He sends out his word, and melts them; he causes his wind to blow, and the waters flow.",
-          reference: "Psalm 147:16-18",
+          text: heroData.verse.text,
+          reference: heroData.verse.reference,
         }}
+        opacity={heroData.opacity ? heroData.opacity : 60}
       />
       <Breadcrumbs />
       <Highlights />

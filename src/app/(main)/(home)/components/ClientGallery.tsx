@@ -12,6 +12,8 @@ export default function ClientGallery({ images }: ClientGalleryProps) {
   const [current, setCurrent] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef({ x: 0, y: 0 });
+  const isScrollingVertically = useRef(false);
 
   // Initialize mobile state after mount
   useEffect(() => {
@@ -68,6 +70,33 @@ export default function ClientGallery({ images }: ClientGalleryProps) {
     }
   };
 
+  // Touch event handlers to fix the vertical scrolling issue
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isMobile) return;
+    
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    isScrollingVertically.current = false;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isMobile || !scrollContainerRef.current) return;
+    
+    const touch = e.touches[0];
+    const deltaX = Math.abs(touch.clientX - touchStartRef.current.x);
+    const deltaY = Math.abs(touch.clientY - touchStartRef.current.y);
+    
+    // If we detect significant vertical movement, mark as vertical scrolling
+    if (deltaY > deltaX && deltaY > 10) {
+      isScrollingVertically.current = true;
+    }
+    
+    // If we're trying to scroll vertically, prevent the carousel from capturing the event
+    if (isScrollingVertically.current) {
+      e.stopPropagation();
+    }
+  };
+
   return (
     <MotionConfig transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}>
       <div className="relative w-full max-w-5xl mx-auto">
@@ -77,6 +106,8 @@ export default function ClientGallery({ images }: ClientGalleryProps) {
           className="flex gap-4 flex-nowrap overflow-x-auto sm:hidden scrollbar-hide snap-x snap-mandatory touch-pan-x"
           style={{ scrollBehavior: "smooth" }}
           onScroll={handleScroll}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
         >
           {images.map((image, index) => (
             <div key={index} className="w-[84%] flex-shrink-0 snap-center">

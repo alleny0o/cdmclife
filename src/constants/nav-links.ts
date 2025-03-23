@@ -1,4 +1,4 @@
-import { Home, Users, Church, Globe } from "lucide-react";
+import { Home, Church, Globe } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
 import { IconType } from "react-icons";
 import { TfiAnnouncement } from "react-icons/tfi";
@@ -8,6 +8,8 @@ import { RiContactsBook2Line } from "react-icons/ri";
 import { BiDonateHeart } from "react-icons/bi";
 import { CiShop } from "react-icons/ci";
 import { FaSeedling } from "react-icons/fa";
+import { FaHandsHelping } from "react-icons/fa";
+
 
 export type SubLink = {
   header?: string;
@@ -16,6 +18,7 @@ export type SubLink = {
     label: string;
     caption?: string;
     href: string;
+    external?: boolean;
   }[];
 };
 
@@ -31,7 +34,7 @@ export type Links = {
 
 export const LINKS: Links[] = [
   { id: 1, label: "Home", href: "/", icon: Home },
-  { id: 2, label: "About", href: "/about", icon: Users },
+  { id: 2, label: "About", href: "/about", icon: FaHandsHelping },
   { id: 3, label: "Worship", href: "/worship", icon: Church },
   { id: 4, label: "Missions", href: "/missions", icon: Globe },
   {
@@ -97,6 +100,7 @@ export const LINKS: Links[] = [
             label: "Store",
             href: "https://biblebrowsing.com",
             caption: "Christian clothes and gifts",
+            external: true,
             icon: CiShop,
           },
           {

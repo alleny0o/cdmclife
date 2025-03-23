@@ -73,6 +73,7 @@ const DropdownLink = (props: Links) => {
                           <Link
                             key={i}
                             href={item.href}
+                            target={item.external ? "_blank" : "_self"}
                             className={`
                               flex items-start gap-3 p-2 rounded-lg
                               transition-all duration-300
@@ -81,7 +82,6 @@ const DropdownLink = (props: Links) => {
                               text-vintageCream
                               ${isActive ? "bg-white/10" : ""}
                             `}
-                            target={item.label === "Shop" ? "_blank" : "_self"}
                           >
                             {item.icon && (
                               <item.icon className="text-lg flex-shrink-0 mt-1" />

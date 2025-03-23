@@ -20,7 +20,7 @@ async function getData() {
     }
   }[0]`;
 
-  const data = await client.fetch(query);
+  const data = await client.fetch(query, {}, { next: { revalidate: 30 }});
   return data;
 }
 

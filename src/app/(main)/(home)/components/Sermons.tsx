@@ -18,7 +18,7 @@ async function getData() {
     order
   }`;
 
-  const sermons: SermonCard[] = await client.fetch(query);
+  const sermons: SermonCard[] = await client.fetch(query, {}, { next: { revalidate: 30 }});
 
   return sermons.map((sermon) => ({
     ...sermon,

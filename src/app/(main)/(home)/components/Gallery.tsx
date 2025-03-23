@@ -10,7 +10,7 @@ async function fetchGalleryData() {
     order,
   }`;
 
-  const images = await client.fetch(query);
+  const images = await client.fetch(query, {}, { next: { revalidate: 30 }});
   return images;
 }
 

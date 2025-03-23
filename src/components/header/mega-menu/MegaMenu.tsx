@@ -134,7 +134,7 @@ function MegaMenu(input: MegaMenuProps) {
                         key={subIndex}
                         href={item.href}
                         onClick={() => input.setActiveMegaMenu(null)}
-                        target={item.label === "Shop" ? "_blank" : "_self"}
+                        target={item.external ? "_blank" : "_self"}
                         className={`flex items-start space-x-3 p-2 rounded-[10px] transition-all duration-200 ${bgClasses}`}
                       >
                         {item.icon && (

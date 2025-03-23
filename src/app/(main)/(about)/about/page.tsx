@@ -5,10 +5,29 @@ import Tabs from "@/components/tabs/Tabs";
 import { Metadata } from "next";
 import OurTeam from "../components/OurTeam";
 import OurHistory from "../components/OurHistory";
+import { client } from "@/sanity/lib/client";
+import { Hero as HeroType } from "@/sanity/lib/interface";
 
 export const metadata: Metadata = {
   title: "About",
   description: "Learn more about our church.",
+};
+
+// fetch hero data from sanity
+async function getData() {
+  const query = `*[_type == "aboutHero"] {
+    _id,
+    title,
+    "imageURL": image.asset->url,
+    opacity,
+    verse {
+      text,
+      reference
+    }
+  }[0]`;
+
+  const data = client.fetch(query, {}, { next: { revalidate: 30 } });
+  return data;
 };
 
 // Tabs data
@@ -27,17 +46,19 @@ const tabs = [
   },
 ];
 
-function AboutPage() {
+async function AboutPage() {
+  const heroData: HeroType = await getData();
+
   return (
     <div className="w-full h-full bg-stone-50">
       <Hero
-        title="About"
-        image="/about/hero/about-us-bg.jpg"
+        title={heroData.title}
+        image={heroData.imageURL}
         verse={{
-          text: "Blessed are the merciful, for they will be shown mercy.",
-          reference: "Matthew 5:7",
+          text: heroData.verse.text,
+          reference: heroData.verse.reference,
         }}
-        opacity={50}
+        opacity={heroData.opacity ? heroData.opacity : 60}
       />
       <Breadcrumbs />
       <div className="mt-10"></div>

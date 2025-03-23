@@ -1,140 +1,77 @@
 import { H2 } from "@/components/text/H2";
 import TabLayout from "./layouts/TabLayout";
-// import Link from "next/link";
-// import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
-// import { text } from "stream/consumers";
+import { client } from "@/sanity/lib/client";
+import { TeamMember } from "@/sanity/lib/interface";
+import Link from "next/link";
 
-// interface SocialMedia {
-//   facebook?: string;
-//   instagram?: string;
-//   linkedin?: string;
-//   twitter?: string;
-// }
+async function getData(): Promise<TeamMember[]> {
+  const query = `*[_type == "ourTeam"] {
+    "team": team[] {
+      "_id": _key,
+      name,
+      role,
+      "imageURL": image.asset->url,
+      socialMedia,
+      "slug": bio.slug.current,
+      "description": bio.description[]{
+          "text": children[].text
+      }
+    }
+  }[0].team`;
 
-// interface Bio {
-//   slug: string;
-//   description: string[];
-// }
+  const data: TeamMember[] = await client.fetch(query, {}, { next: { revalidate: 30 } });
 
-// interface TeamMember {
-//   name: string;
-//   role: string;
-//   image: string;
-//   socialMedia?: SocialMedia;
-//   bio?: Bio;
-// }
+  return data || [];
+}
 
-// const leadership_team = {
-//   title: "Leadership Team",
-//   background_color: "bg-white",
-//   text_color: "text-gray-900",
-//   team: [
-//     {
-//       name: "Soo Lee",
-//       role: "C.E.O. & Chief Executive Director",
-//       image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-//       socialMedia: {
-//         linkedin: "https://www.linkedin.com/in/soolee",
-//         twitter: "https://twitter.com/soolee",
-//       },
-//       bio: {
-//         slug: "soo-lee",
-//         description: [
-//           "Soo Lee has led the company with innovation and strategic vision.",
-//           "She is passionate about leadership and fostering growth within the organization.",
-//         ],
-//       },
-//     },
-//     {
-//       name: "Jeremy Manning",
-//       role: "Secretary & General Counsel",
-//       image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-//       socialMedia: {
-//         linkedin: "https://www.linkedin.com/in/jeremymanning",
-//       },
-//       bio: {
-//         slug: "jeremy-manning",
-//         description: ["Jeremy ensures the company’s legal compliance and corporate governance."],
-//       },
-//     },
-//     {
-//       name: "Peter Lee",
-//       role: "Treasurer",
-//       image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-//       socialMedia: {
-//         facebook: "https://www.facebook.com/peterlee",
-//       },
-//       bio: {
-//         slug: "peter-lee",
-//         description: ["Peter manages the company's financial health and budgeting strategies."],
-//       },
-//     },
-//     {
-//       name: "Noah Lee",
-//       role: "Founder & President",
-//       image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-//       socialMedia: {
-//         instagram: "https://www.instagram.com/noahlee",
-//         linkedin: "https://www.linkedin.com/in/noahlee",
-//       },
-//       bio: {
-//         slug: "noah-lee",
-//         description: ["Noah founded the company with a vision to revolutionize the industry."],
-//       },
-//     },
-//   ] as TeamMember[],
-// };
+async function OurTeam() {
+  const team = await getData();
 
-// const trustees_team = {
-//   title: "Trustees Team",
-//   background_color: "bg-gray-50",
-//   text_color: "text-gray-900",
-//   team: [
-//     {
-//       name: "Michael Brown",
-//       role: "Chairman",
-//       image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-//       socialMedia: {
-//         linkedin: "https://www.linkedin.com/in/michaelbrown",
-//         facebook: "https://www.facebook.com/michaelbrown",
-//       },
-//       bio: {
-//         slug: "michael-brown",
-//         description: [
-//           "Michael Brown has been serving as the chairman for 5 years.",
-//           "He oversees the church’s financial and operational responsibilities, ensuring that all ministries are well-supported and aligned with the church’s mission.",
-//         ],
-//       },
-//     },
-//     {
-//       name: "Sarah Davis",
-//       role: "Secretary",
-//       image: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-//       socialMedia: {
-//         linkedin: "https://www.linkedin.com/in/sarahdavis",
-//         facebook: "https://www.facebook.com/sarahdavis",
-//       },
-//     },
-//   ] as TeamMember[],
-// };
-
-// const result = {
-//   leadership_team,
-//   trustees_team,
-// };
-
-function OurTeam() {
   return (
     <TabLayout>
-      {/* Hero Section with Visual Element */}
       <div className="w-full pt-16 pb-20 relative">
         <div className="max-w-7xl mx-auto">
-          {/* Elegant Title with Decorative Element */}
           <div className="relative mb-12">
             <div className="h-px w-16 bg-dustyBlue absolute -top-4 left-0"></div>
             <H2 className="font-light tracking-tight text-gray-900">
               Our <span className="font-medium">Team</span>
             </H2>
+          </div>
+        </div>
+        <div className="sm:max-w-7xl max-w-[80%] mx-auto">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+            {team?.map((member) => (
+              <div
+                key={member._id}
+                className="group"
+              >
+                <div className="rounded-sm overflow-hidden shadow-md mb-3">
+                  <img
+                    src={member.imageURL}
+                    alt={member.name}
+                    className="w-full object-cover aspect-[3/4] rounded-sm"
+                  />
+                </div>
+                
+                <div className="text-left px-1">
+                  <h3 className="text-gray-800 text-2xl font-medium">
+                    {member.name}
+                  </h3>
+                  <p className="text-gray-500 text-base mb-2">
+                    {member.role}
+                  </p>
+
+                  {member.slug && (
+                    <Link
+                      href={`/about/${member.slug}`}
+                      className="inline-block px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-md hover:bg-gray-300 transition-colors duration-200"
+                    >
+                      Read Bio
+                    </Link>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

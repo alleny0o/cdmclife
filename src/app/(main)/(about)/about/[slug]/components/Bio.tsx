@@ -1,4 +1,5 @@
 import { Container, Section } from "@/components/layouts/Layouts";
+import { P } from "@/components/text/P";
 import { TeamMember } from "@/sanity/lib/interface";
 import Image from "next/image";
 import React from "react";
@@ -22,7 +23,9 @@ function Bio({ member }: BioProps) {
 
             <div className="mt-4 sm:mt-6 space-y-3">
               {member.description?.map((paragraph, idx) => (
-                <p key={idx} className="text-sm md:text-base">{paragraph.text}</p>
+                <P className="!text-lg font-light leading-relaxed text-deepGray tracking-wide" key={idx}>
+                  {paragraph.text}
+                </P>
               ))}
             </div>
           </div>
@@ -30,14 +33,7 @@ function Bio({ member }: BioProps) {
           {/* Portrait */}
           <div className="mx-auto aspect-[3/4] relative overflow-hidden rounded-sm">
             {member.imageURL && (
-              <Image
-                src={member.imageURL}
-                alt={member.name}
-                fill
-                className="object-cover object-center"
-                priority
-                sizes="75vw"
-              />
+              <Image src={member.imageURL} alt={member.name} fill className="object-cover object-center" priority sizes="75vw" />
             )}
           </div>
         </div>
@@ -47,13 +43,15 @@ function Bio({ member }: BioProps) {
           {/* Bio Content */}
           <div className="col-span-4 flex flex-col gap-6">
             <div>
-              <h1 className="text-4xl font-bold tracking-tight">{member.name}</h1>
-              <p className="text-lg text-stone-600 mt-1">{member.role}</p>
+              <h1 className="text-3xl md:text-4xl lg::text-5xl font-bold tracking-tight">{member.name}</h1>
+              <p className="text-xl lg:text-2xl text-stone-600 mt-1">{member.role}</p>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {member.description?.map((paragraph, idx) => (
-                <p key={idx} className="md:text-base text-sm">{paragraph.text}</p>
+                <P className="!text-lg font-light leading-relaxed text-deepGray tracking-wide" key={idx}>
+                  {paragraph.text}
+                </P>
               ))}
             </div>
           </div>

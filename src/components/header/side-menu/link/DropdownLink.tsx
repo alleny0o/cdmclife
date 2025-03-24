@@ -26,7 +26,7 @@ const DropdownLink = ({ header, subMenu, isOpen, onToggle }: DropdownLinkProps) 
       >
         <div className={`
           flex items-center justify-between
-          font-medium text-base lg:text-lg py-2
+          font-medium text-xl sm:text-base lg:text-lg py-2
           transition-colors duration-300 relative
           ${hasActiveSublink ? "text-dustyBlue tracking-wider" : "text-vintageCream"}
         `}>
@@ -61,7 +61,7 @@ const DropdownLink = ({ header, subMenu, isOpen, onToggle }: DropdownLinkProps) 
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="mt-1.5 bg-[#1c1c1c] shadow-md rounded-lg p-2">
+            <div className="mt-3 bg-[#1c1c1c] shadow-md rounded-lg p-2">
               {subMenu.length > 8 ? (
                 <div className="grid grid-cols-2 gap-x-2 gap-y-0.5">
                   {subMenu.map((item, i) => {
@@ -84,7 +84,7 @@ const DropdownLink = ({ header, subMenu, isOpen, onToggle }: DropdownLinkProps) 
                           <item.icon className="text-xs flex-shrink-0 mt-0.5" />
                         )}
                         <div>
-                          <div className="font-medium text-xs">{item.label}</div>
+                          <div className="font-medium text-base">{item.label}</div>
                         </div>
                       </Link>
                     );
@@ -109,12 +109,12 @@ const DropdownLink = ({ header, subMenu, isOpen, onToggle }: DropdownLinkProps) 
                         `}
                       >
                         {item.icon && (
-                          <item.icon className="text-xs flex-shrink-0 mt-0.5" />
+                          <item.icon className="text-lg flex-shrink-0 mt-0.5" />
                         )}
                         <div>
-                          <div className="font-medium text-xs">{item.label}</div>
+                          <div className="font-medium sm:text-sm text-base">{item.label}</div>
                           {item.caption && (
-                            <p className="text-xs text-stone-400 opacity-75">{item.caption}</p>
+                            <p className="sm:text-xs text-sm text-stone-400 opacity-75">{item.caption}</p>
                           )}
                         </div>
                       </Link>

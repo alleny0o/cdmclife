@@ -17,7 +17,7 @@ const NavLink = ({link, setIsActive}: NavLinkProps) => {
       <Link
         href={link.href ?? "/"}
         className={`
-          block font-medium text-base lg:text-lg py-2
+          block font-medium text-xl sm:text-base lg:text-lg py-2
           transition-colors duration-300
           relative group
           ${isActive ? "text-dustyBlue tracking-wider" : "text-softWhite"}

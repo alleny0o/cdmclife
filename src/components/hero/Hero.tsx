@@ -41,6 +41,9 @@ function Hero({ title, image, verse, opacity }: HeroProps) {
           {title}
         </h1>
 
+        {/* Tagline */}
+        <p className="mt-4 text-lg md:text-xl text-white/80 italic tracking-wide">Fall In Love, Again and Again.</p>
+
         {/* Verse Box */}
         {verse && (
           <div className="hidden lg:block bg-white/10 backdrop-blur-md p-3 rounded-lg shadow-md max-w-96 text-white/80 text-right italic absolute bottom-16 right-8">

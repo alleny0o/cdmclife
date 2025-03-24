@@ -39,7 +39,7 @@ async function Highlights() {
             Christ Disciple Mission Church
           </H2>
           <P className="mt-4 text-lg text-deepBlack/80 max-w-xl font-light tracking-wide">
-            From Small Seeds, Great Things Grow.
+            Fall In Love, Again and Again.
           </P>
           <div className="absolute -bottom-6 left-0 w-40 h-px bg-gradient-to-r from-dustyBlue to-transparent"></div>
           </div>

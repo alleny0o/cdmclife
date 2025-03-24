@@ -73,7 +73,9 @@ function Footer() {
                 <h3 className="text-white text-xs sm:text-sm tracking-wider uppercase">{title}</h3>
                 <ul className="space-y-2">
                   {links.map(({ name, path, external = false }, subIndex) => {
-                    const isActive = pathname === path;
+                    const isActive = path === '/about' 
+                      ? pathname.startsWith('/about') 
+                      : pathname === path;
 
                     return (
                       <li key={subIndex}>

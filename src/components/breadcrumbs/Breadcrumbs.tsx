@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Church } from "lucide-react";
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IconType } from "react-icons";
@@ -25,7 +25,7 @@ const Breadcrumbs = () => {
   const getBreadcrumbItems = () => {
     const pathSegments = pathname.split('/').filter(Boolean);
     const breadcrumbItems: Array<{ label: string; href: string; icon?: IconType }> = [
-      { label: 'Home', href: '/', icon: Home }
+      { label: 'Home', href: '/', icon: Church },
     ];
 
     let currentPath = '';

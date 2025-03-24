@@ -11,7 +11,7 @@ export const Navigation = () => {
   const [activeMegaMenu, setActiveMegaMenu] = useState<Links["id"] | null>(null);
   const menuRefs = useRef<(HTMLDivElement | null)[]>([]);
   const prevScrollY = useRef(0);
-  
+
   // Using useCallback to memoize handlers
   const handleSetSelected = useCallback((val: Links["id"] | null) => {
     setActiveMegaMenu(val);
@@ -40,7 +40,7 @@ export const Navigation = () => {
           // If we jumped **past** the range in one scroll event (fast scrolling)
           const jumpedPast =
             (prevY < 150 && currentScrollY > 160) || // Fast scroll DOWN past range
-            (prevY > 160 && currentScrollY < 150);  // Fast scroll UP past range
+            (prevY > 160 && currentScrollY < 150); // Fast scroll UP past range
 
           if (inRange || jumpedPast) {
             setActiveMegaMenu(null);
@@ -71,11 +71,15 @@ export const Navigation = () => {
   }, []);
 
   // Memoized utilities
-  const isActive = useCallback((link: Links) => pathname === link.href, [pathname]);
+  const isActive = useCallback(
+    (link: Links) => {
+      // Check if the current pathname exactly matches the link or is a subpath of the link
+      return pathname === link.href || (link.href === "/about" && pathname.startsWith("/about/"));
+    },
+    [pathname]
+  );
   const isSubLinkActive = useCallback(
-    (link: Links) =>
-      link.subLinks?.some((subLink) => 
-        subLink.subMenu?.some((menuItem) => pathname === menuItem.href)),
+    (link: Links) => link.subLinks?.some((subLink) => subLink.subMenu?.some((menuItem) => pathname === menuItem.href)),
     [pathname]
   );
 
@@ -136,11 +140,7 @@ export const Navigation = () => {
           }}
         >
           {!link.subLinks ? (
-            <Link 
-              onMouseEnter={() => setActiveMegaMenu(null)} 
-              href={link.href ?? "/"} 
-              className={getLinkClasses(link)}
-            >
+            <Link onMouseEnter={() => setActiveMegaMenu(null)} href={link.href ?? "/"} className={getLinkClasses(link)}>
               {link.label.toUpperCase()}
             </Link>
           ) : (
@@ -156,18 +156,11 @@ export const Navigation = () => {
               >
                 {link.label.toUpperCase()}
                 <BiChevronDown
-                  className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                    activeMegaMenu === link.id ? "rotate-180" : ""
-                  }`}
+                  className={`ml-1 w-4 h-4 transition-transform duration-300 ${activeMegaMenu === link.id ? "rotate-180" : ""}`}
                 />
               </button>
 
-              {activeMegaMenu && (
-                <MegaMenu 
-                  activeMegaMenu={activeMegaMenu} 
-                  setActiveMegaMenu={setActiveMegaMenu} 
-                />
-              )}
+              {activeMegaMenu && <MegaMenu activeMegaMenu={activeMegaMenu} setActiveMegaMenu={setActiveMegaMenu} />}
             </>
           )}
         </div>

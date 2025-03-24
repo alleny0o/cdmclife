@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Logo } from "./Logo";
 import { Navigation } from "./Navigation";
-import { DonateButton } from "./DonateButton";
+import { ContactButton } from "./ContactButton";
 import MobileMenu from "./side-menu/MobileMenu";
 
 interface FixedHeaderProps {
@@ -27,7 +27,7 @@ export const FixedHeader = ({ isVisible, activeMenu, onMenuToggle }: FixedHeader
         </div>
         <Navigation />
         <div className="flex items-center justify-end md:col-span-2 col-span-6">
-          <DonateButton />
+          <ContactButton />
           <div className="md:hidden relative w-full h-full flex items-center justify-end mobile-menu">
             <MobileMenu 
               isActive={isActive}

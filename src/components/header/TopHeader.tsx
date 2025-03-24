@@ -2,7 +2,7 @@
 import MobileMenu from "./side-menu/MobileMenu";
 import { Logo } from "./Logo";
 import { Navigation } from "./Navigation";
-import { DonateButton } from "./DonateButton";
+import { ContactButton } from "./ContactButton";
 
 interface TopHeaderProps {
   activeMenu: "main" | "fixed" | null;
@@ -24,7 +24,7 @@ export const TopHeader = ({ activeMenu, onMenuToggle }: TopHeaderProps) => {
         </div>
 
         <div className="flex items-center justify-end md:col-span-2 col-span-6 gap-4">
-          <DonateButton />
+          <ContactButton />
           <div className="md:hidden mobile-menu">
             <MobileMenu isActive={isActive} setIsActive={onMenuToggle} />
           </div>

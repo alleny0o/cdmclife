@@ -1,21 +1,20 @@
 // Imports
-import { Home, Church, Globe, MoreHorizontal } from "lucide-react";
+import { Church, Globe, MoreHorizontal } from "lucide-react";
 import { IconType } from "react-icons";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { IoCalendarNumber } from "react-icons/io5";
-import { GiThreeFriends, GiClover } from "react-icons/gi";
 import { RiContactsBook2Line } from "react-icons/ri";
 import { BiDonateHeart } from "react-icons/bi";
-import { CiShop, CiGlobe } from "react-icons/ci";
+import { CiShop } from "react-icons/ci";
 import { FaSeedling, FaHandsHelping, FaRegHeart } from "react-icons/fa";
 import { BsWater } from "react-icons/bs";
 import { LiaCrossSolid, LiaPeopleCarrySolid } from "react-icons/lia";
 
 // Types
 export type SubMenu = {
-  icon?: IconType;
+  icon: IconType;
   label: string;
-  caption?: string;
+  caption: string;
   href: string;
   external?: boolean;
 };
@@ -43,9 +42,9 @@ export type MobileLinks = {
 // Desktop Navigation Links
 export const LINKS: Links[] = [
   // Top-level nav
-  { id: 1, label: "Home", href: "/", icon: Home },
+  { id: 1, label: "Home", href: "/", icon: Church },
   { id: 2, label: "About", href: "/about", icon: FaHandsHelping },
-  { id: 3, label: "Worship", href: "/worship", icon: Church },
+  { id: 3, label: "Worship", href: "/worship", icon: LiaCrossSolid },
   { id: 4, label: "Missions", href: "/missions", icon: Globe },
 
   // Dropdown
@@ -78,13 +77,13 @@ export const LINKS: Links[] = [
             label: "Fellowship",
             href: "/fellowship",
             caption: "Life is better together",
-            icon: GiThreeFriends,
+            icon: LiaPeopleCarrySolid,
           },
           {
-            label: "Community Service",
+            label: "Love in Action",
             href: "/community-service",
             caption: "Show up. Serve well. Repeat.",
-            icon: GiClover,
+            icon: FaRegHeart,
           },
         ],
       },
@@ -135,7 +134,7 @@ export const MOBILE_LINKS: MobileLinks[] = [
       {
         label: "Home",
         href: "/",
-        icon: Home,
+        icon: Church,
         caption: "Step into something greater",
       },
       {
@@ -176,7 +175,7 @@ export const MOBILE_LINKS: MobileLinks[] = [
       {
         label: "Missions",
         href: "/missions",
-        icon: CiGlobe,
+        icon: Globe,
         caption: "Hope and healing in Guatemala",
       },
       {

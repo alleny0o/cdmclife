@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { AnimatePresence, motion, useScroll } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { MOBILE_LINKS } from "@/constants/nav-links";
 import styles from "./MobileMenu.module.scss";
 import Link from "next/link";
@@ -47,7 +47,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 w-full h-screen bg-deepBlack overflow-y-auto z-[100]"
           >
-            <div className={`min-h-screen ${hasPast150 ? 'pt-[74px]' : 'pt-32'} pb-28 px-8`}>
+            <div className={`min-h-screen ${hasPast150 ? 'pt-20' : 'pt-32'} pb-28 px-8`}>
               <div className="max-w-md mx-auto">
                 {MOBILE_LINKS.map((section, sectionIndex) => (
                   <div key={sectionIndex} className="mb-10">

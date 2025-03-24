@@ -81,7 +81,7 @@ export const LINKS: Links[] = [
           },
           {
             label: "Love in Action",
-            href: "/community-service",
+            href: "/love-in-action",
             caption: "Show up. Serve well. Repeat.",
             icon: FaRegHeart,
           },
@@ -150,6 +150,12 @@ export const MOBILE_LINKS: MobileLinks[] = [
         caption: "Lift your voice, lift your spirit",
       },
       {
+        label: "Missions",
+        href: "/missions",
+        icon: Globe,
+        caption: "Hope and healing in Guatemala",
+      },
+      {
         label: "Baptism",
         href: "/baptism",
         icon: BsWater,
@@ -173,27 +179,10 @@ export const MOBILE_LINKS: MobileLinks[] = [
         caption: "Life is better together",
       },
       {
-        label: "Missions",
-        href: "/missions",
-        icon: Globe,
-        caption: "Hope and healing in Guatemala",
-      },
-      {
         label: "Love in Action",
-        href: "/community-service",
+        href: "/love-in-action",
         icon: FaRegHeart,
         caption: "Show up. Serve well. Repeat.",
-      },
-    ],
-  },
-  {
-    header: "Support the Mission",
-    subMenu: [
-      {
-        label: "Donate",
-        href: "/donate",
-        icon: BiDonateHeart,
-        caption: "Fuel kingdom work with your gift",
       },
     ],
   },
@@ -221,8 +210,14 @@ export const MOBILE_LINKS: MobileLinks[] = [
     ],
   },
   {
-    header: "More",
+    header: "Support & Store",
     subMenu: [
+      {
+        label: "Donate",
+        href: "/donate",
+        icon: BiDonateHeart,
+        caption: "Fuel kingdom work with your gift",
+      },
       {
         label: "Store",
         href: "https://biblebrowsing.com",
@@ -262,7 +257,7 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
     title: "Be the Church",
     links: [
       { name: "Fellowship", path: "/fellowship" },
-      { name: "Community Service", path: "/community-service" },
+      { name: "Love in Action", path: "/love-in-action" },
     ],
   },
   {

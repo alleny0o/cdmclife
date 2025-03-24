@@ -14,18 +14,11 @@ interface MobileMenuProps {
 }
 
 const menuVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 },
-  },
-  exit: { opacity: 0 },
+
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 8 },
+
 };
 
 const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
@@ -52,9 +45,6 @@ const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
                 {MOBILE_LINKS.map((section, sectionIndex) => (
                   <div key={sectionIndex} className="mb-10">
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.05 }}
                       className="border-l-2 border-dustyBlue pl-2 mb-4"
                     >
                       <p className="text-softWhite text-2xl uppercase tracking-widest font-light">{section.header}</p>

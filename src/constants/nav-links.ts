@@ -10,16 +10,18 @@ import { CiShop } from "react-icons/ci";
 import { FaSeedling } from "react-icons/fa";
 import { FaHandsHelping } from "react-icons/fa";
 
+export type SubMenu = {
+  icon?: IconType;
+  label: string;
+  caption?: string;
+  href: string;
+  external?: boolean;
+};
+
 
 export type SubLink = {
   header?: string;
-  subMenu?: {
-    icon?: IconType;
-    label: string;
-    caption?: string;
-    href: string;
-    external?: boolean;
-  }[];
+  subMenu?: SubMenu[];
 };
 
 export type Links = {

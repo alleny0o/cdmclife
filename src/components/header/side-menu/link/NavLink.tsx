@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 type NavLinkProps = {
   link: Links;
-  setIsActive: (isActive: boolean) => void;
+  setIsActive: () => void;
 };
 
 const NavLink = ({link, setIsActive}: NavLinkProps) => {
@@ -17,12 +17,12 @@ const NavLink = ({link, setIsActive}: NavLinkProps) => {
       <Link
         href={link.href ?? "/"}
         className={`
-          block font-medium lg:text-3xl text-2xl py-2
+          block font-medium text-base lg:text-lg py-2
           transition-colors duration-300
           relative group
           ${isActive ? "text-dustyBlue tracking-wider" : "text-softWhite"}
         `}
-        onClick={() => setIsActive(false)}
+        onClick={setIsActive}
       >
         {link.label.toUpperCase()}
         <span className={`

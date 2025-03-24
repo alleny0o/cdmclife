@@ -190,7 +190,7 @@ export const MOBILE_LINKS: MobileLinks[] = [
     header: "Support the Mission",
     subMenu: [
       {
-        label: "Giving",
+        label: "Donate",
         href: "/donate",
         icon: BiDonateHeart,
         caption: "Fuel kingdom work with your gift",

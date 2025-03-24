@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { FormData } from "../types/form-types";
 import formSchema from "../validation/form-zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { send } from "../actions/email";
+
+import { toast } from 'react-toastify';
 
 function ContactUsContent() {
   const form = useForm<FormData>({
@@ -23,8 +26,19 @@ function ContactUsContent() {
   const isSubmitting = form.formState.isSubmitting;
 
   const onSubmit = async (formData: FormData) => {
-    console.log("Form submitted", formData);
-  };
+    try {
+      const result = await send(formData);
+      if (result.error) {
+        toast.error("Hmm, something went wrong. Please try again or reach out in person.");
+      } else {
+        toast.success("Thank you for reaching out! We'll be in touch with you soon 🙏");
+        form.reset();
+      }
+    } catch (error) {
+      toast.error("Oops! There was a problem sending your message. Please try again.");
+      console.error("Form submission error:", error);
+    }
+  };  
 
   return (
     <Section className="min-h-screen">
@@ -34,7 +48,7 @@ function ContactUsContent() {
             {/* Contact Form Section */}
             <div className="bg-vintageNavy col-span-1 p-6">
               <H3 className="uppercase text-white">Contact Us</H3>
-              <form className="mt-4 space-y-4">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-y-4 gap-x-4">
                   {/* Full Name */}
                   <div className="space-y-2 col-span-1">
@@ -91,11 +105,8 @@ function ContactUsContent() {
                 {/* Submit Button */}
                 <button
                   className="w-full md:w-auto max-w-sm bg-white text-vintageNavy font-medium px-5 py-3 rounded-md text-sm sm:text-base hover:bg-opacity-90 transition-all shadow-md mx-auto block"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    form.handleSubmit(onSubmit)();
-                  }}
                   type="submit"
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </button>

@@ -1,15 +1,17 @@
-import { Home, Church, Globe } from "lucide-react";
-import { MoreHorizontal } from "lucide-react";
+// Imports
+import { Home, Church, Globe, MoreHorizontal } from "lucide-react";
 import { IconType } from "react-icons";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { IoCalendarNumber } from "react-icons/io5";
 import { GiThreeFriends, GiClover } from "react-icons/gi";
 import { RiContactsBook2Line } from "react-icons/ri";
 import { BiDonateHeart } from "react-icons/bi";
-import { CiShop } from "react-icons/ci";
-import { FaSeedling } from "react-icons/fa";
-import { FaHandsHelping } from "react-icons/fa";
+import { CiShop, CiGlobe } from "react-icons/ci";
+import { FaSeedling, FaHandsHelping, FaRegHeart } from "react-icons/fa";
+import { BsWater } from "react-icons/bs";
+import { LiaCrossSolid, LiaPeopleCarrySolid } from "react-icons/lia";
 
+// Types
 export type SubMenu = {
   icon?: IconType;
   label: string;
@@ -17,7 +19,6 @@ export type SubMenu = {
   href: string;
   external?: boolean;
 };
-
 
 export type SubLink = {
   header?: string;
@@ -34,64 +35,73 @@ export type Links = {
   subLinks?: SubLink[];
 };
 
+export type MobileLinks = {
+  header: string;
+  subMenu: SubMenu[];
+};
+
+// Desktop Navigation Links
 export const LINKS: Links[] = [
+  // Top-level nav
   { id: 1, label: "Home", href: "/", icon: Home },
   { id: 2, label: "About", href: "/about", icon: FaHandsHelping },
   { id: 3, label: "Worship", href: "/worship", icon: Church },
   { id: 4, label: "Missions", href: "/missions", icon: Globe },
+
+  // Dropdown
   {
     id: 5,
     label: "More",
     icon: MoreHorizontal,
     subLinks: [
       {
-        header: "Faith & Growth",
+        header: "Faith Journey",
         subMenu: [
-          {
-            label: "Fellowship",
-            href: "/fellowship",
-            caption: "Grow together in faith",
-            icon: GiThreeFriends,
-          },
           {
             label: "Mustard Seed",
             href: "/mustard-seed",
-            caption: "A tiny seed, a great kingdom",
+            caption: "Big faith starts small",
             icon: FaSeedling,
+          },
+          {
+            label: "Baptism",
+            href: "/baptism",
+            caption: "Public faith, personal renewal",
+            icon: BsWater,
           },
         ],
       },
       {
-        header: "Church Life & Updates",
+        header: "Be the Church",
+        subMenu: [
+          {
+            label: "Fellowship",
+            href: "/fellowship",
+            caption: "Life is better together",
+            icon: GiThreeFriends,
+          },
+          {
+            label: "Community Service",
+            href: "/community-service",
+            caption: "Show up. Serve well. Repeat.",
+            icon: GiClover,
+          },
+        ],
+      },
+      {
+        header: "Stay Connected",
         subMenu: [
           {
             label: "Announcements",
             href: "/announcements",
-            caption: "Latest news and updates",
+            caption: "What’s happening & how to join in",
             icon: TfiAnnouncement,
           },
           {
             label: "Schedule",
             href: "/schedule",
-            caption: "Upcoming events & services",
+            caption: "Services, events, and more",
             icon: IoCalendarNumber,
-          },
-        ],
-      },
-      {
-        header: "Service & Outreach",
-        subMenu: [
-          {
-            label: "Community Service",
-            href: "/community-service",
-            caption: "Make a difference",
-            icon: GiClover,
-          },
-          {
-            label: "Contact Us",
-            href: "/contact-us",
-            caption: "Reach out to us",
-            icon: RiContactsBook2Line,
           },
         ],
       },
@@ -99,17 +109,17 @@ export const LINKS: Links[] = [
         header: "Support & Store",
         subMenu: [
           {
-            label: "Store",
-            href: "https://biblebrowsing.com",
-            caption: "Christian clothes and gifts",
-            external: true,
-            icon: CiShop,
-          },
-          {
             label: "Donate",
             href: "/donate",
-            caption: "Support our mission",
+            caption: "Fuel kingdom work with your gift",
             icon: BiDonateHeart,
+          },
+          {
+            label: "Store",
+            href: "https://biblebrowsing.com",
+            external: true,
+            caption: "Faith-based gifts & apparel",
+            icon: CiShop,
           },
         ],
       },
@@ -117,7 +127,115 @@ export const LINKS: Links[] = [
   },
 ];
 
-// Updated footer nav links to match
+// Mobile Navigation Links
+export const MOBILE_LINKS: MobileLinks[] = [
+  {
+    header: "Walk With Us",
+    subMenu: [
+      {
+        label: "Home",
+        href: "/",
+        icon: Home,
+        caption: "Step into something greater",
+      },
+      {
+        label: "About",
+        href: "/about",
+        icon: FaHandsHelping,
+        caption: "Our story, our heart",
+      },
+      {
+        label: "Worship",
+        href: "/worship",
+        icon: LiaCrossSolid,
+        caption: "Lift your voice, lift your spirit",
+      },
+      {
+        label: "Baptism",
+        href: "/baptism",
+        icon: BsWater,
+        caption: "Public faith, personal renewal",
+      },
+      {
+        label: "Mustard Seed",
+        href: "/mustard-seed",
+        icon: FaSeedling,
+        caption: "Big faith starts small",
+      },
+    ],
+  },
+  {
+    header: "Be the Church",
+    subMenu: [
+      {
+        label: "Fellowship",
+        href: "/fellowship",
+        icon: LiaPeopleCarrySolid,
+        caption: "Life is better together",
+      },
+      {
+        label: "Missions",
+        href: "/missions",
+        icon: CiGlobe,
+        caption: "Hope and healing in Guatemala",
+      },
+      {
+        label: "Love in Action",
+        href: "/community-service",
+        icon: FaRegHeart,
+        caption: "Show up. Serve well. Repeat.",
+      },
+    ],
+  },
+  {
+    header: "Support the Mission",
+    subMenu: [
+      {
+        label: "Giving",
+        href: "/donate",
+        icon: BiDonateHeart,
+        caption: "Fuel kingdom work with your gift",
+      },
+    ],
+  },
+  {
+    header: "Stay Connected",
+    subMenu: [
+      {
+        label: "Announcements",
+        href: "/announcements",
+        icon: TfiAnnouncement,
+        caption: "Learn what's happening this week",
+      },
+      {
+        label: "Schedule",
+        href: "/schedule",
+        icon: IoCalendarNumber,
+        caption: "Full calendar of events",
+      },
+      {
+        label: "Contact Us",
+        href: "/contact-us",
+        icon: RiContactsBook2Line,
+        caption: "Reach out — we’re here for you",
+      },
+    ],
+  },
+  {
+    header: "More",
+    subMenu: [
+      {
+        label: "Store",
+        href: "https://biblebrowsing.com",
+        external: true,
+        icon: CiShop,
+        caption: "Faith-based gifts & apparel",
+      },
+    ],
+  },
+];
+
+// Footer Links (structured like main nav)
 interface NavLink {
   name: string;
   path: string;
@@ -135,31 +253,32 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
     ],
   },
   {
-    title: "Faith & Growth",
+    title: "Faith Journey",
     links: [
-      { name: "Fellowship", path: "/fellowship" },
+      { name: "Baptism", path: "/baptism" },
       { name: "Mustard Seed", path: "/mustard-seed" },
     ],
   },
   {
-    title: "Church Life & Updates",
+    title: "Be the Church",
     links: [
-      { name: "Announcements", path: "/announcements" },
-      { name: "Schedule", path: "/schedule" },
+      { name: "Fellowship", path: "/fellowship" },
+      { name: "Community Service", path: "/community-service" },
     ],
   },
   {
-    title: "Service & Outreach",
+    title: "Stay Connected",
     links: [
-      { name: "Community Service", path: "/community-service" },
+      { name: "Announcements", path: "/announcements" },
+      { name: "Schedule", path: "/schedule" },
       { name: "Contact Us", path: "/contact-us" },
     ],
   },
   {
     title: "Support & Store",
     links: [
-      { name: "Store", path: "https://biblebrowsing.com", external: true },
       { name: "Donate", path: "/donate" },
+      { name: "Store", path: "https://biblebrowsing.com", external: true },
     ],
   },
 ];

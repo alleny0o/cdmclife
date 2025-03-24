@@ -1,45 +1,32 @@
 "use client";
-import { type FC, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import NavLink from "./link/NavLink";
-import DropdownLink from "./link/DropdownLink";
-import { LINKS } from "@/constants/nav-links";
+
+import { FC } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { MOBILE_LINKS } from "@/constants/nav-links";
 import styles from "./MobileMenu.module.scss";
+import Link from "next/link";
 
 interface MobileMenuProps {
   isActive: boolean;
   setIsActive: () => void;
 }
 
+const menuVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.05 }
+  },
+  exit: { opacity: 0 }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 8 }
+};
+
 const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
-  const [openSection, setOpenSection] = useState<string | null>(null);
-  const primaryLinks = LINKS.filter(link => !link.subLinks);
-  const moreLink = LINKS.find(link => link.label === "More");
-
-  // Handle section toggle - only allow one open section at a time
-  const handleSectionToggle = (sectionHeader: string) => {
-    if (openSection === sectionHeader) {
-      setOpenSection(null);
-    } else {
-      setOpenSection(sectionHeader);
-    }
-  };
-
-  const menuVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.05 }
-    },
-    exit: { opacity: 0 }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 8 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: 8 }
-  };
-
   return (
     <div className="relative mobile-menu">
       <button 
@@ -59,75 +46,63 @@ const MobileMenu: FC<MobileMenuProps> = ({ isActive, setIsActive }) => {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 w-full h-screen bg-deepBlack overflow-y-auto z-[100]"
           >
-            <div className="min-h-screen py-28 px-4 sm:px-6">
-              <div className="max-w-sm mx-auto">
-                {/* Main Navigation section */}
-                <div className="border-l-2 border-dustyBlue pl-2 mb-4">
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-softWhite text-2xl uppercase tracking-widest mb-0 font-light"
-                  >
-                    Main Navigation
-                  </motion.p>
-                </div>
-                
-                {/* Regular links */}
-                <motion.div 
-                  className="space-y-0.5 mb-14"
-                  variants={menuVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                >
-                  {primaryLinks.map((link, index) => (
+            <div className="min-h-screen pt-32 pb-24 px-4 sm:px-6">
+              <div className="max-w-md mx-auto">
+
+                {MOBILE_LINKS.map((section, sectionIndex) => (
+                  <div key={sectionIndex} className="mb-10">
                     <motion.div
-                      key={index}
-                      variants={itemVariants}
-                      transition={{ duration: 0.25 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.05 }}
+                      className="border-l-2 border-dustyBlue pl-2 mb-4"
                     >
-                      <NavLink link={link} setIsActive={setIsActive} />
+                      <p className="text-softWhite text-2xl uppercase tracking-widest font-light">
+                        {section.header}
+                      </p>
                     </motion.div>
-                  ))}
-                </motion.div>
-                
-                {/* More section */}
-                {(moreLink?.subLinks ?? []).length > 0 && (
-                  <>
-                    <div className="border-l-2 border-vintageCream pl-2 mb-4">
-                      <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.15 }}
-                        className="text-softWhite text-2xl uppercase tracking-widest mb-0 font-light"
-                      >
-                        More
-                      </motion.p>
-                    </div>
-                    <motion.div 
-                      className="space-y-0.5"
+
+                    <motion.div
                       variants={menuVariants}
                       initial="hidden"
                       animate="visible"
                       exit="exit"
+                      className="space-y-3"
                     >
-                      {moreLink?.subLinks?.map((section, index) => (
+                      {section.subMenu.map((item, itemIndex) => (
                         <motion.div
-                          key={`section-${index}`}
+                          key={itemIndex}
                           variants={itemVariants}
-                          transition={{ duration: 0.25, delay: 0.15 + (index * 0.05) }}
+                          transition={{ duration: 0.25, delay: itemIndex * 0.03 }}
+                          className="hover:bg-white hover:bg-opacity-10 px-2 py-1.5 rounded-md"
                         >
-                          <DropdownLink 
-                            header={section.header || ""} 
-                            subMenu={section.subMenu || []}
-                            isOpen={openSection === section.header}
-                            onToggle={() => handleSectionToggle(section.header || "")}
-                          />
+                          <Link
+                            href={item.href}
+                            target={item.external ? "_blank" : "_self"}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                            onClick={setIsActive}
+                            className="flex items-center space-x-4 text-left text-softWhite transition"
+                          >
+                            {item.icon && (
+                              <span className="text-xl">
+                                <item.icon />
+                              </span>
+                            )}
+                            <span className="flex flex-col">
+                              <span className="text-base font-medium">{item.label}</span>
+                              {item.caption && (
+                                <span className="text-sm font-light text-gray-400">
+                                  {item.caption}
+                                </span>
+                              )}
+                            </span>
+                          </Link>
                         </motion.div>
                       ))}
                     </motion.div>
-                  </>
-                )}
+                  </div>
+                ))}
+
               </div>
             </div>
           </motion.div>

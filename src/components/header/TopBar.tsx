@@ -12,10 +12,14 @@ export const TopBar = () => {
     <div className="block w-full h-full border-b-[1px] border-white/10">
       <div className="grid w-full grid-cols-12 px-2 max-w-7xl mx-auto">
         <div className="flex items-center gap-x-1 col-span-9">
-          <MdLocationPin className="text-lg text-softWhite" />
-          <span className="sm:text-sm text-[11px] text-softWhite">
+          <Link
+            href="https://www.google.com/maps/dir//12811+Glen+Rd,+Gaithersburg,+MD+20878/@39.070793,-77.3474369,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89b633ca225da1d1:0xe546426bf399fd2e!2m2!1d-77.265036!2d39.070822?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            className="text-white text-[11px] sm:text-sm font-light transition-all duration-200 hover:opacity-75 active:opacity-50 hover:underline hover:underline-offset-2 hover:decoration-vintageCream/50 inline-flex items-center gap-1"
+          >
+            <MdLocationPin className="text-lg text-softWhite" />
             12811 Glen Rd, Gaithersburg, MD 20878
-          </span>
+          </Link>
         </div>
         <div className="flex justify-end items-center col-span-3">
           <div className="inline-block">

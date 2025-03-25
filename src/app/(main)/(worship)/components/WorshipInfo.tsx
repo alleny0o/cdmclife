@@ -29,7 +29,7 @@ function WorshipInfo() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--faded-blue)]/10 rounded-bl-full -z-10 transition-all duration-300 group-hover:bg-[var(--faded-blue)]/20"></div>
               
               <H3 className="!font-semibold flex items-center gap-2">
-                English Ministry
+                English Worship Service
               </H3>
               
               <div className="mt-6 flex items-center gap-2 text-[var(--muted-blue)]">
@@ -47,7 +47,7 @@ function WorshipInfo() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--faded-blue)]/10 rounded-bl-full -z-10 transition-all duration-300 group-hover:bg-[var(--faded-blue)]/20"></div>
               
               <H3 className="!font-semibold flex items-center gap-2">
-                Korean Ministry
+                Korean Worship Service
               </H3>
               
               <div className="mt-6 flex items-center gap-2 text-[var(--muted-blue)]">

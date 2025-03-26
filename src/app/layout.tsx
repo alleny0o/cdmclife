@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     template: "%s | Christ Disciple Mission Church",
   },
   description:
-    "Christ Disciple Mission Church – Growing in faith like a mustard seed, spreading Christ’s love through worship, discipleship, and service.",
+    "Love and Love, Again and Again.",
   openGraph: {
     title: "Christ Disciple Mission Church",
-    description: "Growing in faith like a mustard seed.",
+    description: "Love and Love, Again and Again",
     images: [
       {
         url: "/open-graph/cdmc-opengraph.png",
@@ -48,6 +48,31 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "Christ Disciple Mission Church",
+    "CDMC",
+    "church in Gaithersburg MD",
+    "Christian church Maryland",
+    "Bible study Gaithersburg",
+    "family church in Gaithersburg",
+    "non-denominational church near me",
+    "Sunday worship Montgomery County",
+    "Christian youth group Gaithersburg",
+    "church near 20878",
+    "faith community Glen Road",
+    "Christian fellowship Gaithersburg",
+    "church near Darnestown MD",
+    "join a church in Maryland",
+    "worship service Gaithersburg",
+    "mission church in Maryland",
+    "Bible-believing church near Potomac MD",
+    "faith gathering Gaithersburg",
+    "Sunday sermon near Gaithersburg",
+    "churches welcoming new members"
+  ],  
 };
 
 export default function RootLayout({

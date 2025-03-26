@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     template: "%s | Christ Disciple Mission Church",
   },
   description:
-    "Love and Love, Again and Again.",
+    "Love and Love, Again and Again: A Mustard Seed Faith.",
   openGraph: {
     title: "Christ Disciple Mission Church",
-    description: "Love and Love, Again and Again",
+    description: "Love and Love, Again and Again: A Mustard Seed Faith.",
     images: [
       {
         url: "/open-graph/cdmc-opengraph.png",

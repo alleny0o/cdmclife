@@ -108,9 +108,9 @@ export const LINKS: Links[] = [
         header: "Support & Store",
         subMenu: [
           {
-            label: "Donate",
-            href: "/donate",
-            caption: "Support the mission with love",
+            label: "Giving",
+            href: "/giving",
+            caption: "Support our Church",
             icon: BiDonateHeart,
           },
           {
@@ -207,10 +207,10 @@ export const MOBILE_LINKS: MobileLinks[] = [
     header: "Support & Store",
     subMenu: [
       {
-        label: "Donate",
-        href: "/donate",
+        label: "Giving",
+        href: "/giving",
         icon: BiDonateHeart,
-        caption: "Support the mission with love",
+        caption: "Support our Church",
       },
       {
         label: "Store",
@@ -264,7 +264,7 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
   {
     title: "Support & Store",
     links: [
-      { name: "Donate", path: "/donate" },
+      { name: "Giving", path: "/giving" },
       { name: "Store", path: "https://biblebrowsing.com", external: true },
     ],
   },

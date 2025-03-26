@@ -9,6 +9,10 @@ import { Hero as HeroType } from "@/sanity/lib/interface";
 export const metadata: Metadata = {
   title: "Missions",
   description: "Hope and healing in Guatemala \uD83C\uDF0D",
+  openGraph: {
+    title: "Missions",
+    description: "Hope and healing in Guatemala \uD83C\uDF0D",
+  },
 };
 
 // fetch hero data from sanity

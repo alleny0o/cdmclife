@@ -8,6 +8,10 @@ import { Hero as HeroType } from "@/sanity/lib/interface";
 export const metadata: Metadata = {
   title: "Worship",
   description: "Hearts united, Spirits lifted \uD83D\uDE4C",
+  openGraph: {
+    title: "Worship",
+    description: "Hearts united, Spirits lifted \uD83D\uDE4C",
+  },
 };
 
 async function getData() {

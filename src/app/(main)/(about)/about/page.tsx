@@ -11,6 +11,10 @@ import { Hero as HeroType } from "@/sanity/lib/interface";
 export const metadata: Metadata = {
   title: "About",
   description: "Our Story, our Hearts \uD83D\uDCD6\u2764\uFE0F",
+  openGraph: {
+    title: "About",
+    description: "Our Story, our Hearts \uD83D\uDCD6\u2764\uFE0F",
+  },
 };
 
 // fetch hero data from sanity

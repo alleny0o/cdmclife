@@ -37,7 +37,10 @@ export const metadata: Metadata = {
   description:
     "Fall in Love, Again and Again \u2764\uFE0F\u200D\uD83D\uDD25",
   openGraph: {
-    title: "Christ Disciple Mission Church",
+    title: {
+      default: "Christ Disciple Mission Church",
+      template: "%s | Christ Disciple Mission Church",
+    },
     description: "Fall in Love, Again and Again \u2764\uFE0F\u200D\uD83D\uDD25",
     images: [
       {

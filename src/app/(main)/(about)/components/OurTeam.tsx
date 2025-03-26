@@ -6,20 +6,20 @@ import Link from "next/link";
 
 async function getData(): Promise<TeamMember[]> {
   const query = `*[_type == "ourTeam"] {
-    "team": team[] {
-      "_id": _key,
+      _id,
       name,
+      "slug": slug.current,
       role,
       "imageURL": image.asset->url,
-      socialMedia,
-      "slug": bio.slug.current,
-      "description": bio.description[]{
+      "description": description[]{
           "text": children[].text
-      }
-    }
-  }[0].team`;
+      },
+      order,
+  }`;
 
   const data: TeamMember[] = await client.fetch(query, {}, { next: { revalidate: 30 } });
+
+  data.sort((a: TeamMember, b: TeamMember) => a.order - b.order);
 
   return data || [];
 }
@@ -39,7 +39,7 @@ async function OurTeam() {
           </div>
         </div>
         <div className="sm:max-w-7xl max-w-[80%] mx-auto">
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 md:gap-16">
             {team?.map((member) => (
               <div
                 key={member._id}

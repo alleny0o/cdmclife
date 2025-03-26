@@ -1,4 +1,3 @@
-import ButtonLink from "@/components/ButtonLink";
 import { Container, Section } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
 import { client } from "@/sanity/lib/client";
@@ -13,7 +12,6 @@ async function getData() {
     title,
     description,
     "imageURL": image.asset->url,
-    link,
     order,
   }`;
 
@@ -34,13 +32,6 @@ const ContentBox: React.FC<ContentBoxProps> = ({ item, extraClasses = "" }) => {
       <h1 className="text-2xl font-semibold text-[#1E293B] mb-2">{item.year}</h1>
       <h3 className="text-lg font-medium text-[#475569] mb-3">{item.title}</h3>
       <p className="text-base text-[#64748B] leading-relaxed">{item.description}</p>
-      <ButtonLink
-        href={item.link}
-        target="_blank"
-        className="mt-4 inline-block px-4 py-2 rounded-md text-sm font-medium transition"
-      >
-        More Details
-      </ButtonLink>
     </div>
   );
 };

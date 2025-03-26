@@ -7,25 +7,22 @@ import Bio from "./components/Bio";
 
 // fetch person based on slug
 async function getData(slug: string) {
-    const query = `*[_type == "ourTeam"][0].team[]{
-        _id,
-        name,
-        role,
-        "imageURL": image.asset->url,
-        socialMedia,
-        "slug": bio.slug.current,
-        "description": bio.description[]{
-          "text": children[].text
-        }
-      }`;      
-  
-    const team = await client.fetch(query, {}, { next: { revalidate: 30 } });
-  
-    // Find the member in JS
-    const member = team.find((member: TeamMember) => member.slug === slug);
-  
-    return member as TeamMember | undefined;
-  }
+  const query = `*[_type == "ourTeam" && slug.current == $slug][0] {
+    _id,
+    name,
+    "slug": slug.current,
+    role,
+    "imageURL": image.asset->url,
+    "description": description[]{
+        "text": children[].text
+    },
+    order
+  }`;      
+
+  const member: TeamMember | null = await client.fetch(query, { slug }, { next: { revalidate: 30 } });
+
+  return member ?? undefined;
+};
   
 
 // 👇 Dynamic metadata generator

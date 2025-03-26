@@ -8,7 +8,7 @@ import { missionsHeroType } from './missions-hero'
 import { highlightsType } from './highlights'
 import { sermonsType } from './sermons'
 import { galleryType } from './gallery'
-import {ourTeamType } from './leadership-team'
+import {ourTeamType } from './our-team'
 import { missionsType } from './missions'
 import { announcementsType } from './announcements'
 

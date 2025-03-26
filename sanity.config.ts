@@ -13,6 +13,8 @@ import { apiVersion } from './src/sanity/env'
 import {schema} from './src/sanity/schemaTypes'
 import {structure} from './src/sanity/structure'
 
+const schemaTypes = ['homeHero', 'aboutHero', 'worshipHero', 'missionsHero', 'announcements'];
+
 export default defineConfig({
   basePath: '/studio',
   projectId: '4lgit6r7',
@@ -25,4 +27,11 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
   ],
+  document: {
+    actions: (prev, { schemaType }) => {
+      if (schemaTypes.includes(schemaType)) {
+        return prev.filter(({ action }) => action && !['unpublish', 'delete', 'duplicate'].includes(action))}
+      return prev
+    },
+  },
 })

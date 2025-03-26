@@ -37,12 +37,6 @@ export const missionsType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: "link",
-            title: "Link",
-            type: "url",
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
             name: "order",
             title: "Order",
             type: "number",

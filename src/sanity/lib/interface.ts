@@ -31,7 +31,6 @@ export interface PastMission {
     title: string;
     description: string;
     imageURL: string;
-    link: string;
     order: number;
 };
 
@@ -64,17 +63,11 @@ export interface Hero {
 export interface TeamMember {
     _id: string;
     name: string;
+    slug: string;
     role: string;
     imageURL: string;
-    socialMedia: {
-        facebook?: string;
-        instagram?: string;
-        twitter?: string;
-        linkedin?: string;
-    };
-
-        slug: string;
-        description: {
-            text: string;
-        }[];
+    description: {
+        text: string;
+    }[];
+    order: number;
 };

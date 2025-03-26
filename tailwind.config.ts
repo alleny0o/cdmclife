@@ -45,6 +45,9 @@ export default {
       fontFamily: {
         handlee: ["var(--font-handlee)", "cursive"],
       },
+      screens: {
+        xs: '400px',
+      },
     },
   },
   plugins: [

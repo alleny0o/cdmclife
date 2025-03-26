@@ -24,7 +24,7 @@ export const missionsHeroType = defineType({
             name: "opacity",
             title: "Background Opacity",
             type: "number",
-            description: "Set the opacity of the background image (0 to 100). Leave blank for default.",
+            description: "Set the opacity of the background image (0 to 100). Leave blank for default which is 60.",
             validation: (Rule) =>
                 Rule.min(0)
                     .max(100)

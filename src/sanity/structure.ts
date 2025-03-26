@@ -18,12 +18,7 @@ export const structure: StructureResolver = (S) =>
       .schemaType("aboutHero")
       .child(S.document().schemaType("aboutHero").documentId("about-hero")),
 
-      S.listItem()
-        .title("About - Our Team")
-        .schemaType("ourTeam")
-        .child(
-          S.document().schemaType("ourTeam").documentId("our-team")
-        ),
+      S.documentTypeListItem("ourTeam"),
 
       S.listItem()
         .title("Worship - Hero")
@@ -39,6 +34,7 @@ export const structure: StructureResolver = (S) =>
 
       S.listItem()
         .title("Announcements - Weekly Announcements")
+        .schemaType("announcements")
         .child(
           S.document()
             .schemaType("announcements")

@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     template: "%s | Christ Disciple Mission Church",
   },
   description:
-    "Love and Love, Again and Again: A Mustard Seed Faith.",
+    "Fall in Love, Again and Again \u2764\uFE0F\u200D\uD83D\uDD25",
   openGraph: {
     title: "Christ Disciple Mission Church",
-    description: "Love and Love, Again and Again: A Mustard Seed Faith.",
+    description: "Fall in Love, Again and Again \u2764\uFE0F\u200D\uD83D\uDD25",
     images: [
       {
         url: "/open-graph/cdmc-opengraph.png",
@@ -73,6 +73,9 @@ export const metadata: Metadata = {
     "Sunday sermon near Gaithersburg",
     "churches welcoming new members"
   ],  
+  other: {
+    "robots": "max-image-preview:none",
+  }
 };
 
 export default function RootLayout({

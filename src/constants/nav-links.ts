@@ -135,7 +135,7 @@ export const MOBILE_LINKS: MobileLinks[] = [
         label: "Home",
         href: "/",
         icon: Church,
-        caption: "Step into something greater",
+        caption: "Embrace grace, find community",
       },
       {
         label: "About",
@@ -147,7 +147,7 @@ export const MOBILE_LINKS: MobileLinks[] = [
         label: "Worship",
         href: "/worship",
         icon: LiaCrossSolid,
-        caption: "Lift your voice, lift your spirit",
+        caption: "Hearts united, spirits lifted",
       },
       {
         label: "Missions",

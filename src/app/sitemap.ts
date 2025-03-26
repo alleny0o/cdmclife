@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
@@ -9,15 +9,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 1,
         },
         {
-            url: `${baseUrl}/about`,
+            url: `${baseUrl}about`,
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/worship`,
+            url: `${baseUrl}worship`,
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/missions`,
+            url: `${baseUrl}missions`,
             priority: 0.7,
         },
     ];

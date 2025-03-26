@@ -73,8 +73,8 @@ export const metadata: Metadata = {
     "Sunday sermon near Gaithersburg",
     "churches welcoming new members"
   ],  
-  other: {
-    "robots": "max-image-preview:none",
+  robots: {
+    "max-image-preview": "none",
   }
 };
 

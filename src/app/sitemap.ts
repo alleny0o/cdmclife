@@ -20,5 +20,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${baseUrl}missions`,
             priority: 0.7,
         },
+        {
+            url: `${baseUrl}mustard-seed`,
+            priority: 0.6,
+        },
     ];
 };

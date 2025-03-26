@@ -12,7 +12,7 @@ function NotFound() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center text-gray-100 p-4">
       <div className="text-center space-y-8">
-        <div className="relative h-[100px] w-[225px] sm:h-[125px] sm:w-[285px] md:h-[160px] md:w-[365px] mx-auto mb-10">
+        <div className="relative h-[125px] w-[250px] sm:h-[150px] sm:w-[300px] md:h-[200px] md:w-[400px] mx-auto mb-10">
           <Image
             src="/open-graph/cdmc-opengraph.png"
             alt="CDMC"

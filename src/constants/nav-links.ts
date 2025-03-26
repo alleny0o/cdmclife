@@ -93,13 +93,13 @@ export const LINKS: Links[] = [
           {
             label: "Announcements",
             href: "/announcements",
-            caption: "What’s happening & how to join in",
+            caption: "Weekly updates & news",
             icon: TfiAnnouncement,
           },
           {
-            label: "Schedule",
-            href: "/schedule",
-            caption: "Services, events, and more",
+            label: "Contact Us",
+            href: "/contact-us",
+            caption: "Questions, prayer, connection",
             icon: IoCalendarNumber,
           },
         ],
@@ -110,7 +110,7 @@ export const LINKS: Links[] = [
           {
             label: "Donate",
             href: "/donate",
-            caption: "Fuel kingdom work with your gift",
+            caption: "Support the mission with love",
             icon: BiDonateHeart,
           },
           {
@@ -193,19 +193,13 @@ export const MOBILE_LINKS: MobileLinks[] = [
         label: "Announcements",
         href: "/announcements",
         icon: TfiAnnouncement,
-        caption: "Learn what's happening this week",
-      },
-      {
-        label: "Schedule",
-        href: "/schedule",
-        icon: IoCalendarNumber,
-        caption: "Full calendar of events",
+        caption: "Weekly updates & news",
       },
       {
         label: "Contact Us",
         href: "/contact-us",
         icon: RiContactsBook2Line,
-        caption: "Reach out — we’re here for you",
+        caption: "Questions, prayer, connection",
       },
     ],
   },
@@ -216,7 +210,7 @@ export const MOBILE_LINKS: MobileLinks[] = [
         label: "Donate",
         href: "/donate",
         icon: BiDonateHeart,
-        caption: "Fuel kingdom work with your gift",
+        caption: "Support the mission with love",
       },
       {
         label: "Store",
@@ -264,7 +258,6 @@ export const FOOTER_LINKS: { title: string; links: NavLink[] }[] = [
     title: "Stay Connected",
     links: [
       { name: "Announcements", path: "/announcements" },
-      { name: "Schedule", path: "/schedule" },
       { name: "Contact Us", path: "/contact-us" },
     ],
   },

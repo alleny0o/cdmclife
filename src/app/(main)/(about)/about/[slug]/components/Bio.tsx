@@ -21,7 +21,7 @@ function Bio({ member }: BioProps) {
               <p className="text-xl lg:text-2xl text-stone-600 mt-1">{member.role}</p>
             </div>
 
-            <div className="mt-4 sm:mt-6 space-y-3">
+            <div className="mt-6 space-y-6">
               {member.description?.map((paragraph, idx) => (
                 <P className="!text-lg font-light leading-relaxed text-deepGray tracking-wide" key={idx}>
                   {paragraph.text}
@@ -47,7 +47,7 @@ function Bio({ member }: BioProps) {
               <p className="text-xl lg:text-2xl text-stone-600 mt-1">{member.role}</p>
             </div>
 
-            <div className="space-y-4">
+            <div className="mt-2 space-y-6">
               {member.description?.map((paragraph, idx) => (
                 <P className="!text-lg font-light leading-relaxed text-deepGray tracking-wide" key={idx}>
                   {paragraph.text}

@@ -35,8 +35,8 @@ async function Highlights() {
         {/* Enhanced Header with decorative elements */}
         <div className="mb-16 text-left relative">
           <ItalicsP className="text-dustyBlue tracking-wide">Welcome to</ItalicsP>
-          <H2 className="mt-1 text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
-            Christ Disciple Mission Church
+          <H2 className="mt-1 text-3xl sm:text-4xl md:text-5xl font-light tracking-tight">
+            Christ Disciple <span className="!font-medium">Mission Church</span>
           </H2>
           <P className="mt-4 text-lg text-deepBlack/80 max-w-xl font-light tracking-wide">
             Fall In Love, Again and Again.

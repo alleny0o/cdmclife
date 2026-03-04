@@ -6,7 +6,6 @@ import Link from "next/link";
 import React, { useEffect, useCallback, useMemo } from "react";
 import { useMegaMenu } from "../context/MegaMenuContext";
 import { usePathname } from "next/navigation";
-import { isTransparentPath } from "../Header";
 
 type MegaMenuProps = {
   activeMegaMenu: Links["id"] | null;
@@ -14,10 +13,9 @@ type MegaMenuProps = {
 };
 
 function MegaMenu(input: MegaMenuProps) {
+  const { megaMenuColor, setMegaMenuColor, isTransparent } = useMegaMenu();
   const pathname = usePathname();
-  const { megaMenuColor, setMegaMenuColor } = useMegaMenu();
   const activeMenu = input.activeMegaMenu !== null ? LINKS[input.activeMegaMenu - 1] : null;
-  const isTransparent = isTransparentPath(pathname);
 
   // Memoize scroll handler for better performance
   const handleScroll = useCallback(() => {

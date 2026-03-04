@@ -1,34 +1,10 @@
 import { H2 } from "@/components/text/H2";
-import TabLayout from "./layouts/TabLayout";
-import { client } from "@/sanity/lib/client";
-import { TeamMember } from "@/sanity/lib/interface";
+import { OurTeamBlock } from "@/sanity/lib/interface";
 import Link from "next/link";
 
-async function getData(): Promise<TeamMember[]> {
-  const query = `*[_type == "ourTeam"] {
-      _id,
-      name,
-      "slug": slug.current,
-      role,
-      "imageURL": image.asset->url,
-      "description": description[]{
-          "text": children[].text
-      },
-      order,
-  }`;
-
-  const data: TeamMember[] = await client.fetch(query, {}, { next: { revalidate: 30 } });
-
-  data.sort((a: TeamMember, b: TeamMember) => a.order - b.order);
-
-  return data || [];
-}
-
-async function OurTeam() {
-  const team = await getData();
-
+function OurTeam({ block }: { block: OurTeamBlock }) {
   return (
-    <TabLayout>
+    <section className="min-h-screen lg:px-0">
       <div className="w-full pt-16 pb-20 relative">
         <div className="max-w-7xl mx-auto">
           <div className="relative mb-12">
@@ -40,11 +16,8 @@ async function OurTeam() {
         </div>
         <div className="sm:max-w-7xl max-w-[80%] mx-auto">
           <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 md:gap-16">
-            {team?.map((member) => (
-              <div
-                key={member._id}
-                className="group"
-              >
+            {block.members?.map((member) => (
+              <div key={member._key} className="group">
                 <div className="rounded-sm overflow-hidden shadow-md mb-3">
                   <img
                     src={member.imageURL}
@@ -52,15 +25,9 @@ async function OurTeam() {
                     className="w-full object-cover aspect-[3/4] rounded-sm"
                   />
                 </div>
-                
                 <div className="text-left px-1">
-                  <h3 className="text-gray-800 text-2xl font-medium">
-                    {member.name}
-                  </h3>
-                  <p className="text-gray-500 text-base mb-2">
-                    {member.role}
-                  </p>
-
+                  <h3 className="text-gray-800 text-2xl font-medium">{member.name}</h3>
+                  <p className="text-gray-500 text-base mb-2">{member.role}</p>
                   {member.slug && (
                     <Link
                       href={`/about/${member.slug}`}
@@ -75,7 +42,7 @@ async function OurTeam() {
           </div>
         </div>
       </div>
-    </TabLayout>
+    </section>
   );
 }
 

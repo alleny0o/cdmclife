@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.1",
+    "@portabletext/react": "^6.0.2",
     "@react-email/components": "^0.0.34",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.77.2",

@@ -1,26 +1,29 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-// Define the context type
 type MegaMenuContextType = {
   megaMenuColor: "clear" | "white";
   setMegaMenuColor: (color: "clear" | "white") => void;
+  isTransparent: boolean;
 };
 
-// Create the context with a default value
 const MegaMenuContext = createContext<MegaMenuContextType | undefined>(undefined);
 
-// Create a provider component
-export const MegaMenuProvider = ({ children }: { children: ReactNode }) => {
+export const MegaMenuProvider = ({
+  children,
+  isTransparent = false,
+}: {
+  children: ReactNode;
+  isTransparent?: boolean;
+}) => {
   const [megaMenuColor, setMegaMenuColor] = useState<"clear" | "white">("clear");
 
   return (
-    <MegaMenuContext.Provider value={{ megaMenuColor, setMegaMenuColor }}>
+    <MegaMenuContext.Provider value={{ megaMenuColor, setMegaMenuColor, isTransparent }}>
       {children}
     </MegaMenuContext.Provider>
   );
 };
 
-// Custom hook for consuming the context
 export const useMegaMenu = () => {
   const context = useContext(MegaMenuContext);
   if (!context) {

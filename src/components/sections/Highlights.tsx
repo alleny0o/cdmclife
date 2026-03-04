@@ -5,30 +5,10 @@ import { H2 } from "@/components/text/H2";
 import { H3 } from "@/components/text/H3";
 import { P } from "@/components/text/P";
 import { ItalicsP } from "@/components/text/ItalicsP";
-import { client } from "@/sanity/lib/client";
-import { HighlightsCard } from "@/sanity/lib/interface";
+import { HighlightsBlock } from "@/sanity/lib/interface";
 import ButtonLink from "@/components/ButtonLink";
 
-async function getData() {
-  const query = `*[_type == 'highlights'] {
-      _id,
-      title,
-      description,
-      "imageURL": image.asset->url,
-      tags,
-      href,
-      order,
-  }`;
-
-  const highlights = await client.fetch(query, {}, { next: { revalidate: 30 }});
-
-  return highlights;
-};
-
-async function Highlights() {
-  const data: HighlightsCard[] = await getData();
-  const highlights = data.sort((a, b) => a.order - b.order);
-
+function Highlights({ block }: { block: HighlightsBlock }) {
   return (
     <Section className="min-h-full pt-12 pb-20 sm:px-6">
       <Container className="max-w-7xl">
@@ -46,11 +26,11 @@ async function Highlights() {
 
         {/* Refined Articles List */}
         <div>
-          {highlights.map((highlight, index) => (
+          {(block.highlights ?? []).map((highlight, index) => (
             <article
-              key={highlight._id}
+              key={highlight._key}
               className={`grid grid-cols-1 items-center gap-x-16 gap-y-8 border-t border-border-primary py-12 sm:grid-cols-2 sm:gap-y-0 lg:gap-x-20 lg:py-16 ${
-                index === highlights.length - 1 ? "border-b" : ""
+                index === (block.highlights ?? []).length - 1 ? "border-b" : ""
               }`}
             >
               <div className="order-2 sm:order-1">
@@ -71,7 +51,7 @@ async function Highlights() {
                 </ul>
                 <ButtonLink href={highlight.href}>Learn More</ButtonLink>
               </div>
-              
+
               <div className="relative w-full h-0 pb-[65%] order-1 sm:order-2 overflow-hidden rounded-lg shadow-md">
                 <div className="absolute inset-0 group">
                   <div className="absolute inset-0 bg-gradient-to-t from-deepBlack/20 to-transparent z-10"></div>

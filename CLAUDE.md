@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+- In all interactions and commit messages, be extremely concise and sacrifice grammar for the sake of concision.
+
 ## Commands
 
 ```bash
@@ -17,54 +19,58 @@ There are no automated tests in this project.
 
 This is the official website for **Christ Disciple Mission Church** (cdmclife.org), built with **Next.js 15 App Router** + **TypeScript** + **Tailwind CSS**, with **Sanity.io** as the headless CMS.
 
-### Routing Structure
+### Page Builder Architecture (Current)
 
-The app uses Next.js route groups to organize pages:
+All pages are driven by a `page` document type in Sanity. Pages are composed of typed section blocks, rendered via `src/components/sections/SectionRenderer.tsx`.
 
-- `src/app/(main)/` — Public-facing site (wraps all pages with `Header`, `Footer`, `ToastProvider`)
-  - `(home)/` → `/`
-  - `(about)/about/` → `/about` and `/about/[slug]` (staff bio pages)
-  - `(worship)/worship/` → `/worship`
-  - `(missions)/missions/` → `/missions`
-  - `(x-more)/(announcements)/announcements/` → `/announcements`
-  - `(x-more)/(contact-us)/contact-us/` → `/contact-us`
-  - `(x-more)/(mustard-seed)/mustard-seed/` → `/mustard-seed`
-- `src/app/studio/[[...tool]]/` — Sanity Studio embedded at `/studio`
+- **Homepage**: `*[_type == "page" && isHomePage == true][0]` — rendered at `src/app/(main)/(home)/page.tsx`
+- **All other pages**: `*[_type == "page" && slug.current == $slug][0]` — rendered at `src/app/(main)/[slug]/page.tsx`
 
-Each page section has its own `components/` folder co-located within its route group.
+Available section block types (all defined in `src/sanity/schemaTypes/section-blocks.ts`):
+`heroBlock`, `highlightsBlock`, `sermonsBlock`, `galleryBlock`, `ourTeamBlock`, `missionsBlock`, `announcementsBlock`, `tabsBlock`, `worshipInfoBlock`, `contactFormBlock`
+
+To add a new section type: define it in `section-blocks.ts`, add the type to `page.ts`'s `sections` array, create a component in `src/components/sections/`, and add a case to `SectionRenderer`.
 
 ### Sanity CMS Integration
 
-**Data fetching**: Pages fetch data server-side using GROQ queries via `src/sanity/lib/client.ts`. Revalidation is set per-query (typically `{ next: { revalidate: 30 } }`).
+**Data fetching**: GROQ queries via `src/sanity/lib/client.ts`. Revalidation typically `{ next: { revalidate: 30 } }`.
 
 **Schema types** (`src/sanity/schemaTypes/`):
-- `homeHero`, `aboutHero`, `worshipHero`, `missionsHero` — singleton hero documents (one per page)
-- `highlights`, `sermons`, `gallery`, `ourTeam`, `missions` — multi-document collections
-- `announcements` — singleton for weekly church events
+- `page.ts` — the page builder document; each page has `title`, `slug`, `isHomePage`, `transparentHeader`, `seo`, and `sections[]`
+- `section-blocks.ts` — all block types used in `page.sections[]`
+- `site-settings.ts` — singleton for global site name/SEO defaults
 
-**Interfaces** for Sanity data are defined in `src/sanity/lib/interface.ts`.
+**Interfaces** for Sanity data: `src/sanity/lib/interface.ts`. `PageSection` is a union type of all block interfaces. Legacy collection interfaces (pre-page-builder) are still present but largely unused.
 
-**Studio config** (`sanity.config.ts`): The studio is mounted at `/studio`. Singleton documents (hero types + announcements) have `unpublish`, `delete`, and `duplicate` actions disabled.
+**GROQ image projection**: always use `"imageURL": image.asset->url` in queries — do NOT use `urlFor()` from `image.ts` in page GROQ queries.
 
-**Live preview**: `src/sanity/lib/live.ts` sets up Sanity's live content API.
+**Studio config** (`sanity.config.ts`): studio at `/studio`.
+
+### Routing Structure
+
+- `src/app/(main)/` — public site (wraps with `Header`, `Footer`, `ToastProvider`)
+  - `(home)/page.tsx` → `/`
+  - `[slug]/page.tsx` → `/:slug` (dynamic, CMS-driven)
+- `src/app/studio/[[...tool]]/` — Sanity Studio at `/studio`
+
+### Header Transparency
+
+Controlled per-page via `transparentHeader: boolean` on the `page` Sanity document. The layout (`src/app/(main)/layout.tsx`) reads `x-pathname` from headers (injected by `src/middleware.ts`) and fetches `transparentHeader` from Sanity server-side to pass the initial value to `<Header>`. The `Header` component also re-fetches on client-side route changes via `pathname` effect.
 
 ### Contact Form
 
-The contact page (`(x-more)/(contact-us)/`) uses:
-- `react-hook-form` + `zod` for validation (`validation/form-zod.ts`)
-- A Next.js Server Action (`actions/email.ts`) that sends email via **Resend**
-- `react-toastify` for user feedback
+`contactFormBlock` section renders `src/components/sections/ContactForm.tsx`, which uses:
+- `react-hook-form` + `zod` for validation
+- A Next.js Server Action that sends email via **Resend**
+- `react-toastify` for feedback
 
-Required env vars: `RESEND_API_KEY`, `SMTP_EMAIL` (recipient address)
+Required env vars: `RESEND_API_KEY`, `SMTP_EMAIL`
 
 ### Styling
 
-- **Tailwind CSS** with custom color palette defined as CSS variables in `src/app/globals.css` and referenced in `tailwind.config.ts`
-- Custom colors: `deepBlack`, `vintageNavy`, `darkerNavy`, `softWhite`, `buttonBlue`, `sageGreen`, etc.
-- Custom font: `Handlee` (cursive, via `--font-handlee` variable)
-- Primary body font: `Open Sans`
+- **Tailwind CSS** with custom color palette (`deepBlack`, `vintageNavy`, `darkerNavy`, `softWhite`, `buttonBlue`, `sageGreen`, etc.) defined as CSS variables in `src/app/globals.css` and referenced in `tailwind.config.ts`
+- Custom font: `Handlee` (via `--font-handlee`); body: `Open Sans`
 - **SCSS modules** used in `src/components/header/side-menu/MobileMenu.module.scss`
-- `tailwind-scrollbar-hide` plugin is included
 
 ### Environment Variables
 
@@ -77,6 +83,16 @@ RESEND_API_KEY=...
 SMTP_EMAIL=...
 ```
 
+### Key Conventions
+
+**Path alias**: `@/*` → `./src/*`
+
+**Nav constants**: `src/constants/nav-links.ts` — `LINKS` (desktop), `MOBILE_LINKS` (mobile), `FOOTER_LINKS` (footer). Edit when adding/removing pages from nav.
+
+**Shared layout components**: `Container` + `Section` in `src/components/layouts/`; reusable typography (`H2`, `H3`, `P`, `ItalicsP`) in `src/components/text/`
+
+**SEO**: `src/app/sitemap.ts` + `src/app/robots.ts`; root layout title template: `"%s | Christ Disciple Mission Church"`. The `[slug]/page.tsx` reads `seo` fields from Sanity for per-page metadata.
+
 ### Key Dependencies
 
 - `framer-motion` — animations
@@ -84,4 +100,4 @@ SMTP_EMAIL=...
 - `react-responsive` — responsive breakpoint hooks
 - `lucide-react` + `react-icons` — icons
 - `next-sanity` — Sanity/Next.js integration
-- `@sanity/image-url` — Sanity image URL builder (used in `src/sanity/lib/image.ts`)
+- `@sanity/image-url` — Sanity image URL builder (used in `src/sanity/lib/image.ts`, not in page queries)

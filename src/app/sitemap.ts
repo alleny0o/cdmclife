@@ -1,28 +1,17 @@
 import { MetadataRoute } from "next";
+import { client } from "@/sanity/lib/client";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/';
+const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000").replace(/\/$/, "");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    return [
-        {
-            url: baseUrl,
-            priority: 1,
-        },
-        {
-            url: `${baseUrl}about`,
-            priority: 0.9,
-        },
-        {
-            url: `${baseUrl}worship`,
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}missions`,
-            priority: 0.7,
-        },
-        {
-            url: `${baseUrl}mustard-seed`,
-            priority: 0.6,
-        },
-    ];
-};
+  const pages: { slug: string | null; isHomePage: boolean }[] = await client.fetch(
+    `*[_type == "page" && defined(slug.current)]{ "slug": slug.current, isHomePage }`,
+    {},
+    { next: { revalidate: 3600 } }
+  );
+
+  return pages.map((page) => ({
+    url: page.isHomePage ? `${baseUrl}/` : `${baseUrl}/${page.slug}`,
+    priority: page.isHomePage ? 1 : 0.8,
+  }));
+}

@@ -6,14 +6,12 @@ import { TopBar } from "./TopBar";
 import { TopHeader } from "./TopHeader";
 import { FixedHeader } from "./FixedHeader";
 import { MegaMenuProvider } from "./context/MegaMenuContext";
+import { client } from "@/sanity/lib/client";
 
-export function isTransparentPath(pathname: string): boolean {
-  return ["/", "/about", "/worship", "/missions"].includes(pathname);
-}
-
-export default function Header() {
+export default function Header({ isTransparent = false }: { isTransparent?: boolean }) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
+  const [transparent, setTransparent] = useState(isTransparent);
   const [isVisible, setIsVisible] = useState(false);
   const [activeMenu, setActiveMenu] = useState<"main" | "fixed" | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -78,9 +76,17 @@ export default function Header() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [handleEscape]);
 
-  // Close menu on route change
+  // Close menu on route change; update transparency from Sanity
   useEffect(() => {
     setActiveMenu(null);
+    const slug = pathname === "/" ? null : pathname.replace(/^\//, "").split("/")[0];
+    const query = slug
+      ? `*[_type == "page" && slug.current == $slug][0]{ transparentHeader }`
+      : `*[_type == "page" && isHomePage == true][0]{ transparentHeader }`;
+    const params = slug ? { slug } : {};
+    client.fetch(query, params).then((page) => {
+      setTransparent(page?.transparentHeader ?? false);
+    });
   }, [pathname]);
 
   // Memoized menu toggle handler
@@ -88,14 +94,11 @@ export default function Header() {
     setActiveMenu((prev) => prev === menuType ? null : menuType);
   }, []);
 
-  // Determine if header should be transparent
-  const isTransparent = isTransparentPath(pathname);
-
   return (
-    <MegaMenuProvider>
+    <MegaMenuProvider isTransparent={transparent}>
       <header
         className={`z-50 ${
-          isTransparent ? "absolute" : "relative bg-deepBlack"
+          transparent ? "absolute" : "relative bg-deepBlack"
         } top-0 left-0 right-0 flex flex-col justify-center transition-opacity duration-300`}
       >
         <TopBar />

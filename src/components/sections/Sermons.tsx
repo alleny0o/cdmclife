@@ -3,34 +3,16 @@ import React from "react";
 import { Section, Container } from "@/components/layouts/Layouts";
 import { H2 } from "@/components/text/H2";
 import { ItalicsP } from "@/components/text/ItalicsP";
-import { client } from "@/sanity/lib/client";
-import { SermonCard } from "@/sanity/lib/interface";
+import { SermonsBlock } from "@/sanity/lib/interface";
 import ButtonLink from "@/components/ButtonLink";
 
-async function getData() {
-  const query = `*[_type == 'sermons'] {
-    _id,
-    title,
-    pastor,
-    link,
-    duration,
-    date,
-    order
-  }`;
-
-  const sermons: SermonCard[] = await client.fetch(query, {}, { next: { revalidate: 30 }});
-
-  return sermons.map((sermon) => ({
+function Sermons({ block }: { block: SermonsBlock }) {
+  const sermons = block.sermons.map((sermon) => ({
     ...sermon,
     embedUrl: sermon.link.includes("/live/")
       ? `https://www.youtube.com/embed/${sermon.link.split("/live/")[1].split("?")[0]}`
       : sermon.link,
   }));
-}
-
-async function Sermons() {
-  const data: SermonCard[] = await getData();
-  const sermons = data.sort((a, b) => a.order - b.order);
 
   return (
     <Section className="py-20">
@@ -53,7 +35,7 @@ async function Sermons() {
           <div className="text-center mb-14">
             <ItalicsP className="text-dustyBlue tracking-wide">Join us as we</ItalicsP>
             <H2 className="mt-1 text-3xl sm:text-4xl md:text-5xl font-light tracking-tight">
-              Explore <span className="font-medium">God’s Word</span>
+              Explore <span className="font-medium">God&apos;s Word</span>
             </H2>
           </div>
 
@@ -61,7 +43,7 @@ async function Sermons() {
           <div className="space-y-6 max-w-5xl mx-auto">
             {sermons.map((sermon) => (
               <div
-                key={sermon._id}
+                key={sermon._key}
                 className="bg-softWhite rounded-lg border border-dustyBlue/20 p-6 flex flex-col md:flex-row items-start gap-6 shadow-sm hover:shadow-md transition-all duration-300"
               >
                 {/* Video Thumbnail Container */}
